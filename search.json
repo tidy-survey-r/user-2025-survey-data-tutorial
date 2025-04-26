@@ -2,15 +2,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "user-2025-survey-data-tutorial",
+    "title": "Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "This is the website for the tutorial. We include slides and exercises."
   }
 ]
