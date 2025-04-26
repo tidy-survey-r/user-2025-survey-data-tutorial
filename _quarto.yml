@@ -2,12 +2,16 @@ project:
   type: website
 
 website:
-  title: "user-2025-survey-data-tutorial"
+  favicon: images/favicon.png
+  title: "user 2025"
   navbar:
+    background: primary
+    search: true
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: slides.qmd
+        text: Slides
 
 format:
   html:
@@ -17,5 +21,11 @@ format:
     css: styles.css
     toc: true
 
+editor: source
+
+execute:
+  echo: true
+  
+highlight-style: atom-one
 
 
