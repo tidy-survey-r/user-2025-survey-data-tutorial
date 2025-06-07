@@ -10,7 +10,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: slides.qmd
+      - href: slides-00.qmd
         text: Slides
 
 format:
