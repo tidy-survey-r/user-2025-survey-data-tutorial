@@ -1,5 +1,5 @@
 ---
-title: "Complex Survey Data Analysis"
+title: "Complex Survey <br>Data Analysis"
 subtitle: "A Tidy Introduction with {srvyr} and {survey}"
 author: 
   - Stephanie A. Zimmer
@@ -15,8 +15,8 @@ title-slide-attributes:
       data-background: "#087e8b"
       data-background-image: "images/cover.png"
       data-background-position: 90% center
-      data-background-size: 30%
-      style: "text-align: left; right: 15%"
+      data-background-size: 25%
+      style: "text-align: left; right: 16%"
 ---
 
 # Background

@@ -1,0 +1,335 @@
+---
+title: "Statistical Testing"
+format: revealjs
+slide-number: true
+title-slide-attributes:
+      data-background: "#087e8b"
+---
+
+```{r}
+#| label: load-pkgs
+#| echo: false
+
+###Added this just to get my sections to run, but will want to move into a section where we talk about what to install and get running.
+
+
+library(tidyverse)
+library(survey)
+library(srvyr)
+library(srvyrexploR)
+library(gt)
+
+recs_des <- recs_2020 %>%
+  as_survey_rep(
+    weights = NWEIGHT,
+    repweights = NWEIGHT1:NWEIGHT60,
+    type = "JK1",
+    scale = 59 / 60,
+    mse = TRUE
+  )
+
+```
+
+# t-tests {background-color='{{< brand color secondary >}}'}
+
+## t-tests
+
+- Determine if one proportion or mean is statistically different from another
+
+::: {.incremental}
+- Different types:
+  - One-Sample: Comparing our data to a set value
+  - Two-Sample: Comparing two sets of data
+    - Unpaired: Comparing two values for two different groups
+    - Paired: Comparing two values for the same unit
+
+:::
+
+::: {.notes}
+- Unpaired Examples: 
+  - A/B testing
+  - compare test scores for two different classrooms taught by two different instructors
+- Paired Examples: 
+  - compare test scores for each student at the beginning and end of class
+  - water samples from a river before and after a treatment or environmental change
+
+:::
+
+## t-test syntax
+
+Use the `svyttest()` function to compare two proportions or means.
+
+Syntax:
+
+```{r}
+#| label: syntax-ttest-1
+#| eval: false
+
+svyttest(formula,
+         design,
+         ...)
+```
+
+::: {.notes}
+- Similar to `t.test()` function in base R with the formula and the data arguments
+:::
+
+
+## t-test syntax
+
+```{r}
+#| label: syntax-ttest-error
+#| error: true
+
+recs_des %>%
+  svyttest(SummerTempNight - 68 ~ 0, 
+           na.rm = TRUE)
+```
+
+## t-test syntax
+
+Use the `svyttest()` function to compare two proportions or means.
+
+Syntax:
+
+```{r}
+#| label: syntax-ttest-2
+#| eval: false
+#| code-line-numbers: "2"
+
+svyttest(formula,
+         design,
+         ...)
+```
+
+::: {.notes}
+- as `design` argument is the second arugument, dot notation is needed
+:::
+
+## Dot notation
+
+Using the `towny` data, let's filter to only cities.
+
+```{r}
+#| label: dot-notation-0
+
+towny
+
+```
+
+## Dot notation 
+
+Using the `towny` data, let's filter to only cities.
+
+```{r}
+#| label: dot-notation-1
+
+filter(towny, csd_type == "city")
+
+```
+
+## Dot notation
+
+Using the `towny` data, let's filter to only cities.
+
+```{r}
+#| label: dot-notation-2
+#| eval: false
+#| code-line-numbers: "2"
+
+filter(towny, csd_type == "city")
+towny %>% filter(csd_type == "city")
+
+```
+
+```{r}
+#| label: dot-notation-2-run
+#| echo: false
+
+towny %>% filter(csd_type == "city")
+
+```
+
+## Dot notation 
+
+Using the `towny` data, let's filter to only cities.
+
+```{r}
+#| label: dot-notation-3
+#| eval: false
+#| code-line-numbers: "3"
+
+filter(towny, csd_type == "city")
+towny %>% filter(csd_type == "city")
+towny %>% filter(., csd_type == "city")
+```
+
+```{r}
+#| label: dot-notation-3-run
+#| echo: false
+
+towny %>% filter(., csd_type == "city")
+
+```
+
+## Dot notation 
+
+Using the `towny` data, let's filter to only cities.
+
+```{r}
+#| label: dot-notation-4
+#| eval: false
+#| code-line-numbers: "4"
+
+filter(towny, csd_type == "city")
+towny %>% filter(csd_type == "city")
+towny %>% filter(., csd_type == "city")
+towny %>% filter(.data = ., csd_type == "city")
+```
+
+```{r}
+#| label: dot-notation-4-run
+#| echo: false
+
+towny %>% filter(.data = ., csd_type == "city")
+
+```
+
+## Examples: one-sample t-test
+
+::: {.incremental}
+- one sample t-tests compare data against a single value
+- Stephanie usually sets her home to 68&deg;F at night during the summer. Is this different from the average household in the U.S.?
+- Use `SummerTempNight`
+:::
+
+## Examples: one-sample t-test
+
+Test if the average U.S. household sets its temperature at a value different from 68&deg;F using `svyttest()`:
+
+``` {r}
+#| eval: false
+#| label: calc-t-test-hl-formula
+#| code-line-numbers: '|4|3'
+recs_des %>%
+  svyttest(
+    formula = SummerTempNight - 68 ~ 0, 
+    design = ., 
+    na.rm = TRUE
+  )
+```
+
+- Formula to test if the true mean of `SummerTempNight` variable minus 68&deg;F is equal to 0
+
+## Implementation: one-sample t-test
+
+Test if the average U.S. household sets its temperature at a value different from 68&deg;F using `svyttest()`:
+
+``` {r}
+#| eval: false
+#| label: calc-t-test-hl-des
+#| code-line-numbers: '4'
+recs_des %>%
+  svyttest(
+    formula = SummerTempNight - 68 ~ 0, 
+    design = ., 
+    na.rm = TRUE
+  )
+```
+- Formula to test if the true mean of `SummerTempNight` variable minus 68&deg;F is equal to 0
+- Dot notation `.` that passes the `recs_des` object into the `design` argument
+
+## Results: one-sample t-test {auto-animate=true}
+
+Test if the average U.S. household sets its temperature at a value different from 68&deg;F using `svyttest()`:
+
+```{r}
+#| label: calc-t-test
+recs_des %>%
+  svyttest(
+    formula = SummerTempNight - 68 ~ 0,
+    design = .,
+    na.rm = TRUE
+  )
+```
+
+::: {.notes}
+- Sample estimate mean is the difference between the U.S. average and Stephanie's house
+- Result: Stephanie keeps her house cold in the summer!
+:::
+
+## Implementation: two-sample t-test 
+
+On average, is there a significant different electric bill for households with and without air-conditioning?
+
+## Implementation: two-sample t-test {auto-animate=true}
+
+On average, is there a significant different electric bill for households with and without air-conditioning?
+
+First, look at the estimated average for households with and without air-condition.
+
+```{r}
+#| label: ac-bill-summary
+recs_des %>%
+  group_by(ACUsed) %>%
+  summarize(mean = survey_mean(DOLLAREL, na.rm = TRUE))
+```
+
+::: {.notes}
+- Add in the group_by here to see the means for each group
+:::
+
+## Implementation: two-sample t-test
+
+Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
+
+
+```{r}
+#| eval: false
+#| label: ac-bill-test-nohl
+recs_des %>%
+  svyttest(
+    formula = DOLLAREL ~ ACUsed,
+    design = ., 
+    na.rm = TRUE
+  )
+```
+
+## Implementation: two-sample t-test {auto-animate=true}
+
+Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
+
+
+```{r}
+#| eval: false
+#| label: ac-bill-test-hl-form
+#| code-line-numbers: '3'
+recs_des %>%
+  svyttest(
+    formula = DOLLAREL ~ ACUsed,
+    design = ., 
+    na.rm = TRUE
+  )
+```
+
+- Formula with electricity expenditure on the left and air-conditioning usage on the right
+
+## Results: two-sample t-test {auto-animate=true}
+
+Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
+
+```{r}
+#| label: ac-bill-test
+recs_des %>%
+  svyttest(
+    formula = DOLLAREL ~ ACUsed,
+    design = ., 
+    na.rm = TRUE
+  )
+```
+
+::: {.notes}
+- Household with AC have higher electrical bill
+:::
+
+# Design {background-color='{{< brand color secondary >}}'}
