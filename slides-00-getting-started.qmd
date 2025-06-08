@@ -1,0 +1,501 @@
+---
+title: "Getting Started"
+format: revealjs
+slide-number: true
+title-slide-attributes: 
+  data-background: "#087e8b"
+
+---
+
+# Warm-Up Exercises
+
+## Posit Cloud
+<!--TODO: Update this with Posit Cloud info-->
+<!--TODO: Find out if we can email participants-->
+<!--TODO: Work individually?-->
+
+- We will be using Posit Cloud for exercises
+  - Posit Cloud has the same features and appearance as RStudio for ease of use
+- Access the project and files via instructions in email
+- Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
+- We will go through slides of content then work on exercises individually, then regroup to go over answers
+
+## Welcome to the Towny Data
+
+- We'll be using the `towny` data for warm-up exercises
+- Available in the {gt} package
+
+![](images/towny.png){fig-align="center"}
+
+## Posit Cloud Demonstration
+
+- Load {tidyverse}, {gt}, and {here}
+- Look at the towny dataset using `glimpse()`
+
+```{r load_pack1, error=FALSE, warning=FALSE}
+library(tidyverse) # for tidyverse
+library(here) # for file paths
+library(gt)
+glimpse(towny)
+```
+
+## Let's do some warm-up examples!  {background-color='{{< brand color primary >}}' .smaller}
+
+- Take 10 minutes to set up Posit Cloud and finish these exercises individually. We will then go over together.
+
+   1. How many different types of CSD (`csd_type`) are there in the dataset?
+   2. How many different types of CSD and status (`status`) are there in the dataset?
+   3. What is the proportion of each type of CSD?
+   4. What is the proportion of each status within type of CSD?
+   5. What is the mean population of all of the towns?
+   6. What is the mean population by CDS Type?
+   7. Fit a simple linear regression between population and land area.
+   
+## Ex. 1: How many different types of CSD are there in the dataset?
+
+```{r}
+#| eval: false
+towny %>%
+  count(csd_type)
+```
+
+. . .
+
+or
+
+```{r}
+#| eval: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+. . .
+
+```{r}
+#| echo: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+## Ex. 2: How many different types of CSD and status are there in the dataset?
+
+```{r}
+#| eval: false
+towny %>%
+  count(csd_type, status)
+```
+
+. . .
+
+or
+
+```{r}
+#| eval: false
+towny %>%
+  group_by(csd_type, status) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+. . .
+
+```{r}
+#| echo: false
+towny %>%
+  group_by(csd_type, status) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+## Ex. 3: What is the proportion of each type of CSD?
+
+```{r}
+#| eval: false
+towny %>%
+  count(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+. . .
+
+```{r}
+#| echo: false
+towny %>%
+  count(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+## Ex. 4: What is the proportion of each status within type of CSD?
+
+```{r}
+#| eval: false
+towny %>%
+  count(csd_type, status) %>%
+  group_by(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+. . .
+
+```{r}
+#| echo: false
+towny %>%
+  count(csd_type, status) %>%
+  group_by(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+## Ex. 5: What is the mean population in all of the towns?
+
+```{r}
+#| eval: false
+towny %>%
+  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| echo: false
+towny %>%
+  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+```
+
+## Ex. 6: What is the mean population by CDS?
+
+```{r}
+#| eval: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| echo: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+```
+
+## Ex. 7: Fit a simple linear regression between population and land area.
+
+```{r}
+#| eval: false
+mod1 <- lm(population_1996 ~ land_area_km2, data = towny)
+summary(mod1)
+```
+
+. . .
+
+```{r}
+#| echo: false
+mod1 <- lm(population_1996 ~ land_area_km2, data = towny)
+summary(mod1)
+```
+
+# Setup
+
+## Packages
+
+Install the packages for data wrangling and survey analysis:
+
+```r
+install.packages(c("tidyverse", "survey", "srvyr"))
+```
+
+. . .
+
+Install the {srvyrexploR} package for accessing the survey data:
+
+```r
+install.packages("pak")
+pak::pak("tidy-survey-r/srvyrexploR")
+```
+
+. . .
+
+Load the packages:
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(survey)
+library(srvyr)
+library(srvyrexploR)
+```
+
+## Today's Data
+
+**American National Election Studies (ANES – DeBell 2010)**
+
+  * Stored as `anes_2020`
+  
+**Residential Energy Consumption Survey (RECS – U.S. Energy Information Administration 2023b)**
+
+* Stored as `recs_2020`
+
+## American National Election Studies (ANES) 2020 {.smaller}
+
+::: incremental
+
+- Pre- and post-election surveys fielded almost every 2 years since 1948
+- Topics include voter registration status, candidate preference, opinions on country and government, party and ideology affiliation, opinions on policy, news sources, and more
+- Collaboration of Stanford, University of Michigan - funding by the National Science Foundation
+- <b>Target Population</b>: US citizens, 18 and older living in US 
+- <b>Mode</b>: Web, videoconference, or telephone.
+- <b>Sample Information</b>: Pseudo-strata and pseudo-cluster included for variance estimation
+
+https://electionstudies.org/
+
+:::
+
+## American National Election Studies (ANES) 2020
+
+```{r}
+#| code-line-numbers: "|2|"
+anes_2020 %>%
+  select(-matches("^V\\d")) %>%
+  glimpse()
+```
+
+## Residential Energy Consumption Survey (RECS) 2015 {.smaller}
+
+::: incremental
+
+- Energy consumption/expenditures collected through energy suppliers
+- Fielded 14 times between 1950 and 2015
+- Topics include appliances, electronics, heating, a/c, temperatures, water heating, lighting, energy bills, respondent demographics, and energy assistance
+- Funded by the Energy Information Administration
+- <b>Target Population</b>: Primary occupied housing units in the US
+- <b>Mode</b>: In-person, paper, and web interview mode
+- <b>Sample Information</b>: BRR Replicate weights included for variance estimation
+
+https://www.eia.gov/consumption/residential/index.php
+
+:::
+
+## Residential Energy Consumption Survey (RECS) 2015
+
+```{r}
+#| code-line-numbers: "|2|"
+recs_2020 %>%
+  select(-matches("^NWEIGHT")) %>%
+  glimpse()
+```
+
+# Design Objects
+
+## Design Objects
+
+**We will be covering survey design in more detail later in the workshop!**
+
+::: incremental
+
+- Backbone for survey analysis
+- Specify the sampling design, weights, and other necessary information to account for errors in the data
+- Survey analysis and inference should be performed with the survey design objects, not the original survey data
+
+:::
+
+## American National Election Studies Design Object
+
+```{r}
+#| include: false
+targetpop <- 231034125
+anes_adjwgt <- anes_2020 %>%
+  mutate(Weight = V200010b / sum(V200010b) * targetpop)
+```
+
+```{r}
+#| code-line-numbers: "|1|2,7|3-6"
+anes_des <- anes_adjwgt %>%
+  as_survey_design(
+    weights = Weight,
+    strata = V200010d,
+    ids = V200010c,
+    nest = TRUE
+  )
+
+anes_des
+```
+
+## Residential Energy Consumption Survey Design Object
+
+```{r}
+#| code-line-numbers: "|1|2,8|3-7"
+recs_des <- recs_2020 %>%
+  as_survey_rep(
+    weights = NWEIGHT,
+    repweights = NWEIGHT1:NWEIGHT60,
+    type = "JK1",
+    scale = 59 / 60,
+    mse = TRUE
+  )
+
+recs_des
+```
+
+# Survey Analysis Process
+
+## Overview of Survey Analysis using `srvyr` Package
+
+::: incremental
+
+1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
+
+2. Subset data (if needed) using `filter()` (to create subpopulations)
+
+3. Specify domains of analysis using `group_by()`
+
+4. Within `summarize()`, specify variables to calculate, including means, totals, proportions, quantiles, and more
+
+:::
+
+# Similarities (and Differences) Between {dplyr} and {srvyr} Functions
+
+## Why use {srvyr} over {survey}?
+
+The {srvyr} package builds on the {survey} package by providing wrappers for functions that align with the tidyverse philosophy.
+
+::: incremental
+
+* Use the pipe function `%>%`
+* Ability to use tidy selection
+* Functions follow `snake_case` convention
+
+:::
+
+## Apply {dplyr} functions to survey objects
+
+- A few functions in {srvyr} have counterparts in {dplyr}
+  - `dplyr::summarize()` and `srvyr::summarize()`
+  - `dplyr::group_by()` and `srvyr::group_by()`
+- Based on the object class, it will recognize which package to use
+
+## Tibbles vs. survey table object
+
+```{r}
+class(towny)
+```
+vs.
+
+```{r}
+class(recs_des)
+```
+
+## Using `summarize()` to calculate mean and median
+
+### Tibble:
+
+```{r}
+#| code-line-numbers: "|1,4|2,3|"
+towny %>%
+  summarize(
+    area_mean = mean(land_area_km2)
+  )
+```
+
+## Using `summarize()` to calculate mean and median
+
+### Survey object:
+
+```{r}
+#| code-line-numbers: "|1,4|2,3|"
+recs_des %>%
+  summarize(
+    TOTHSQFT_mean = survey_mean(TOTHSQFT),
+  )
+```
+
+## Using tidyselect
+
+### Tibble:
+
+```{r}
+#| code-line-numbers: "|2,5|3|4|"
+towny %>%
+  summarize(across(
+    starts_with("population"),
+    ~ mean(.x, na.rm = TRUE)
+  ))
+```
+
+## Using tidyselect
+
+### Survey object:
+
+```{r}
+#| code-line-numbers: "|2,5|3|4|"
+recs_des %>%
+  summarize(across(
+    starts_with("TOT"),
+    ~ survey_mean(.x, na.rm = TRUE)
+  ))
+```
+
+## Using {dplyr} functions
+
+### Tibble:
+
+```{r}
+#| code-line-numbers: "|2|3|"
+towny %>%
+  filter(csd_type == "township") %>%
+  select(name)
+```
+
+## Using {dplyr} functions
+
+### Survey object:
+
+```{r}
+#| code-line-numbers: "|1|2|3|"
+recs_des_mod <- recs_des %>%
+  filter(Urbanicity == "Rural") %>%
+  select(ACUsed)
+
+recs_des_mod
+```
+
+## Grouping
+
+### Tibble:
+
+```{r}
+#| code-line-numbers: "|2|3|"
+towny %>%
+  group_by(csd_type) %>%
+  summarize(area_mean = mean(land_area_km2))
+```
+
+## Grouping
+
+### Survey object:
+
+```{r}
+#| code-line-numbers: "|2|3|"
+recs_des %>%
+  group_by(Urbanicity) %>%
+  summarize(TOTHSQFT_mean = survey_mean(TOTHSQFT))
+```
+
+## Using {srvyr} functions on non-survey objects
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|2"
+towny %>%
+  summarize(area_mean = survey_mean(land_area_km2))
+```
+
+. . .
+
+```{r}
+#| error: true
+#| echo: false
+towny %>%
+  summarize(area_mean = survey_mean(land_area_km2))
+```
