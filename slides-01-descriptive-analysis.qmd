@@ -1,60 +1,70 @@
 ---
 title: "Descriptive Analysis"
+format: revealjs
+slide-number: true
+title-slide-attributes: 
+  data-background: "#087e8b"
 ---
 
-# Descriptive statistics
-
-
-
-## Descriptive analysis with survey data
-
 ## Introduction
 
-_Descriptive analyses_ lay the groundwork for the next steps of running statistical tests or developing models.
-
-## Introduction
-
-[show example]
-
-if only 10% of survey respondents are male, it could indicate a unique population, a potential error or bias, an intentional survey sampling method, or other factors.
-
-## Introduction
+Descriptive analyses lay the groundwork for the next steps of running statistical tests or developing models.
 
 Calculate point estimates of...
 
-*Unknown population parameters*, such as mean.
+- *Unknown population parameters*, such as mean.
 
 . . .
 
-*Uncertainty estimates*, such as confidence intervals.
+- *Uncertainty estimates*, such as confidence intervals.
 
-## Types of data
+# Types of Data
+
+## Types of Data
+
+::: incremental
 
 * Categorical/nominal data: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)
-Ordinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)
-Discrete data: variables that are counted or measured, such as number of children
-Continuous data: variables that are measured and whose values can lie anywhere on an interval, such as income
+* Ordinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)
+* Discrete data: variables that are counted or measured, such as number of children
+* Continuous data: variables that are measured and whose values can lie anywhere on an interval, such as income
 
-## Types of measures
+:::
 
-Measures of distribution describe how often an event or response occurs. These measures include counts and totals. We cover the following functions:
+## Types of Data
 
-* Count of observations (survey_count() and survey_tally())
-* Summation of variables (survey_total())
+We can determine which statistics to use depending on the type of data.
+
+For example, taking an average of categorial data might not make sense.
+
+# Types of Measures
+
+## Measures of Distribution
+
+Measures of distribution describe how often an event or response occurs. We cover the following functions:
+
+* Count of observations (`survey_count()` and `survey_tally()`)
+* Summation of variables (`survey_total()`)
+
+## Measures of Central Tendency
 
 Measures of central tendency find the central (or average) responses. These measures include means and medians. We cover the following functions:
 
-    Means and proportions (survey_mean() and survey_prop())
-    Quantiles and medians (survey_quantile() and survey_median())
+* Means and proportions (`survey_mean()` and `survey_prop()`)
+* Quantiles and medians (`survey_quantile()` and `survey_median()`)
+
+## Measure of Relationships
 
 Measures of relationship describe how variables relate to each other. These measures include correlations and ratios. We cover the following functions:
 
-    Correlations (survey_corr())
-    Ratios (survey_ratio())
+- Correlations (`survey_corr()`)
+- Ratios (`survey_ratio()`)
+
+## Measures of Dispersion
 
 Measures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances. We cover the following functions:
 
-    Variances and standard deviations (survey_var() and survey_sd())
+- Variances and standard deviations (`survey_var()` and `survey_sd()`)
 
 ## Count of observations
 
