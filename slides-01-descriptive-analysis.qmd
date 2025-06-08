@@ -1,0 +1,95 @@
+---
+title: "Descriptive Analysis"
+---
+
+# Descriptive statistics
+
+
+
+## Descriptive analysis with survey data
+
+## Introduction
+
+_Descriptive analyses_ lay the groundwork for the next steps of running statistical tests or developing models.
+
+## Introduction
+
+[show example]
+
+if only 10% of survey respondents are male, it could indicate a unique population, a potential error or bias, an intentional survey sampling method, or other factors.
+
+## Introduction
+
+Calculate point estimates of...
+
+*Unknown population parameters*, such as mean.
+
+. . .
+
+*Uncertainty estimates*, such as confidence intervals.
+
+## Types of data
+
+* Categorical/nominal data: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)
+Ordinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)
+Discrete data: variables that are counted or measured, such as number of children
+Continuous data: variables that are measured and whose values can lie anywhere on an interval, such as income
+
+## Types of measures
+
+Measures of distribution describe how often an event or response occurs. These measures include counts and totals. We cover the following functions:
+
+* Count of observations (survey_count() and survey_tally())
+* Summation of variables (survey_total())
+
+Measures of central tendency find the central (or average) responses. These measures include means and medians. We cover the following functions:
+
+    Means and proportions (survey_mean() and survey_prop())
+    Quantiles and medians (survey_quantile() and survey_median())
+
+Measures of relationship describe how variables relate to each other. These measures include correlations and ratios. We cover the following functions:
+
+    Correlations (survey_corr())
+    Ratios (survey_ratio())
+
+Measures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances. We cover the following functions:
+
+    Variances and standard deviations (survey_var() and survey_sd())
+
+## Count of observations
+
+Using `survey_count()` and `survey_tally()`, we can calculate the estimated population counts for a given variable or combination of variables.
+
+- These summaries, often referred to as cross-tabulations or cross-tabs, are applied to categorical data.
+
+## `survey_count` syntax
+
+- `survey_count` functions similarly to `dplyr::count` in that it is <b>NOT</b> called within `summarize`.
+- Produces weighted counts and variance of your choice of those counts.
+
+```r
+survey_count(
+   x,
+   ...,
+   wt = NULL,
+   sort = FALSE,
+   name = "n",
+   .drop = dplyr::group_by_drop_default(x),
+   vartype = c("se", "ci", "var", "cv")
+)
+```
+
+## `survey_count` example
+
+Cross-tab of population in each age group and gender:
+
+```r
+recs_des %>%
+  survey_count()
+```
+
+
+
+# Continuous data
+
+# Design

@@ -50,14 +50,3 @@ typography:
     background-color: lightblue2
   link:
     decoration: underline
-    
-defaults:
-  bootstrap:
-    # bootstrap variable definitions
-  quarto:
-    format:
-      # basic format-specific settings
-      html:
-      revealjs:
-  shiny:
-    # shiny specific settings
