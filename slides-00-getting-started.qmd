@@ -499,3 +499,20 @@ towny %>%
 towny %>%
   summarize(area_mean = survey_mean(land_area_km2))
 ```
+
+## Wrap Up
+
+* We will be using {tidyverse}, {survey}, and {srvyr} for survey analysis
+* Our data is from ANES and RECS
+
+## Wrap Up
+
+* (Survey) design objects are the backbone for survey analysis
+* They are objects with special class `tbl_svy`
+* They specify the sampling design, weights, and other necessary information to account for errors in the data
+
+## Wrap Up
+
+* {srvyr} wraps {survey} so that we can use friendly, "tidy" syntax
+* Based on the object type, R will know whether to use {dplyr} or {srvyr}
+* All functions must be done on the survey design object, not the raw data
