@@ -1,0 +1,120 @@
+---
+title: "Data creation - design exercises"
+format: html
+---
+
+```{r}
+#| label: load-libraries
+
+library(tidyverse)
+library(haven)
+library(osfr)
+osf_auth(Sys.getenv("OSF_PAT"))
+
+```
+
+# CHIS - 2023
+
+```{r}
+#| label: readin-data-chis
+
+chis_sas_files <- osf_retrieve_node("https://osf.io/z5c3m/") %>%
+  osf_ls_files(path = "CHIS_2023",
+               n_max = 40,
+               pattern = ".sas7bdat")
+
+filedet <- chis_sas_files %>%
+  filter(name=="adult.sas7bdat") %>%
+  osf_download(conflicts = "overwrite")
+
+chis_in <- filedet %>%
+  pull(local_path) %>%
+  read_sas()
+
+unlink(pull(filedet, "local_path"))
+```
+
+```{r}
+#| label: subset-data-cols-chis
+
+
+chis_slim <-
+  chis_in %>%
+  select(PUF1Y_ID, ASTCUR, RACEHP2_P1, contains("RAKED")) %>%
+  mutate(
+    ASTCUR=factor(ASTCUR, labels=c("Current asthma", "No current asthma")), 
+    RACEHP2_P1=factor(RACEHP2_P1, labels=c("Latino", "Other single/multiple race", "American Indian/Alaska Native", "Asian", "African American", "White"))
+  ) 
+  
+chis_in %>% count(ASTCUR)
+chis_slim %>% count(ASTCUR)
+
+chis_in %>% count(RACEHP2_P1)
+chis_slim %>% count(RACEHP2_P1)
+
+```
+
+```{r}
+#| label: save-dat-chis
+
+summary(chis_slim)
+glimpse(chis_slim)
+
+write_rds(chis_slim, here::here("Exercises", "data", "chis_adult_2023.rds"), compress="xz")
+```
+
+# NSDUH - 2023
+
+```{r}
+#| label: readin-data-nsduh
+
+dir.create(here::here("Exercises", "raw-data", "nsduh-temp"))
+download.file("https://www.samhsa.gov/data/system/files/media-puf-file/NSDUH-2023-DS0001-bndl-data-r_v1.zip",
+              here::here("Exercises", "raw-data", "nsduh-temp", "nsduh-2023.zip"))
+
+unzip(here::here("Exercises", "raw-data", "nsduh-temp", "nsduh-2023.zip"),
+      exdir = here::here("Exercises", "raw-data", "nsduh-temp"))
+
+load(here::here("Exercises", "raw-data", "nsduh-temp", "NSDUH_2023.Rdata"))
+
+unlink(here::here("Exercises", "raw-data", "nsduh-temp"), recursive= TRUE)
+```
+
+```{r}
+#| label: subset-data-cols-nsduh
+
+nsduh_slim <- puf2023_102124 %>%
+  select(QUESTID2, ANALWT2_C, VESTR_C, VEREP, AGE3, ALCMON, ALCMDAYS, MRJMON, MRJMDAYS) %>%
+  mutate(
+    AGE3=factor(AGE3, labels=c("12-13", "14-15", "16-17", "18-20", "21-23", "24-25", "26-29", "30-34", "35-49", "50-64", "65+")),
+    ALCMON=factor(ALCMON, labels=c("Did not use in past month", "Used in the past month")),
+    MRJMON=factor(MRJMON, labels=c("Did not use in past month", "Used in the past month")),
+    ALCMDAYS=factor(ALCMDAYS, labels=c("1-2 days", "3-5 days", "6-19 days", "20-30 days", "Non user or no past month use")),
+    MRJMDAYS=factor(MRJMDAYS, labels=c("1-2 days", "3-5 days", "6-19 days", "20-30 days", "Non user or no past month use"))
+  )
+
+puf2023_102124 %>% count(AGE3)
+nsduh_slim %>% count(AGE3)
+
+puf2023_102124 %>% count(ALCMON)
+nsduh_slim %>% count(ALCMON)
+
+puf2023_102124 %>% count(MRJMON)
+nsduh_slim %>% count(MRJMON)
+
+puf2023_102124 %>% count(ALCMDAYS)
+nsduh_slim %>% count(ALCMDAYS)
+
+puf2023_102124 %>% count(MRJMDAYS)
+nsduh_slim %>% count(MRJMDAYS)
+```
+
+
+```{r}
+#| label: save-dat-nsduh
+
+summary(nsduh_slim)
+glimpse(nsduh_slim)
+
+write_rds(nsduh_slim, here::here("Exercises", "data", "nsduh_2023.rds"), compress="xz")
+```
