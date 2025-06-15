@@ -18,6 +18,7 @@ library(survey)
 library(srvyr)
 library(srvyrexploR)
 library(gt)
+library(countdown)
 
 recs_des <- recs_2020 %>%
   as_survey_rep(
@@ -26,6 +27,19 @@ recs_des <- recs_2020 %>%
     type = "JK1",
     scale = 59 / 60,
     mse = TRUE
+  )
+
+targetpop <- 231592693
+
+anes_adjwgt <- anes_2020 %>%
+  mutate(Weight = Weight / sum(Weight) * targetpop)
+
+anes_des <- anes_adjwgt %>%
+  as_survey_design(
+    weights = Weight,
+    strata = Stratum,
+    ids = VarUnit,
+    nest = TRUE
   )
 
 ```
@@ -106,9 +120,11 @@ svyttest(formula,
 - as `design` argument is the second arugument, dot notation is needed
 :::
 
+# Dot notation {background-color='{{< brand color secondary >}}'}
+
 ## Dot notation
 
-Using the `towny` data, let's filter to only cities.
+Let's walk through an example using the `towny` data.
 
 ```{r}
 #| label: dot-notation-0
@@ -195,7 +211,9 @@ towny %>% filter(.data = ., csd_type == "city")
 
 ```
 
-## Examples: one-sample t-test
+# Example <br>one-sample t-test {background-color='{{< brand color blue >}}'}
+
+## Example: one-sample t-test
 
 ::: {.incremental}
 - one sample t-tests compare data against a single value
@@ -203,14 +221,14 @@ towny %>% filter(.data = ., csd_type == "city")
 - Use `SummerTempNight`
 :::
 
-## Examples: one-sample t-test
+## Example: one-sample t-test
 
 Test if the average U.S. household sets its temperature at a value different from 68&deg;F using `svyttest()`:
 
 ``` {r}
 #| eval: false
-#| label: calc-t-test-hl-formula
-#| code-line-numbers: '|4|3'
+#| label: ttest-onesamp-noeval
+#| code-line-numbers: '|3|4'
 recs_des %>%
   svyttest(
     formula = SummerTempNight - 68 ~ 0, 
@@ -219,32 +237,15 @@ recs_des %>%
   )
 ```
 
-- Formula to test if the true mean of `SummerTempNight` variable minus 68&deg;F is equal to 0
-
-## Implementation: one-sample t-test
-
-Test if the average U.S. household sets its temperature at a value different from 68&deg;F using `svyttest()`:
-
-``` {r}
-#| eval: false
-#| label: calc-t-test-hl-des
-#| code-line-numbers: '4'
-recs_des %>%
-  svyttest(
-    formula = SummerTempNight - 68 ~ 0, 
-    design = ., 
-    na.rm = TRUE
-  )
-```
 - Formula to test if the true mean of `SummerTempNight` variable minus 68&deg;F is equal to 0
 - Dot notation `.` that passes the `recs_des` object into the `design` argument
 
-## Results: one-sample t-test {auto-animate=true}
+## Results: one-sample t-test
 
 Test if the average U.S. household sets its temperature at a value different from 68&deg;F using `svyttest()`:
 
 ```{r}
-#| label: calc-t-test
+#| label: ttest-onesamp
 recs_des %>%
   svyttest(
     formula = SummerTempNight - 68 ~ 0,
@@ -258,52 +259,24 @@ recs_des %>%
 - Result: Stephanie keeps her house cold in the summer!
 :::
 
-## Implementation: two-sample t-test 
+# Example <br>unpaired two-sample t-test {background-color='{{< brand color blue >}}'}
 
-On average, is there a significant different electric bill for households with and without air-conditioning?
+## Example: unpaired two-sample t-test 
 
-## Implementation: two-sample t-test {auto-animate=true}
-
-On average, is there a significant different electric bill for households with and without air-conditioning?
-
-First, look at the estimated average for households with and without air-condition.
-
-```{r}
-#| label: ac-bill-summary
-recs_des %>%
-  group_by(ACUsed) %>%
-  summarize(mean = survey_mean(DOLLAREL, na.rm = TRUE))
-```
-
-::: {.notes}
-- Add in the group_by here to see the means for each group
+::: {.incremental}
+- Two-sample t-test compares data from two populations
+- On average, is there a significant different electric bill for households with and without air-conditioning?
+- Using `DOLLAREL` for the electricity bill and `ACUsed` to determine if households have air-conditioning
 :::
 
-## Implementation: two-sample t-test
+## Example: unpaired two-sample t-test
 
-Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
-
-
-```{r}
-#| eval: false
-#| label: ac-bill-test-nohl
-recs_des %>%
-  svyttest(
-    formula = DOLLAREL ~ ACUsed,
-    design = ., 
-    na.rm = TRUE
-  )
-```
-
-## Implementation: two-sample t-test {auto-animate=true}
-
-Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
-
+Test if the electricity expenditure is significantly different for homes with and without air-conditioning.
 
 ```{r}
 #| eval: false
-#| label: ac-bill-test-hl-form
-#| code-line-numbers: '3'
+#| label: ttest-unpaired-noeval
+#| code-line-numbers: '|3|4'
 recs_des %>%
   svyttest(
     formula = DOLLAREL ~ ACUsed,
@@ -313,13 +286,14 @@ recs_des %>%
 ```
 
 - Formula with electricity expenditure on the left and air-conditioning usage on the right
+- Dot notation `.` that passes the `recs_des` object into the `design` argument
 
-## Results: two-sample t-test {auto-animate=true}
+## Results: unpaired two-sample t-test
 
 Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
 
 ```{r}
-#| label: ac-bill-test
+#| label: ttest-unpaired
 recs_des %>%
   svyttest(
     formula = DOLLAREL ~ ACUsed,
@@ -332,4 +306,207 @@ recs_des %>%
 - Household with AC have higher electrical bill
 :::
 
-# Design {background-color='{{< brand color secondary >}}'}
+# Example <br>paired two-sample t-test {background-color='{{< brand color blue >}}'}
+
+## Example: paired t-test
+
+Do U.S. households set their thermostat differently at night in the summer and winter?
+
+```{r}
+#| label: ttest-paired
+
+recs_des %>%
+  svyttest(
+    formula = SummerTempNight - WinterTempNight ~ 0,
+    design = ., 
+    na.rm = TRUE
+  )
+```
+
+
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+```{r}
+#| label: ttest-ex-clock
+#| echo: false
+# 15 minutes, warning at 5 minutes
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+```
+
+
+# Chi-square tests {background-color='{{< brand color secondary >}}'}
+
+## Chi-square tests
+
+- compare multiple proportions to see if they are statistically different from each othter
+
+::: {.incremental}
+- Different types:
+  - Goodness-of-fit tests compare observed data to expected data
+  - Tests of independence compare two types of observed data to see if there is a relationship
+  - Tests of homogeneity compare two distributions to see if they match
+  
+:::
+
+## Chi-square syntax
+
+There are two functions that we use to compare proportions:
+
+- `svygofchisq()`: For goodness-of-fit tests
+- `svychisq()`: For tests of independence and homogeneity
+
+## Syntax for goodness-of-fit tests
+
+```{r}
+#| label: syntax-chisq-1
+#| eval: false
+#| code-line-numbers: "|2|3"
+
+svygofchisq(formula,
+            p,
+            design,
+            na.rm=TRUE,
+            ...)
+```
+
+## Syntax for tests of independence and homogeneity
+
+```{r}
+#| label: syntax-chisq-2
+#| eval: false
+#| code-line-numbers: "|3|2"
+#| 
+svychisq(formula,
+         design, 
+         statistic = c("F",  "Chisq", "Wald", "adjWald", 
+                       "lincom", "saddlepoint"),
+         na.rm=TRUE,
+         ...)
+```
+
+# Example <br>goodness-of-fit test {background-color='{{< brand color blue >}}'}
+
+## Example: goodness-of-fit test
+
+- Is the education distribution from the 2020 ANES survey data the same as the 18+ population in the U.S. as of 2020?
+  - 11% had less than a high school degree
+  - 27% had a high school degree
+  - 29% had some college or an associate’s degree
+  - 33% had a bachelor’s degree or higher
+
+## Example: goodness-of-fit test
+
+Let's check to see if the education levels from the ANES match the levels from the ACS
+
+```{r}
+#| label: chisq-gof-educ1
+
+anes_des %>%
+  drop_na(Education) %>%
+  group_by(Education) %>%
+  summarize(p = survey_mean())
+```
+
+## Example: goodness-of-fit test
+
+Let's collapse Bachelor's and Graduate degrees into a single category for comparison.
+
+```{r}
+#| label: chisq-gof-educ2
+
+anes_des_educ <- anes_des %>%
+  mutate(Education2 = 
+           fct_collapse(Education,
+                        "Bachelor or Higher" = c("Bachelor's","Graduate"))
+         )
+
+anes_des_educ %>%
+  drop_na(Education2) %>%
+  group_by(Education2) %>%
+  summarize(p = survey_mean())
+
+```
+
+
+## Results: goodness-of-fit test
+
+Test to see if the ANES education matches the population percentages 
+
+```{r}
+#| label: chisq-gof-results
+anes_des_educ %>%
+  svygofchisq(
+    formula = ~Education2,
+    p = c(0.11, 0.27, 0.29, 0.33),
+    design = .,
+    na.rm = TRUE
+  )
+
+```
+
+## Results: goodness-of-fit test
+
+```{r}
+#| label: chisq-gof-graph
+#| echo: false
+
+anes_des_educ %>%
+  drop_na(Education2) %>%
+  group_by(Education2) %>%
+  summarize(Observed = survey_mean(vartype = "ci")) %>%
+  rename(Education = Education2) %>%
+  mutate(Expected = c(0.11, 0.27, 0.29, 0.33)) %>%
+  select(Education, Expected, everything()) %>%
+  pivot_longer(
+    cols = c("Expected", "Observed"),
+    names_to = "Names",
+    values_to = "Proportion"
+  ) %>%
+  mutate(
+    Observed_low = if_else(Names == "Observed", Observed_low, NA_real_),
+    Observed_upp = if_else(Names == "Observed", Observed_upp, NA_real_),
+    Names = if_else(Names == "Observed",
+      "ANES (observed)", "ACS (expected)"
+    )
+  ) %>%
+  ggplot(aes(x = Education, y = Proportion, color = Names)) +
+  geom_point(alpha = 0.75, size = 2) +
+  geom_errorbar(aes(ymin = Observed_low, ymax = Observed_upp),
+    width = 0.25
+  ) +
+  theme_bw() +
+  scale_color_manual(name = "Type", values = c("#ff8484","#0b3954")) +
+  theme(legend.position = "bottom", legend.title = element_blank())
+
+```
+
+# Examples <br> test of independence and homogeneity {background-color='{{< brand color blue >}}'}
+
+## Example: test of independence
+
+ANES asked respondents two questions about trust:
+  - Question text: “How often can you trust the federal government to do what is right?”
+  - Question text: “How often can you trust other people?”
+  
+Run a test of independence to see if the distributions of these two questions are similar. 
+
+```{r}
+anes_des %>%
+  svychisq(
+    formula = ~ TrustGovernment + TrustPeople,
+    design = .,
+    statistic = "Wald",
+    na.rm = TRUE
+  )
+```
+
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+Open `chisq_exercises.qmd`
+
+```{r}
+#| label: chisq-ex-clock
+#| echo: false
+# 15 minutes, warning at 5 minutes
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+```
