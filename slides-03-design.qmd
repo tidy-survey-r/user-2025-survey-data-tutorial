@@ -1,21 +1,9 @@
 ---
 title: "Sampling Designs in {srvyr}"
-author: 
-  - Stephanie A. Zimmer
-  - Rebecca J. Powell
-  - Isabella C. Velásquez
-institute:
-  - RTI International
-  - Fors Marsh
-  - Posit
 format: revealjs
 slide-number: true
 title-slide-attributes:
       data-background: "#087e8b"
-#       # data-background-image: "images/cover.png"
-#       # data-background-position: 90% center
-#       # data-background-size: 30%
-#       # style: "text-align: left; right: 15%"
 ---
 
 ```{r}
@@ -26,7 +14,7 @@ library(srvyr)
 library(srvyrexploR)
 ```
 
-# Sampling designs
+# Sampling designs {background-color='{{< brand color secondary >}}'}
 
 ## Sampling methods
 
@@ -68,7 +56,7 @@ Designs can also incorporate stratification and/or clustering:
 
 - We will show both ANES and RECS examples when diving into code
 
-# Specifying sampling designs in srvyr
+# Specifying sampling designs in srvyr {background-color='{{< brand color secondary >}}'}
 
 ## Specify the sampling design: no replicate weights provided
 
@@ -193,7 +181,7 @@ nhanes_des <- nhanes %>%
 
 :::
 
-# Replicate weight methods
+# Replicate weight methods {background-color='{{< brand color secondary >}}'}
 
 ## Replicate weights overview {.smaller}
 
@@ -364,7 +352,7 @@ acs_des <- acs_pums %>%
 
 :::
 
-# Exercises
+# Exercises {background-color='{{< brand color secondary >}}'}
 
 ```{r}
 #| label: design-ex-clock
@@ -373,4 +361,4 @@ acs_des <- acs_pums %>%
 countdown::countdown(minutes = 20, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
-# Open Q & A
+# Open Q & A {background-color='{{< brand color secondary >}}'}
