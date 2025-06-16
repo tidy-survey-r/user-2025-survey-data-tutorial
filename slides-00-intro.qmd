@@ -1,0 +1,101 @@
+---
+title: "Complex Survey <br>Data Analysis"
+subtitle: "A Tidy Introduction with {srvyr} and {survey}"
+author: 
+  - Stephanie A. Zimmer
+  - Rebecca J. Powell
+  - Isabella C. Velásquez
+institute:
+  - RTI International
+  - Fors Marsh
+  - Posit
+format: revealjs
+date: 2025-08-08
+slide-number: true
+title-slide-attributes: 
+      data-background: "#087e8b"
+      data-background-image: "images/cover.png"
+      data-background-position: 90% center
+      data-background-size: 25%
+      style: "text-align: left; right: 16%"
+---
+
+# Introduction
+
+## About Us
+
+- Stephanie Zimmer, RTI International
+
+- Rebecca Powell, Fors Marsh
+
+- Isabella Velásquez, Posit
+
+::: {.notes}
+Each of us give a brief intro on our experience/background
+:::
+
+## Overview {.smaller}
+
+- At the end of this tutorial, you should be able to 
+   - Calculate point estimates and their standard errors with survey data 
+      - Proportions, totals, and counts
+      - Means, quantiles, and correlations
+   - Perform t-tests and chi-squared tests
+   - Specify a survey design in R to create a survey object
+
+- We will not be going over the following but provide some resources at the end
+   - Weighting (calibration, post-stratification, raking, etc.)
+   - Regression analysis
+   - Survival analysis
+   - Nonlinear models
+
+## Background
+
+- This tutorial largely builds off our book: Exploring Complex Survey Data Analysis Using R
+  - <https://tidy-survey-r.github.io/site/>
+- This book covers additional topics outside this tutorial including:
+  - Overview of survey process
+  - Linear regression and logistic regression
+  - Communication of results (tables and plots)
+  - Reproducible research best practices
+  
+## Overview of process
+
+
+```{mermaid}
+%%| echo: false
+
+flowchart TD
+  A[Survey Concept]-->B[Sampling Design]
+  A-->C[Questionnaire Design]
+  A-->D[Data Collection Planning]
+  B-->E[Data Collection]
+  C-->E
+  D-->E
+  E-->F[Post-Survey Processing]
+  F-->G[Analysis]
+  G-->H[Reporting]
+```
+
+
+::: {.notes}
+- This tutorial focuses on the Analysis step
+- We assume you are working with public use or restricted use files that already have weights
+- As time allows, we may touch on reporting
+:::
+
+
+## Roadmap for today
+
+- Descriptive analysis
+- Statistical testing
+- Survey design objects
+
+## Logistics
+
+- We will be using Posit Cloud for exercises 
+<!--TODO: Add link-->
+- All materials are found at:
+  - <https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/> (Site)
+  - <https://github.com/tidy-survey-r/user-2025-survey-data-tutorial> (Source)
+

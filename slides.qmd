@@ -1,0 +1,12 @@
+---
+title: "Slides"
+format: html
+---
+
+- [Section 0: Introduction and Set-Up](slides-00-intro.qmd)
+
+- [Section 1: Descriptive Analysis](slides-01-descriptive-analysis.qmd)
+
+- [Section 2: Statistical Testing](slides-02-stattesting.qmd)
+
+- [Section 3: Sampling Designs](slides-03-design.qmd)

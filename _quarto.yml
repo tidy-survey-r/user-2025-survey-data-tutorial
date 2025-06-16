@@ -3,14 +3,18 @@ project:
 
 website:
   favicon: images/favicon.png
-  title: "user 2025"
+  title: "useR 2025"
+  description: "Homepage for useR Complex Survey Data Analysis Tutorial."
+  site-url: https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/
+  repo-url: https://github.com/tidy-survey-r/user-2025-survey-data-tutorial
+  repo-actions: [source]
   navbar:
     background: primary
     search: true
     left:
       - href: index.qmd
         text: Home
-      - href: slides-00.qmd
+      - href: slides.qmd
         text: Slides
 
 format:

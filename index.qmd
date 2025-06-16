@@ -2,6 +2,5 @@
 title: "Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}"
 ---
 
-This is the website for the tutorial. We include slides and exercises.
-
+This is the website for the useR 2025 tutorial held at Duke University on August 8, 2025.
 
