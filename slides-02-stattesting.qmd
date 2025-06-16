@@ -19,6 +19,7 @@ library(srvyr)
 library(srvyrexploR)
 library(gt)
 library(countdown)
+library(broom)
 
 recs_des <- recs_2020 %>%
   as_survey_rep(
@@ -326,6 +327,8 @@ recs_des %>%
 
 # Your Turn {background-color='{{< brand color pink >}}'}
 
+Open `ttest_exercises.qmd`
+
 ```{r}
 #| label: ttest-ex-clock
 #| echo: false
@@ -374,7 +377,7 @@ svygofchisq(formula,
 ```{r}
 #| label: syntax-chisq-2
 #| eval: false
-#| code-line-numbers: "|3|2"
+#| code-line-numbers: "|3,4|2"
 #| 
 svychisq(formula,
          design, 
@@ -485,9 +488,14 @@ anes_des_educ %>%
 ## Example: test of independence
 
 ANES asked respondents two questions about trust:
+
   - Question text: “How often can you trust the federal government to do what is right?”
   - Question text: “How often can you trust other people?”
   
+Run a test of independence to see if the distributions of these two questions are similar. 
+
+## Example: test of independence
+
 Run a test of independence to see if the distributions of these two questions are similar. 
 
 ```{r}
@@ -509,4 +517,52 @@ Open `chisq_exercises.qmd`
 #| echo: false
 # 15 minutes, warning at 5 minutes
 countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+```
+
+# Analysis of Variance (ANOVA) {background-color='{{< brand color secondary >}}'}
+
+## ANOVA
+
+Use Analysis of Variance (ANOVA) to compare two or more means.
+
+Syntax:
+
+```{r}
+#| label: anova-syntax
+#| eval: false
+#| code-line-numbers: "|2"
+
+svyglm(
+  formula = outcome ~ group,
+  design = .,
+  na.action = na.omit,
+  df.resid = NULL
+)
+
+```
+
+## Example: ANOVA
+
+- Does the temperature that U.S. households set their AC during summer nights vary by region?
+- Use `svyglm()` function and variables `SummerTempNight` and `Region`
+
+```{r}
+#| label: anova-ex
+
+recs_des %>%
+  svyglm(formula = SummerTempNight ~ Region,
+         design = .) %>% 
+  tidy()
+
+```
+
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+Open `anova_exercises.qmd`
+
+```{r}
+#| label: anova-ex-clock
+#| echo: false
+# 5 minutes, warning at 2 minutes
+countdown::countdown(minutes = 5, seconds = 0, play_sound = TRUE, warn_when=2*60)
 ```
