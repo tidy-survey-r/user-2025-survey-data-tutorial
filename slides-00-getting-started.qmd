@@ -51,7 +51,15 @@ glimpse(towny)
 
 ## Let's do some warm-up examples!  {background-color='{{< brand color primary >}}' .smaller}
 
-- Take 10 minutes to set up Posit Cloud and finish these exercises individually. We will then go over together.
+```{r}
+#| label: gs-ex-time
+#| echo: false
+gs_ex_time <- 10
+gs_ex_warn <- 3
+```
+
+
+- Take `r gs_ex_time` minutes to set up Posit Cloud and finish these exercises individually. We will then go over together.
 
    1. How many different types of CSD (`csd_type`) are there in the dataset?
    2. How many different types of CSD and status (`status`) are there in the dataset?
@@ -60,6 +68,12 @@ glimpse(towny)
    5. What is the mean population of all of the municipalities in 2021?
    6. What is the mean population by CSD Type in 2021?
    7. What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
+   
+```{r}
+#| label: gs-ex-clock
+#| echo: false
+countdown::countdown(minutes = gs_ex_time, seconds = 0, play_sound = TRUE, warn_when = gs_ex_warn * 60)
+```
    
 ## Ex. 1
 
