@@ -49,7 +49,7 @@ library(gt)
 glimpse(towny)
 ```
 
-## Let's do some warm-up examples!  {background-color='{{< brand color primary >}}' .smaller}
+## Let's do some warm-up examples! {background-color='{{< brand color pink >}}' .smaller}
 
 ```{r}
 #| label: gs-ex-time
