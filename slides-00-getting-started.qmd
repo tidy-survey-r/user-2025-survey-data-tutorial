@@ -11,12 +11,11 @@ title-slide-attributes:
 
 ## Posit Cloud
 <!--TODO: Update this with Posit Cloud info-->
-<!--TODO: Find out if we can email participants-->
 <!--TODO: Work individually?-->
 
 - We will be using Posit Cloud for exercises
   - Posit Cloud has the same features and appearance as RStudio for ease of use
-- Access the project and files via instructions in email
+- Access the project and files via our link
 - Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
 - We will go through slides of content then work on exercises individually, then regroup to go over answers
 
