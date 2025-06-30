@@ -29,31 +29,58 @@ title-slide-attributes:
 
 ## Posit Cloud Demonstration
 
-- Load {tidyverse}, {gt}, and {here}
+- Load {tidyverse} and {gt}
 - Look at the towny dataset using `glimpse()`
 
-```{r load_pack1, error=FALSE, warning=FALSE}
-library(tidyverse) # for tidyverse
-library(here) # for file paths
+```{r}
+#| label: opt-set
+#| echo: false
+
+options(width=77)
+```
+
+
+```{r}
+#| label: load_pack1
+#| error: false
+#| warning: false
+library(tidyverse)
 library(gt)
 glimpse(towny)
 ```
 
 ## Let's do some warm-up examples!  {background-color='{{< brand color primary >}}' .smaller}
 
-- Take 10 minutes to set up Posit Cloud and finish these exercises individually. We will then go over together.
+```{r}
+#| label: gs-ex-time
+#| echo: false
+gs_ex_time <- 10
+gs_ex_warn <- 3
+```
+
+
+- Take `r gs_ex_time` minutes to set up Posit Cloud and finish these exercises individually. We will then go over together.
 
    1. How many different types of CSD (`csd_type`) are there in the dataset?
    2. How many different types of CSD and status (`status`) are there in the dataset?
    3. What is the proportion of each type of CSD?
    4. What is the proportion of each status within type of CSD?
-   5. What is the mean population of all of the towns?
-   6. What is the mean population by CDS Type?
-   7. Fit a simple linear regression between population and land area.
+   5. What is the mean population of all of the municipalities in 2021?
+   6. What is the mean population by CSD Type in 2021?
+   7. What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
    
-## Ex. 1: How many different types of CSD are there in the dataset?
+```{r}
+#| label: gs-ex-clock
+#| echo: false
+countdown::countdown(minutes = gs_ex_time, seconds = 0, play_sound = TRUE, warn_when = gs_ex_warn * 60)
+```
+   
+## Ex. 1
+
+How many different types of CSD are there in the dataset?
 
 ```{r}
+#| label: ex-1-code-a
 #| eval: false
 towny %>%
   count(csd_type)
@@ -64,6 +91,7 @@ towny %>%
 or
 
 ```{r}
+#| label: ex-1-code-b
 #| eval: false
 towny %>%
   group_by(csd_type) %>%
@@ -73,15 +101,17 @@ towny %>%
 . . .
 
 ```{r}
+#| label: ex-1-outp
 #| echo: false
-towny %>%
-  group_by(csd_type) %>%
-  summarize(n = n(), .groups = "drop")
+<<ex-1-code-a>>
 ```
 
-## Ex. 2: How many different types of CSD and status are there in the dataset?
+## Ex. 2
+
+How many different types of CSD and status are there in the dataset?
 
 ```{r}
+#| label: ex-2-code-a
 #| eval: false
 towny %>%
   count(csd_type, status)
@@ -92,6 +122,7 @@ towny %>%
 or
 
 ```{r}
+#| label: ex-2-code-b
 #| eval: false
 towny %>%
   group_by(csd_type, status) %>%
@@ -101,15 +132,17 @@ towny %>%
 . . .
 
 ```{r}
+#| label: ex-2-outp
 #| echo: false
-towny %>%
-  group_by(csd_type, status) %>%
-  summarize(n = n(), .groups = "drop")
+<<ex-2-code-b>>
 ```
 
-## Ex. 3: What is the proportion of each type of CSD?
+## Ex. 3
+
+What is the proportion of each type of CSD?
 
 ```{r}
+#| label: ex-3-code
 #| eval: false
 towny %>%
   count(csd_type) %>%
@@ -119,15 +152,17 @@ towny %>%
 . . .
 
 ```{r}
+#| label: ex-3-outp
 #| echo: false
-towny %>%
-  count(csd_type) %>%
-  mutate(p = n / sum(n))
+<<ex-3-code>>
 ```
 
-## Ex. 4: What is the proportion of each status within type of CSD?
+## Ex. 4
+
+What is the proportion of each status within type of CSD?
 
 ```{r}
+#| label: ex-4-code
 #| eval: false
 towny %>%
   count(csd_type, status) %>%
@@ -138,68 +173,76 @@ towny %>%
 . . .
 
 ```{r}
+#| label: ex-4-outp
 #| echo: false
-towny %>%
-  count(csd_type, status) %>%
-  group_by(csd_type) %>%
-  mutate(p = n / sum(n))
+<<ex-4-code>>
 ```
 
-## Ex. 5: What is the mean population in all of the towns?
+## Ex. 5
+
+What is the mean population of all of the municipalities in 2021?
 
 ```{r}
+#| label: ex-5-code
 #| eval: false
 towny %>%
-  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
 ```
 
 . . .
 
 ```{r}
+#| label: ex-5-outp
 #| echo: false
-towny %>%
-  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+<<ex-5-code>>
 ```
 
-## Ex. 6: What is the mean population by CDS?
+## Ex. 6
+
+What is the mean population by CSD in 2021?
 
 ```{r}
+#| label: ex-6-code
 #| eval: false
 towny %>%
   group_by(csd_type) %>%
-  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
 ```
 
 . . .
 
 ```{r}
+#| label: ex-6-outp
 #| echo: false
-towny %>%
-  group_by(csd_type) %>%
-  summarize(mean_pop = mean(population_1996, na.rm = TRUE))
+<<ex-6-code>>
 ```
 
-## Ex. 7: Fit a simple linear regression between population and land area.
+## Ex. 7
+
+What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
 
 ```{r}
+#| label: ex-7-code
 #| eval: false
-mod1 <- lm(population_1996 ~ land_area_km2, data = towny)
-summary(mod1)
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
 ```
 
 . . .
 
 ```{r}
+#| label: ex-7-outp-custprint
 #| echo: false
-mod1 <- lm(population_1996 ~ land_area_km2, data = towny)
-summary(mod1)
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE))) %>%
+  print(width=90)
 ```
 
 # Setup
 
 ## Packages
 
-Install the packages for data wrangling and survey analysis:
+Install packages for data wrangling and survey analysis:
 
 ```r
 install.packages(c("tidyverse", "survey", "srvyr"))
@@ -207,7 +250,7 @@ install.packages(c("tidyverse", "survey", "srvyr"))
 
 . . .
 
-Install the {srvyrexploR} package for accessing the survey data:
+Install {srvyrexploR} to access the survey data:
 
 ```r
 install.packages("pak")
@@ -219,6 +262,7 @@ pak::pak("tidy-survey-r/srvyrexploR")
 Load the packages:
 
 ```{r}
+#| label: load-pack-srv
 #| message: false
 #| warning: false
 library(tidyverse)
@@ -226,6 +270,10 @@ library(survey)
 library(srvyr)
 library(srvyrexploR)
 ```
+
+::: aside
+Note: Installation of packages is already done for you on Posit Cloud
+:::
 
 ## Today's Data
 
@@ -255,6 +303,7 @@ https://electionstudies.org/
 ## American National Election Studies (ANES) 2020
 
 ```{r}
+#| label: anes-dat-glimpse
 #| code-line-numbers: "|2|"
 anes_2020 %>%
   select(-matches("^V\\d")) %>%
@@ -280,6 +329,7 @@ https://www.eia.gov/consumption/residential/index.php
 ## Residential Energy Consumption Survey (RECS) 2015
 
 ```{r}
+#| label: recs-dat-glimpse
 #| code-line-numbers: "|2|"
 recs_2020 %>%
   select(-matches("^NWEIGHT")) %>%
@@ -303,15 +353,10 @@ recs_2020 %>%
 ## American National Election Studies Design Object
 
 ```{r}
-#| include: false
-targetpop <- 231034125
-anes_adjwgt <- anes_2020 %>%
-  mutate(Weight = V200010b / sum(V200010b) * targetpop)
-```
-
-```{r}
-#| code-line-numbers: "|1|2,7|3-6"
-anes_des <- anes_adjwgt %>%
+#| label: anes-des-disp
+#| code-line-numbers: "|1|2|3,8|4-7"
+anes_des <- anes_2020 %>%
+  mutate(Weight = V200010b / sum(V200010b) * 231034125) %>%
   as_survey_design(
     weights = Weight,
     strata = V200010d,
@@ -325,6 +370,7 @@ anes_des
 ## Residential Energy Consumption Survey Design Object
 
 ```{r}
+#| label: recs-des-disp
 #| code-line-numbers: "|1|2,8|3-7"
 recs_des <- recs_2020 %>%
   as_survey_rep(
@@ -362,7 +408,7 @@ The {srvyr} package builds on the {survey} package by providing wrappers for fun
 
 ::: incremental
 
-* Use the pipe function `%>%`
+* Use the pipe function `%>%` or `|>`
 * Ability to use tidy selection
 * Functions follow `snake_case` convention
 
@@ -378,12 +424,15 @@ The {srvyr} package builds on the {survey} package by providing wrappers for fun
 ## Tibbles vs. survey table object
 
 ```{r}
+#| label: class-tibble
 class(towny)
 ```
 vs.
 
 ```{r}
+#| label: class-srv
 class(recs_des)
+class(anes_des)
 ```
 
 ## Using `summarize()` to calculate mean and median
@@ -391,6 +440,7 @@ class(recs_des)
 ### Tibble:
 
 ```{r}
+#| label: summarize-tib-ex
 #| code-line-numbers: "|1,4|2,3|"
 towny %>%
   summarize(
@@ -403,6 +453,7 @@ towny %>%
 ### Survey object:
 
 ```{r}
+#| label: summarize-sv-ex
 #| code-line-numbers: "|1,4|2,3|"
 recs_des %>%
   summarize(
@@ -415,6 +466,7 @@ recs_des %>%
 ### Tibble:
 
 ```{r}
+#| label: across-tib-ex
 #| code-line-numbers: "|2,5|3|4|"
 towny %>%
   summarize(across(
@@ -428,6 +480,7 @@ towny %>%
 ### Survey object:
 
 ```{r}
+#| label: across-sv-ex
 #| code-line-numbers: "|2,5|3|4|"
 recs_des %>%
   summarize(across(
@@ -441,10 +494,11 @@ recs_des %>%
 ### Tibble:
 
 ```{r}
+#| label: filt-tib-ex
 #| code-line-numbers: "|2|3|"
 towny %>%
   filter(csd_type == "township") %>%
-  select(name)
+  select(csd_type, name)
 ```
 
 ## Using {dplyr} functions
@@ -452,6 +506,7 @@ towny %>%
 ### Survey object:
 
 ```{r}
+#| label: filt-sv-ex
 #| code-line-numbers: "|1|2|3|"
 recs_des_mod <- recs_des %>%
   filter(Urbanicity == "Rural") %>%
@@ -465,6 +520,7 @@ recs_des_mod
 ### Tibble:
 
 ```{r}
+#| label: group-tib-ex
 #| code-line-numbers: "|2|3|"
 towny %>%
   group_by(csd_type) %>%
@@ -476,6 +532,7 @@ towny %>%
 ### Survey object:
 
 ```{r}
+#| label: group-sv-ex
 #| code-line-numbers: "|2|3|"
 recs_des %>%
   group_by(Urbanicity) %>%
@@ -485,6 +542,7 @@ recs_des %>%
 ## Using {srvyr} functions on non-survey objects
 
 ```{r}
+#| label: sv-non-svobj
 #| eval: false
 #| code-line-numbers: "|2"
 towny %>%
@@ -494,10 +552,10 @@ towny %>%
 . . .
 
 ```{r}
+#| label: sv-non-svobj-print
 #| error: true
 #| echo: false
-towny %>%
-  summarize(area_mean = survey_mean(land_area_km2))
+<<sv-non-svobj>>
 ```
 
 ## Wrap Up
