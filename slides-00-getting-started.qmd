@@ -7,7 +7,7 @@ title-slide-attributes:
 
 ---
 
-# Warm-Up Exercises
+# Welcome {background-color='{{< brand color secondary >}}'}
 
 ## Posit Cloud
 <!--TODO: Update this with Posit Cloud info-->
@@ -238,7 +238,7 @@ towny %>%
   print(width=90)
 ```
 
-# Setup
+# Setup {background-color='{{< brand color secondary >}}'}
 
 ## Packages
 
@@ -384,7 +384,7 @@ recs_des <- recs_2020 %>%
 recs_des
 ```
 
-# Survey Analysis Process
+# Survey Analysis Process {background-color='{{< brand color secondary >}}'}
 
 ## Overview of Survey Analysis using `srvyr` Package
 
@@ -400,7 +400,7 @@ recs_des
 
 :::
 
-# Similarities (and Differences) Between {dplyr} and {srvyr} Functions
+# Similarities (and Differences) Between {dplyr} and {srvyr} Functions {background-color='{{< brand color secondary >}}'}
 
 ## Why use {srvyr} over {survey}?
 
@@ -557,6 +557,8 @@ towny %>%
 #| echo: false
 <<sv-non-svobj>>
 ```
+
+# Wrap Up {background-color='{{< brand color secondary >}}'}
 
 ## Wrap Up
 
