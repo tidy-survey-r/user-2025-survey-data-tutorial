@@ -118,7 +118,7 @@ svyttest(formula,
 ```
 
 ::: {.notes}
-- as `design` argument is the second arugument, dot notation is needed
+- as `design` argument is the second argument, dot notation is needed
 :::
 
 # Dot notation {background-color='{{< brand color secondary >}}'}
@@ -341,7 +341,7 @@ countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*6
 
 ## Chi-square tests
 
-- compare multiple proportions to see if they are statistically different from each othter
+- compare multiple proportions to see if they are statistically different from each other
 
 ::: {.incremental}
 - Different types:
