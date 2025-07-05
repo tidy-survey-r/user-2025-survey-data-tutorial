@@ -1,0 +1,611 @@
+---
+title: "Getting Started"
+format: revealjs
+slide-number: true
+title-slide-attributes: 
+  data-background: "#087e8b"
+
+---
+
+# Warm Up {background-color='{{< brand color secondary >}}'}
+
+## Posit Cloud
+<!--TODO: Update this with Posit Cloud info-->
+<!--TODO: Work individually?-->
+
+- We will be using Posit Cloud for exercises
+  - Posit Cloud has the same features and appearance as RStudio for ease of use
+- Access the project and files via our link
+- Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
+- We will go through slides of content then work on exercises independently, then regroup to go over answers
+
+## Welcome to the Towny Data
+
+- We'll be using the `towny` data for warm-up exercises
+- Available in the {gt} package
+
+![](images/towny.png){fig-align="center"}
+
+## Posit Cloud Demonstration
+
+- Load {tidyverse} and {gt}
+- Look at the towny dataset using `glimpse()`
+
+```{r}
+#| label: opt-set
+#| echo: false
+
+options(width=77)
+```
+
+
+```{r}
+#| label: load_pack1
+#| error: false
+#| warning: false
+library(tidyverse)
+library(gt)
+glimpse(towny)
+```
+
+## Your Turn {background-color='{{< brand color pink >}}'}
+
+```{r}
+#| label: gs-ex-time
+#| echo: false
+gs_ex_time <- 10
+gs_ex_warn <- 3
+```
+
+- Open `getting-started_exercises.qmd`
+- Take `r gs_ex_time` minutes to set up Posit Cloud and finish the exercises individually. We will then go over together.
+
+```{r}
+#| label: gs-ex-clock
+#| echo: false
+countdown::countdown(minutes = gs_ex_time, seconds = 0, play_sound = TRUE, warn_when = gs_ex_warn * 60)
+```
+   
+## Ex. 1
+
+How many different types of CSD are there in the dataset?
+
+```{r}
+#| label: ex-1-code-a
+#| eval: false
+towny %>%
+  count(csd_type)
+```
+
+. . .
+
+or
+
+```{r}
+#| label: ex-1-code-b
+#| eval: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+. . .
+
+```{r}
+#| label: ex-1-outp
+#| echo: false
+<<ex-1-code-a>>
+```
+
+## Ex. 2
+
+How many different types of CSD and status are there in the dataset?
+
+```{r}
+#| label: ex-2-code-a
+#| eval: false
+towny %>%
+  count(csd_type, status)
+```
+
+. . .
+
+or
+
+```{r}
+#| label: ex-2-code-b
+#| eval: false
+towny %>%
+  group_by(csd_type, status) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+. . .
+
+```{r}
+#| label: ex-2-outp
+#| echo: false
+<<ex-2-code-b>>
+```
+
+## Ex. 3
+
+What is the proportion of each type of CSD?
+
+```{r}
+#| label: ex-3-code
+#| eval: false
+towny %>%
+  count(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+. . .
+
+```{r}
+#| label: ex-3-outp
+#| echo: false
+<<ex-3-code>>
+```
+
+## Ex. 4
+
+What is the proportion of each status within type of CSD?
+
+```{r}
+#| label: ex-4-code
+#| eval: false
+towny %>%
+  count(csd_type, status) %>%
+  group_by(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+. . .
+
+```{r}
+#| label: ex-4-outp
+#| echo: false
+<<ex-4-code>>
+```
+
+## Ex. 5
+
+What is the mean population of all of the municipalities in 2021?
+
+```{r}
+#| label: ex-5-code
+#| eval: false
+towny %>%
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| label: ex-5-outp
+#| echo: false
+<<ex-5-code>>
+```
+
+## Ex. 6
+
+What is the mean population by CSD in 2021?
+
+```{r}
+#| label: ex-6-code
+#| eval: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| label: ex-6-outp
+#| echo: false
+<<ex-6-code>>
+```
+
+## Ex. 7
+
+What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
+
+```{r}
+#| label: ex-7-code
+#| eval: false
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
+```
+
+. . .
+
+```{r}
+#| label: ex-7-outp-custprint
+#| echo: false
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE))) %>%
+  print(width=90)
+```
+
+## Ex. 8
+
+Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
+
+```{r}
+#| label: ex-8-code
+#| eval: false
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+```
+
+. . .
+
+```{r}
+#| label: ex-8-outp-custprint
+#| echo: false
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+```
+
+# Packages {background-color='{{< brand color secondary >}}'}
+
+## R Packages for Survey Analysis
+
+- {survey} package first on CRAN in 2003
+  - descriptive analysis
+  - statistical testing
+  - modeling
+  - weighting
+
+- {srvyr} package first on CRAN in 2016
+  - “wrapper” for {survey} with {tidyverse}-style syntax
+  - only descriptive analysis
+
+## Install Packages
+
+Install packages for data wrangling and survey analysis:
+
+```r
+install.packages(c("tidyverse", "survey", "srvyr"))
+```
+
+. . .
+
+Install {srvyrexploR} to access the survey data for today's workshop:
+
+```r
+install.packages("pak")
+pak::pak("tidy-survey-r/srvyrexploR")
+```
+
+. . .
+
+Load the packages:
+
+```{r}
+#| label: load-pack-srv
+#| message: false
+#| warning: false
+library(tidyverse)
+library(survey)
+library(srvyr)
+library(srvyrexploR)
+```
+
+::: aside
+Note: Installation of packages is already done for you on Posit Cloud
+:::
+
+# Data {background-color='{{< brand color secondary >}}'}
+
+## Today's Data
+
+**American National Election Studies (ANES – DeBell 2010)**
+
+  * Stored as `anes_2020` in {srvyrexploR}
+  
+**Residential Energy Consumption Survey (RECS – U.S. Energy Information Administration 2023b)**
+
+* Stored as `recs_2020` in {srvyrexploR}
+
+## American National Election Studies (ANES) 2020 {.smaller}
+
+::: incremental
+
+- Pre- and post-election surveys fielded almost every 2 years since 1948
+- Topics include voter registration status, candidate preference, opinions on country and government, party and ideology affiliation, opinions on policy, news sources, and more
+- Collaboration of Stanford, University of Michigan - funding by the National Science Foundation
+- <b>Target Population</b>: US citizens, 18 and older living in US 
+- <b>Mode</b>: Web, videoconference, or telephone
+- <b>Sample Information</b>: Pseudo-strata and pseudo-cluster included for variance estimation
+
+https://electionstudies.org/
+
+:::
+
+## American National Election Studies (ANES) 2020
+
+```{r}
+#| label: anes-dat-glimpse
+#| code-line-numbers: "|2|"
+anes_2020 %>%
+  select(-matches("^V\\d")) %>%
+  glimpse()
+```
+
+## Residential Energy Consumption Survey (RECS) 2015 {.smaller}
+
+::: incremental
+
+- Energy consumption/expenditures collected through energy suppliers
+- Fielded 14 times between 1950 and 2015
+- Topics include appliances, electronics, heating, a/c, temperatures, water heating, lighting, energy bills, respondent demographics, and energy assistance
+- Funded by the Energy Information Administration
+- <b>Target Population</b>: Primary occupied housing units in the US
+- <b>Mode</b>: In-person, paper, and web interview mode
+- <b>Sample Information</b>: BRR Replicate weights included for variance estimation
+
+https://www.eia.gov/consumption/residential/index.php
+
+:::
+
+## Residential Energy Consumption Survey (RECS) 2015
+
+```{r}
+#| label: recs-dat-glimpse
+#| code-line-numbers: "|2|"
+recs_2020 %>%
+  select(-matches("^NWEIGHT")) %>%
+  glimpse()
+```
+
+# Design Objects {background-color='{{< brand color secondary >}}'}
+
+## Design Objects
+
+**We will be covering survey design in more detail later in the workshop!**
+
+::: incremental
+
+- Backbone for survey analysis
+- Specify the sampling design, weights, and other necessary information to account for errors in the data
+- Survey analysis and inference should be performed with the survey design objects, not the original survey data
+
+:::
+
+## American National Election Studies Design Object
+
+```{r}
+#| label: anes-des-disp
+#| code-line-numbers: "|1|2|3,8|4-7"
+anes_des <- anes_2020 %>%
+  mutate(Weight = V200010b / sum(V200010b) * 231034125) %>%
+  as_survey_design(
+    weights = Weight,
+    strata = V200010d,
+    ids = V200010c,
+    nest = TRUE
+  )
+```
+
+## American National Election Studies Design Object
+
+```{r}
+#| label: anes-des-show
+anes_des
+```
+
+## Residential Energy Consumption Survey Design Object
+
+```{r}
+#| label: recs-des-disp
+#| code-line-numbers: "|1|2,8|3-7"
+recs_des <- recs_2020 %>%
+  as_survey_rep(
+    weights = NWEIGHT,
+    repweights = NWEIGHT1:NWEIGHT60,
+    type = "JK1",
+    scale = 59 / 60,
+    mse = TRUE
+  )
+```
+
+## Residential Energy Consumption Survey Design Object
+
+```{r}
+#| label: recs-des-show
+recs_des
+```
+
+# Similarities (and Differences) Between {dplyr} and {srvyr} Functions {background-color='{{< brand color secondary >}}'}
+
+## Why use {srvyr} over {survey}?
+
+The {srvyr} package builds on the {survey} package by providing wrappers for functions that align with the tidyverse philosophy.
+
+::: incremental
+
+* Use the pipe function `%>%` or `|>`
+* Ability to use tidy selection
+* Functions follow `snake_case` convention
+
+:::
+
+## Apply {dplyr} functions to survey objects
+
+- A few functions in {srvyr} have counterparts in {dplyr}
+  - `dplyr::summarize()` and `srvyr::summarize()`
+  - `dplyr::group_by()` and `srvyr::group_by()`
+- Based on the object class, R will recognize which package to use
+
+## Tibbles vs. survey table object
+
+```{r}
+#| label: class-tibble
+class(towny)
+```
+vs.
+
+```{r}
+#| label: class-srv
+class(recs_des)
+class(anes_des)
+```
+
+## Using `summarize()` to calculate mean and median
+
+### Tibble:
+
+```{r}
+#| label: summarize-tib-ex
+#| code-line-numbers: "|1,4|2,3|"
+towny %>%
+  summarize(
+    area_mean = mean(land_area_km2)
+  )
+```
+
+## Using `summarize()` to calculate mean and median
+
+### Survey object:
+
+```{r}
+#| label: summarize-sv-ex
+#| code-line-numbers: "|1,4|2,3|"
+recs_des %>%
+  summarize(
+    TOTHSQFT_mean = survey_mean(TOTHSQFT),
+  )
+```
+
+## Using tidyselect
+
+### Tibble:
+
+```{r}
+#| label: across-tib-ex
+#| code-line-numbers: "|2,5|3|4|"
+towny %>%
+  summarize(across(
+    starts_with("population"),
+    ~ mean(.x, na.rm = TRUE)
+  ))
+```
+
+## Using tidyselect
+
+### Survey object:
+
+```{r}
+#| label: across-sv-ex
+#| code-line-numbers: "|2,5|3|4|"
+recs_des %>%
+  summarize(across(
+    starts_with("TOT"),
+    ~ survey_mean(.x, na.rm = TRUE)
+  ))
+```
+
+## Using {dplyr} functions
+
+### Tibble:
+
+```{r}
+#| label: filt-tib-ex
+#| code-line-numbers: "|2|3|"
+towny %>%
+  filter(csd_type == "township") %>%
+  select(csd_type, name)
+```
+
+## Using {dplyr} functions
+
+### Survey object:
+
+```{r}
+#| label: filt-sv-ex
+#| code-line-numbers: "|1|2|3|"
+recs_des_mod <- recs_des %>%
+  filter(Urbanicity == "Rural") %>%
+  select(ACUsed)
+
+recs_des_mod
+```
+
+## Grouping
+
+### Tibble:
+
+```{r}
+#| label: group-tib-ex
+#| code-line-numbers: "|2|3|"
+towny %>%
+  group_by(csd_type) %>%
+  summarize(area_mean = mean(land_area_km2))
+```
+
+## Grouping
+
+### Survey object:
+
+```{r}
+#| label: group-sv-ex
+#| code-line-numbers: "|2|3|"
+recs_des %>%
+  group_by(Urbanicity) %>%
+  summarize(TOTHSQFT_mean = survey_mean(TOTHSQFT))
+```
+
+## Using {srvyr} functions on non-survey objects
+
+```{r}
+#| label: sv-non-svobj
+#| eval: false
+#| code-line-numbers: "|2"
+towny %>%
+  summarize(area_mean = survey_mean(land_area_km2))
+```
+
+. . .
+
+```{r}
+#| label: sv-non-svobj-print
+#| error: true
+#| echo: false
+<<sv-non-svobj>>
+```
+
+# Survey Analysis Process {background-color='{{< brand color secondary >}}'}
+
+## Overview of Survey Analysis using {srvyr} Package
+
+::: incremental
+
+1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
+
+2. Subset data (if needed) using `filter()` (to create subpopulations)
+
+3. Specify domains of analysis using `group_by()`
+
+4. Within `summarize()`, specify variables to calculate, including means, totals, proportions, quantiles, and more
+
+:::
+
+# Wrap Up {background-color='{{< brand color secondary >}}'}
+
+## Wrap Up
+
+* We will be using {tidyverse}, {survey}, and {srvyr} for survey analysis
+* Our data is from ANES and RECS
+
+## Wrap Up
+
+* (Survey) design objects are the backbone for survey analysis
+* They are objects with special class `tbl_svy`
+* They specify the sampling design, weights, and other necessary information to account for errors in the data
+
+## Wrap Up
+
+* {srvyr} wraps {survey} so that we can use friendly, "tidy" syntax
+* Based on the object type, R will know whether to use {dplyr} or {srvyr}
+* All functions must be done on the survey design object, not the raw data
