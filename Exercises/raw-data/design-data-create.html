@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data creation - design exercises – user 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c7f78a393ad4a7b26f55cfb8ad6546c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c648a8ab1e982203ec5eae754e4b8c34.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">user 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chis---2023" id="toc-chis---2023" class="nav-link active" data-scroll-target="#chis---2023">CHIS - 2023</a></li>
+  <li><a href="#nsduh---2023" id="toc-nsduh---2023" class="nav-link" data-scroll-target="#nsduh---2023">NSDUH - 2023</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data creation - design exercises</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osfr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Automatically registered OSF personal access token</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">osf_auth</span>(<span class="fu">Sys.getenv</span>(<span class="st">"OSF_PAT"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered PAT from the provided token</code></pre>
+</div>
+</div>
+<section id="chis---2023" class="level1">
+<h1>CHIS - 2023</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chis_sas_files <span class="ot">&lt;-</span> <span class="fu">osf_retrieve_node</span>(<span class="st">"https://osf.io/z5c3m/"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osf_ls_files</span>(<span class="at">path =</span> <span class="st">"CHIS_2023"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_max =</span> <span class="dv">40</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">pattern =</span> <span class="st">".sas7bdat"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>filedet <span class="ot">&lt;-</span> chis_sas_files <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name<span class="sc">==</span><span class="st">"adult.sas7bdat"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osf_download</span>(<span class="at">conflicts =</span> <span class="st">"overwrite"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>chis_in <span class="ot">&lt;-</span> filedet <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(local_path) <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_sas</span>()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">pull</span>(filedet, <span class="st">"local_path"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>chis_slim <span class="ot">&lt;-</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  chis_in <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PUF1Y_ID, ASTCUR, RACEHP2_P1, <span class="fu">contains</span>(<span class="st">"RAKED"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ASTCUR=</span><span class="fu">factor</span>(ASTCUR, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Current asthma"</span>, <span class="st">"No current asthma"</span>)), </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACEHP2_P1=</span><span class="fu">factor</span>(RACEHP2_P1, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Latino"</span>, <span class="st">"Other single/multiple race"</span>, <span class="st">"American Indian/Alaska Native"</span>, <span class="st">"Asian"</span>, <span class="st">"African American"</span>, <span class="st">"White"</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>chis_in <span class="sc">%&gt;%</span> <span class="fu">count</span>(ASTCUR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  ASTCUR     n
+   &lt;dbl&gt; &lt;int&gt;
+1      1  2330
+2      2 19341</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chis_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(ASTCUR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  ASTCUR                n
+  &lt;fct&gt;             &lt;int&gt;
+1 Current asthma     2330
+2 No current asthma 19341</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chis_in <span class="sc">%&gt;%</span> <span class="fu">count</span>(RACEHP2_P1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  RACEHP2_P1     n
+       &lt;dbl&gt; &lt;int&gt;
+1          1  3333
+2          2  3070
+3          3   162
+4          4  3364
+5          5  1023
+6          6 10719</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>chis_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(RACEHP2_P1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  RACEHP2_P1                        n
+  &lt;fct&gt;                         &lt;int&gt;
+1 Latino                         3333
+2 Other single/multiple race     3070
+3 American Indian/Alaska Native   162
+4 Asian                          3364
+5 African American               1023
+6 White                         10719</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(chis_slim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   PUF1Y_ID                       ASTCUR     
+ Length:21671       Current asthma   : 2330  
+ Class :character   No current asthma:19341  
+ Mode  :character                            
+                                             
+                                             
+                                             
+                         RACEHP2_P1       RAKEDW0            RAKEDW1       
+ Latino                       : 3333   Min.   :   26.23   Min.   :    0.0  
+ Other single/multiple race   : 3070   1st Qu.:  286.61   1st Qu.:  283.1  
+ American Indian/Alaska Native:  162   Median :  667.60   Median :  664.2  
+ Asian                        : 3364   Mean   : 1347.93   Mean   : 1347.9  
+ African American             : 1023   3rd Qu.: 1522.58   3rd Qu.: 1523.3  
+ White                        :10719   Max.   :16756.95   Max.   :16827.9  
+    RAKEDW2           RAKEDW3           RAKEDW4           RAKEDW5       
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  283.3   1st Qu.:  281.7   1st Qu.:  282.1   1st Qu.:  281.6  
+ Median :  664.4   Median :  663.5   Median :  664.9   Median :  663.4  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1519.2   3rd Qu.: 1520.8   3rd Qu.: 1518.5   3rd Qu.: 1518.7  
+ Max.   :16991.8   Max.   :17016.3   Max.   :16923.0   Max.   :16950.4  
+    RAKEDW6           RAKEDW7           RAKEDW8           RAKEDW9       
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  281.3   1st Qu.:  282.5   1st Qu.:  282.5   1st Qu.:  280.5  
+ Median :  665.5   Median :  664.8   Median :  664.4   Median :  663.0  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1522.4   3rd Qu.: 1519.0   3rd Qu.: 1520.0   3rd Qu.: 1519.5  
+ Max.   :16789.4   Max.   :16873.3   Max.   :16943.4   Max.   :16746.7  
+    RAKEDW10          RAKEDW11          RAKEDW12          RAKEDW13      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  281.6   1st Qu.:  282.7   1st Qu.:  281.5   1st Qu.:  282.2  
+ Median :  663.0   Median :  665.6   Median :  663.3   Median :  665.8  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1523.0   3rd Qu.: 1521.6   3rd Qu.: 1522.1   3rd Qu.: 1519.0  
+ Max.   :16961.9   Max.   :16887.4   Max.   :16874.6   Max.   :16910.9  
+    RAKEDW14          RAKEDW15          RAKEDW16          RAKEDW17      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.3   1st Qu.:  283.4   1st Qu.:  281.9   1st Qu.:  283.2  
+ Median :  663.7   Median :  662.8   Median :  664.4   Median :  665.2  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1517.5   3rd Qu.: 1520.6   3rd Qu.: 1522.8   3rd Qu.: 1520.5  
+ Max.   :17017.7   Max.   :16949.8   Max.   :17018.2   Max.   :16823.9  
+    RAKEDW18          RAKEDW19          RAKEDW20          RAKEDW21      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  283.0   1st Qu.:  281.8   1st Qu.:  283.2   1st Qu.:  281.3  
+ Median :  664.5   Median :  664.3   Median :  664.5   Median :  662.4  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1524.6   3rd Qu.: 1519.5   3rd Qu.: 1519.2   3rd Qu.: 1525.0  
+ Max.   :16848.1   Max.   :17012.7   Max.   :16963.4   Max.   :16919.1  
+    RAKEDW22          RAKEDW23          RAKEDW24          RAKEDW25      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.3   1st Qu.:  281.5   1st Qu.:  281.5   1st Qu.:  283.8  
+ Median :  665.9   Median :  662.9   Median :  664.8   Median :  663.2  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1517.4   3rd Qu.: 1523.2   3rd Qu.: 1527.8   3rd Qu.: 1520.6  
+ Max.   :16791.8   Max.   :16925.0   Max.   :16906.2   Max.   :16901.0  
+    RAKEDW26          RAKEDW27          RAKEDW28          RAKEDW29      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  281.8   1st Qu.:  281.7   1st Qu.:  281.5   1st Qu.:  280.6  
+ Median :  663.8   Median :  663.0   Median :  664.4   Median :  663.1  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1520.2   3rd Qu.: 1521.8   3rd Qu.: 1519.2   3rd Qu.: 1521.6  
+ Max.   :16962.2   Max.   :16833.5   Max.   :16898.8   Max.   :17051.9  
+    RAKEDW30          RAKEDW31          RAKEDW32          RAKEDW33      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  283.1   1st Qu.:  281.7   1st Qu.:  282.8   1st Qu.:  283.0  
+ Median :  664.5   Median :  663.8   Median :  664.1   Median :  665.7  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1520.9   3rd Qu.: 1522.3   3rd Qu.: 1523.5   3rd Qu.: 1526.6  
+ Max.   :16725.6   Max.   :16873.3   Max.   :16868.3   Max.   :16942.5  
+    RAKEDW34          RAKEDW35          RAKEDW36          RAKEDW37      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.1   1st Qu.:  281.5   1st Qu.:  281.7   1st Qu.:  281.0  
+ Median :  663.9   Median :  663.1   Median :  664.1   Median :  662.4  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1519.5   3rd Qu.: 1521.1   3rd Qu.: 1521.8   3rd Qu.: 1522.0  
+ Max.   :16827.4   Max.   :16994.9   Max.   :16783.0   Max.   :16911.9  
+    RAKEDW38          RAKEDW39          RAKEDW40        RAKEDW41      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0   Min.   :    0.0  
+ 1st Qu.:  281.5   1st Qu.:  282.3   1st Qu.:  282   1st Qu.:  283.2  
+ Median :  664.9   Median :  662.9   Median :  665   Median :  663.4  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1348   Mean   : 1347.9  
+ 3rd Qu.: 1522.4   3rd Qu.: 1520.4   3rd Qu.: 1518   3rd Qu.: 1523.0  
+ Max.   :17110.6   Max.   :16858.0   Max.   :16908   Max.   :16769.8  
+    RAKEDW42          RAKEDW43          RAKEDW44          RAKEDW45      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  280.6   1st Qu.:  280.7   1st Qu.:  281.8   1st Qu.:  282.5  
+ Median :  663.7   Median :  661.4   Median :  662.3   Median :  663.1  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1522.8   3rd Qu.: 1518.3   3rd Qu.: 1518.4   3rd Qu.: 1520.4  
+ Max.   :16956.3   Max.   :17078.3   Max.   :16907.2   Max.   :16897.9  
+    RAKEDW46        RAKEDW47          RAKEDW48          RAKEDW49      
+ Min.   :    0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  281   1st Qu.:  281.5   1st Qu.:  282.0   1st Qu.:  281.6  
+ Median :  663   Median :  663.4   Median :  664.4   Median :  663.6  
+ Mean   : 1348   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1518   3rd Qu.: 1520.8   3rd Qu.: 1519.6   3rd Qu.: 1518.7  
+ Max.   :16982   Max.   :16424.3   Max.   :16867.7   Max.   :16835.7  
+    RAKEDW50          RAKEDW51          RAKEDW52          RAKEDW53      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  281.2   1st Qu.:  282.7   1st Qu.:  282.1   1st Qu.:  281.7  
+ Median :  663.2   Median :  662.9   Median :  663.8   Median :  661.7  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1523.8   3rd Qu.: 1521.6   3rd Qu.: 1524.7   3rd Qu.: 1517.8  
+ Max.   :16934.6   Max.   :16905.3   Max.   :16827.2   Max.   :16906.5  
+    RAKEDW54          RAKEDW55          RAKEDW56          RAKEDW57      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.8   1st Qu.:  281.9   1st Qu.:  281.7   1st Qu.:  280.9  
+ Median :  665.3   Median :  664.9   Median :  663.5   Median :  662.3  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1519.5   3rd Qu.: 1523.5   3rd Qu.: 1516.1   3rd Qu.: 1520.0  
+ Max.   :16831.0   Max.   :17146.3   Max.   :17003.2   Max.   :17007.9  
+    RAKEDW58          RAKEDW59          RAKEDW60          RAKEDW61    
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0  
+ 1st Qu.:  281.7   1st Qu.:  283.0   1st Qu.:  280.7   1st Qu.:  282  
+ Median :  662.4   Median :  664.3   Median :  663.4   Median :  665  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1348  
+ 3rd Qu.: 1525.2   3rd Qu.: 1522.2   3rd Qu.: 1520.1   3rd Qu.: 1521  
+ Max.   :16885.8   Max.   :16861.9   Max.   :17059.8   Max.   :16766  
+    RAKEDW62          RAKEDW63          RAKEDW64          RAKEDW65      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  281.0   1st Qu.:  281.9   1st Qu.:  282.0   1st Qu.:  282.0  
+ Median :  663.7   Median :  663.0   Median :  664.2   Median :  662.3  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1522.8   3rd Qu.: 1518.1   3rd Qu.: 1517.7   3rd Qu.: 1517.6  
+ Max.   :16890.3   Max.   :16861.2   Max.   :16985.2   Max.   :16837.2  
+    RAKEDW66          RAKEDW67          RAKEDW68          RAKEDW69      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.0   1st Qu.:  282.7   1st Qu.:  280.8   1st Qu.:  281.4  
+ Median :  662.3   Median :  664.7   Median :  662.4   Median :  665.4  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1519.8   3rd Qu.: 1521.9   3rd Qu.: 1519.1   3rd Qu.: 1513.8  
+ Max.   :16918.6   Max.   :16943.7   Max.   :16996.9   Max.   :16986.6  
+    RAKEDW70          RAKEDW71          RAKEDW72          RAKEDW73      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.0   1st Qu.:  281.4   1st Qu.:  281.1   1st Qu.:  282.4  
+ Median :  663.8   Median :  664.1   Median :  664.6   Median :  664.9  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1518.6   3rd Qu.: 1521.7   3rd Qu.: 1517.8   3rd Qu.: 1520.2  
+ Max.   :16858.6   Max.   :16797.0   Max.   :17043.2   Max.   :17118.8  
+    RAKEDW74          RAKEDW75          RAKEDW76          RAKEDW77      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  282.7   1st Qu.:  282.1   1st Qu.:  281.9   1st Qu.:  281.8  
+ Median :  664.0   Median :  663.0   Median :  666.2   Median :  663.9  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1525.8   3rd Qu.: 1519.2   3rd Qu.: 1521.6   3rd Qu.: 1525.1  
+ Max.   :16895.6   Max.   :16850.6   Max.   :16896.7   Max.   :17041.0  
+    RAKEDW78          RAKEDW79          RAKEDW80      
+ Min.   :    0.0   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  280.6   1st Qu.:  282.8   1st Qu.:  281.8  
+ Median :  663.5   Median :  665.2   Median :  666.0  
+ Mean   : 1347.9   Mean   : 1347.9   Mean   : 1347.9  
+ 3rd Qu.: 1517.2   3rd Qu.: 1518.8   3rd Qu.: 1523.2  
+ Max.   :16943.9   Max.   :17039.3   Max.   :16773.7  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(chis_slim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 21,671
+Columns: 84
+$ PUF1Y_ID   &lt;chr&gt; "23021436", "23009146", "23005039", "23025815", "23010158",…
+$ ASTCUR     &lt;fct&gt; No current asthma, No current asthma, No current asthma, No…
+$ RACEHP2_P1 &lt;fct&gt; White, White, White, Other single/multiple race, Asian, Asi…
+$ RAKEDW0    &lt;dbl&gt; 377.76342, 5440.82230, 1510.73568, 189.35127, 816.45231, 10…
+$ RAKEDW1    &lt;dbl&gt; 379.67385, 5423.54632, 1524.34483, 189.04169, 823.97981, 10…
+$ RAKEDW2    &lt;dbl&gt; 377.67206, 5501.09481, 1518.55832, 189.20316, 813.52862, 10…
+$ RAKEDW3    &lt;dbl&gt; 391.87241, 5422.38467, 1518.87859, 189.67529, 812.89534, 10…
+$ RAKEDW4    &lt;dbl&gt; 383.52718, 5498.89734, 1501.34474, 187.64245, 811.32652, 10…
+$ RAKEDW5    &lt;dbl&gt; 379.36716, 5426.12142, 1497.12070, 189.18938, 797.03189, 10…
+$ RAKEDW6    &lt;dbl&gt; 372.56373, 5456.04102, 1525.81079, 188.55471, 807.12411, 10…
+$ RAKEDW7    &lt;dbl&gt; 373.88851, 5518.54856, 1507.19963, 191.93340, 814.08142, 10…
+$ RAKEDW8    &lt;dbl&gt; 386.89715, 5481.25082, 1532.46184, 185.18966, 829.15080, 10…
+$ RAKEDW9    &lt;dbl&gt; 380.30036, 5393.13753, 1482.86902, 192.35734, 799.39751, 10…
+$ RAKEDW10   &lt;dbl&gt; 396.80874, 5520.21994, 1512.59631, 188.96238, 823.09128, 10…
+$ RAKEDW11   &lt;dbl&gt; 381.20852, 5560.46991, 1513.11707, 191.01037, 809.26274, 10…
+$ RAKEDW12   &lt;dbl&gt; 370.08881, 5471.17062, 1490.55583, 190.17599, 828.57677, 10…
+$ RAKEDW13   &lt;dbl&gt; 381.63377, 5539.08920, 1503.27857, 190.02121, 825.39467, 10…
+$ RAKEDW14   &lt;dbl&gt; 387.73313, 5531.07340, 1518.70073, 185.98445, 816.56755, 10…
+$ RAKEDW15   &lt;dbl&gt; 373.96319, 5461.81096, 1488.12767, 186.04791, 1643.84520, 1…
+$ RAKEDW16   &lt;dbl&gt; 375.63387, 5425.88871, 1539.72594, 185.85065, 821.55347, 10…
+$ RAKEDW17   &lt;dbl&gt; 375.90868, 5413.12792, 1532.15331, 190.06499, 817.35716, 10…
+$ RAKEDW18   &lt;dbl&gt; 374.06907, 5409.66538, 1533.86418, 188.83553, 812.23683, 10…
+$ RAKEDW19   &lt;dbl&gt; 370.70155, 5335.39076, 3030.67675, 190.35148, 816.76742, 10…
+$ RAKEDW20   &lt;dbl&gt; 376.16361, 5542.36138, 1520.98004, 190.40463, 795.17561, 11…
+$ RAKEDW21   &lt;dbl&gt; 376.66374, 5438.99627, 1529.29484, 188.40847, 836.53256, 10…
+$ RAKEDW22   &lt;dbl&gt; 372.88810, 5407.19403, 1512.71368, 194.52411, 815.79660, 10…
+$ RAKEDW23   &lt;dbl&gt; 377.08123, 5511.05350, 1501.40871, 187.07666, 822.90284, 10…
+$ RAKEDW24   &lt;dbl&gt; 378.14045, 5447.60615, 1532.24763, 191.06993, 819.86697, 10…
+$ RAKEDW25   &lt;dbl&gt; 376.63905, 5469.76063, 1499.22198, 190.37025, 826.91579, 10…
+$ RAKEDW26   &lt;dbl&gt; 381.21627, 5424.59692, 1503.23199, 184.82446, 821.61634, 10…
+$ RAKEDW27   &lt;dbl&gt; 736.12313, 5392.15220, 1508.96013, 189.40821, 812.01521, 10…
+$ RAKEDW28   &lt;dbl&gt; 374.87207, 5399.98490, 1502.29676, 189.41890, 825.64499, 10…
+$ RAKEDW29   &lt;dbl&gt; 370.48273, 5609.82334, 1504.46387, 193.33981, 822.45949, 10…
+$ RAKEDW30   &lt;dbl&gt; 374.08421, 5478.56452, 1529.79756, 190.29283, 823.20287, 10…
+$ RAKEDW31   &lt;dbl&gt; 375.93944, 5531.46321, 1517.66913, 187.70034, 831.32689, 10…
+$ RAKEDW32   &lt;dbl&gt; 376.77720, 5454.02908, 1523.81288, 190.89860, 818.75318, 10…
+$ RAKEDW33   &lt;dbl&gt; 373.90451, 5359.04687, 1496.22835, 187.71859, 808.17450, 10…
+$ RAKEDW34   &lt;dbl&gt; 384.70325, 5372.82318, 1513.76344, 0.00000, 804.31669, 1087…
+$ RAKEDW35   &lt;dbl&gt; 385.93101, 5540.75364, 1515.22343, 189.41755, 841.06640, 10…
+$ RAKEDW36   &lt;dbl&gt; 380.05346, 5367.44428, 1540.28237, 189.23365, 807.56729, 10…
+$ RAKEDW37   &lt;dbl&gt; 383.44112, 5499.94872, 1514.47617, 185.00184, 816.35734, 10…
+$ RAKEDW38   &lt;dbl&gt; 380.96955, 5365.76141, 1533.75380, 190.40014, 803.55967, 10…
+$ RAKEDW39   &lt;dbl&gt; 378.53806, 5408.72203, 1509.70452, 190.37006, 820.94697, 10…
+$ RAKEDW40   &lt;dbl&gt; 373.32674, 5618.84749, 1512.48396, 185.96514, 835.63063, 10…
+$ RAKEDW41   &lt;dbl&gt; 375.60203, 5442.86619, 1507.47738, 188.91416, 797.63435, 10…
+$ RAKEDW42   &lt;dbl&gt; 388.49579, 5468.25392, 1514.51889, 192.55026, 831.84420, 10…
+$ RAKEDW43   &lt;dbl&gt; 379.04804, 5657.00804, 1504.12435, 187.34036, 821.21227, 10…
+$ RAKEDW44   &lt;dbl&gt; 372.79291, 5412.42624, 1510.57340, 189.99224, 811.94509, 10…
+$ RAKEDW45   &lt;dbl&gt; 387.31702, 5380.19192, 1524.80976, 189.34965, 796.24619, 10…
+$ RAKEDW46   &lt;dbl&gt; 378.68040, 5455.72685, 1499.24639, 190.23263, 804.89197, 0.…
+$ RAKEDW47   &lt;dbl&gt; 379.80074, 5479.65824, 1491.39890, 189.03908, 816.88308, 10…
+$ RAKEDW48   &lt;dbl&gt; 377.62516, 5370.25650, 1513.32532, 190.51240, 817.18117, 10…
+$ RAKEDW49   &lt;dbl&gt; 370.27108, 5374.99529, 1534.30372, 195.08625, 819.42334, 10…
+$ RAKEDW50   &lt;dbl&gt; 381.09146, 5623.57965, 1529.57536, 191.14493, 799.42589, 10…
+$ RAKEDW51   &lt;dbl&gt; 372.93695, 5609.68675, 1518.73015, 185.10356, 810.56250, 10…
+$ RAKEDW52   &lt;dbl&gt; 376.83386, 5416.01179, 1502.63013, 190.52319, 825.65017, 10…
+$ RAKEDW53   &lt;dbl&gt; 389.22721, 5464.54688, 1510.69820, 191.24272, 856.36362, 10…
+$ RAKEDW54   &lt;dbl&gt; 375.42718, 5516.58306, 1487.37912, 190.05101, 801.45826, 10…
+$ RAKEDW55   &lt;dbl&gt; 384.84576, 5492.52884, 1505.72717, 187.44860, 811.25627, 10…
+$ RAKEDW56   &lt;dbl&gt; 383.56347, 5647.00544, 1511.08240, 191.69014, 831.28855, 10…
+$ RAKEDW57   &lt;dbl&gt; 380.48633, 5606.80831, 1511.94020, 192.65707, 794.17496, 10…
+$ RAKEDW58   &lt;dbl&gt; 373.62795, 5757.47977, 1512.46551, 187.94741, 815.14317, 10…
+$ RAKEDW59   &lt;dbl&gt; 378.91924, 5477.69162, 1507.52377, 197.38367, 817.99470, 10…
+$ RAKEDW60   &lt;dbl&gt; 379.50452, 5477.71051, 1544.63224, 183.65976, 816.89856, 10…
+$ RAKEDW61   &lt;dbl&gt; 376.64977, 5452.65149, 1514.34498, 188.45472, 814.88040, 10…
+$ RAKEDW62   &lt;dbl&gt; 383.56295, 5491.55744, 1501.05195, 190.40998, 800.40138, 10…
+$ RAKEDW63   &lt;dbl&gt; 373.75339, 5419.57694, 1516.86197, 190.99482, 781.46844, 10…
+$ RAKEDW64   &lt;dbl&gt; 377.09404, 5438.36416, 1476.57247, 190.49051, 821.19084, 10…
+$ RAKEDW65   &lt;dbl&gt; 382.93142, 5410.64353, 1528.48797, 187.00515, 825.62659, 10…
+$ RAKEDW66   &lt;dbl&gt; 371.80213, 5483.77954, 1508.08229, 194.32258, 824.90959, 10…
+$ RAKEDW67   &lt;dbl&gt; 376.80663, 5494.01669, 1506.71439, 192.39086, 814.74078, 10…
+$ RAKEDW68   &lt;dbl&gt; 376.07679, 5382.78726, 1502.21384, 186.68741, 802.94914, 10…
+$ RAKEDW69   &lt;dbl&gt; 378.27932, 5393.35827, 1514.61013, 190.74435, 810.13806, 10…
+$ RAKEDW70   &lt;dbl&gt; 369.99802, 5501.78894, 1521.28708, 186.60201, 830.13613, 10…
+$ RAKEDW71   &lt;dbl&gt; 374.53516, 5499.46675, 1512.58341, 191.23757, 805.99356, 10…
+$ RAKEDW72   &lt;dbl&gt; 387.86304, 5404.68519, 1492.87434, 190.87869, 815.55435, 10…
+$ RAKEDW73   &lt;dbl&gt; 374.74585, 5491.12022, 1498.81821, 187.83433, 819.17877, 10…
+$ RAKEDW74   &lt;dbl&gt; 379.83108, 5413.06749, 1508.31555, 189.78261, 815.79475, 10…
+$ RAKEDW75   &lt;dbl&gt; 382.49719, 5487.47759, 1551.93120, 186.79749, 823.61018, 10…
+$ RAKEDW76   &lt;dbl&gt; 380.05337, 5418.50610, 1520.87989, 184.52873, 814.85938, 10…
+$ RAKEDW77   &lt;dbl&gt; 379.98450, 5434.79433, 1480.95731, 190.16368, 812.64372, 10…
+$ RAKEDW78   &lt;dbl&gt; 382.62349, 5523.48197, 1491.87493, 186.64661, 814.11781, 10…
+$ RAKEDW79   &lt;dbl&gt; 372.87396, 5462.95628, 1516.71710, 189.64531, 813.59217, 10…
+$ RAKEDW80   &lt;dbl&gt; 382.94937, 5420.72648, 1523.64843, 185.78273, 811.93065, 10…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(chis_slim, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"data"</span>, <span class="st">"chis_adult_2023.rds"</span>), <span class="at">compress=</span><span class="st">"xz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nsduh---2023" class="level1">
+<h1>NSDUH - 2023</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"raw-data"</span>, <span class="st">"nsduh-temp"</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://www.samhsa.gov/data/system/files/media-puf-file/NSDUH-2023-DS0001-bndl-data-r_v1.zip"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>              here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"raw-data"</span>, <span class="st">"nsduh-temp"</span>, <span class="st">"nsduh-2023.zip"</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"raw-data"</span>, <span class="st">"nsduh-temp"</span>, <span class="st">"nsduh-2023.zip"</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">exdir =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"raw-data"</span>, <span class="st">"nsduh-temp"</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"raw-data"</span>, <span class="st">"nsduh-temp"</span>, <span class="st">"NSDUH_2023.Rdata"</span>))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"raw-data"</span>, <span class="st">"nsduh-temp"</span>), <span class="at">recursive=</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nsduh_slim <span class="ot">&lt;-</span> puf2023_102124 <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(QUESTID2, ANALWT2_C, VESTR_C, VEREP, AGE3, ALCMON, ALCMDAYS, MRJMON, MRJMDAYS) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE3=</span><span class="fu">factor</span>(AGE3, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"12-13"</span>, <span class="st">"14-15"</span>, <span class="st">"16-17"</span>, <span class="st">"18-20"</span>, <span class="st">"21-23"</span>, <span class="st">"24-25"</span>, <span class="st">"26-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-49"</span>, <span class="st">"50-64"</span>, <span class="st">"65+"</span>)),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ALCMON=</span><span class="fu">factor</span>(ALCMON, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Did not use in past month"</span>, <span class="st">"Used in the past month"</span>)),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">MRJMON=</span><span class="fu">factor</span>(MRJMON, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Did not use in past month"</span>, <span class="st">"Used in the past month"</span>)),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ALCMDAYS=</span><span class="fu">factor</span>(ALCMDAYS, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"1-2 days"</span>, <span class="st">"3-5 days"</span>, <span class="st">"6-19 days"</span>, <span class="st">"20-30 days"</span>, <span class="st">"Non user or no past month use"</span>)),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">MRJMDAYS=</span><span class="fu">factor</span>(MRJMDAYS, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"1-2 days"</span>, <span class="st">"3-5 days"</span>, <span class="st">"6-19 days"</span>, <span class="st">"20-30 days"</span>, <span class="st">"Non user or no past month use"</span>))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>puf2023_102124 <span class="sc">%&gt;%</span> <span class="fu">count</span>(AGE3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+    AGE3     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1     1  3649
+ 2     2  4067
+ 3     3  3856
+ 4     4  4728
+ 5     5  5214
+ 6     6  3645
+ 7     7  3884
+ 8     8  5287
+ 9     9 12355
+10    10  4960
+11    11  5060</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>nsduh_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(AGE3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+   AGE3      n
+   &lt;fct&gt; &lt;int&gt;
+ 1 12-13  3649
+ 2 14-15  4067
+ 3 16-17  3856
+ 4 18-20  4728
+ 5 21-23  5214
+ 6 24-25  3645
+ 7 26-29  3884
+ 8 30-34  5287
+ 9 35-49 12355
+10 50-64  4960
+11 65+    5060</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>puf2023_102124 <span class="sc">%&gt;%</span> <span class="fu">count</span>(ALCMON)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  ALCMON     n
+   &lt;dbl&gt; &lt;int&gt;
+1      0 32118
+2      1 24587</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nsduh_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(ALCMON)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  ALCMON                        n
+  &lt;fct&gt;                     &lt;int&gt;
+1 Did not use in past month 32118
+2 Used in the past month    24587</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>puf2023_102124 <span class="sc">%&gt;%</span> <span class="fu">count</span>(MRJMON)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  MRJMON     n
+   &lt;dbl&gt; &lt;int&gt;
+1      0 46856
+2      1  9849</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>nsduh_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(MRJMON)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  MRJMON                        n
+  &lt;fct&gt;                     &lt;int&gt;
+1 Did not use in past month 46856
+2 Used in the past month     9849</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>puf2023_102124 <span class="sc">%&gt;%</span> <span class="fu">count</span>(ALCMDAYS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  ALCMDAYS     n
+     &lt;dbl&gt; &lt;int&gt;
+1        1  7689
+2        2  6814
+3        3  6954
+4        4  3130
+5        5 32118</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>nsduh_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(ALCMDAYS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  ALCMDAYS                          n
+  &lt;fct&gt;                         &lt;int&gt;
+1 1-2 days                       7689
+2 3-5 days                       6814
+3 6-19 days                      6954
+4 20-30 days                     3130
+5 Non user or no past month use 32118</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>puf2023_102124 <span class="sc">%&gt;%</span> <span class="fu">count</span>(MRJMDAYS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  MRJMDAYS     n
+     &lt;dbl&gt; &lt;int&gt;
+1        1  1853
+2        2  1361
+3        3  1935
+4        4  4700
+5        5 46856</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>nsduh_slim <span class="sc">%&gt;%</span> <span class="fu">count</span>(MRJMDAYS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  MRJMDAYS                          n
+  &lt;fct&gt;                         &lt;int&gt;
+1 1-2 days                       1853
+2 3-5 days                       1361
+3 6-19 days                      1935
+4 20-30 days                     4700
+5 Non user or no past month use 46856</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nsduh_slim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    QUESTID2          ANALWT2_C            VESTR_C          VEREP      
+ Min.   :10000053   Min.   :1.517e+00   Min.   :40001   Min.   :1.000  
+ 1st Qu.:20101602   1st Qu.:7.986e+02   1st Qu.:40013   1st Qu.:1.000  
+ Median :30232665   Median :2.280e+03   Median :40025   Median :1.000  
+ Mean   :30258005   Mean   :4.999e+03   Mean   :40025   Mean   :1.431  
+ 3rd Qu.:40381086   3rd Qu.:5.776e+03   3rd Qu.:40038   3rd Qu.:2.000  
+ Max.   :50558785   Max.   :1.189e+05   Max.   :40050   Max.   :2.000  
+                                                                       
+      AGE3                             ALCMON     
+ 35-49  :12355   Did not use in past month:32118  
+ 30-34  : 5287   Used in the past month   :24587  
+ 21-23  : 5214                                    
+ 65+    : 5060                                    
+ 50-64  : 4960                                    
+ 18-20  : 4728                                    
+ (Other):19101                                    
+                          ALCMDAYS                           MRJMON     
+ 1-2 days                     : 7689   Did not use in past month:46856  
+ 3-5 days                     : 6814   Used in the past month   : 9849  
+ 6-19 days                    : 6954                                    
+ 20-30 days                   : 3130                                    
+ Non user or no past month use:32118                                    
+                                                                        
+                                                                        
+                          MRJMDAYS    
+ 1-2 days                     : 1853  
+ 3-5 days                     : 1361  
+ 6-19 days                    : 1935  
+ 20-30 days                   : 4700  
+ Non user or no past month use:46856  
+                                      
+                                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(nsduh_slim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 56,705
+Columns: 9
+$ QUESTID2  &lt;dbl&gt; 10000053, 10000679, 10001208, 10001260, 10001588, 10004996, …
+$ ANALWT2_C &lt;dbl&gt; 3276.46987, 15630.08295, 4018.17239, 10711.70954, 8195.10478…
+$ VESTR_C   &lt;dbl&gt; 40031, 40021, 40043, 40030, 40023, 40048, 40003, 40038, 4004…
+$ VEREP     &lt;dbl&gt; 2, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 2, 2, 1, 1, 1, 1, …
+$ AGE3      &lt;fct&gt; 50-64, 35-49, 35-49, 12-13, 50-64, 18-20, 30-34, 65+, 30-34,…
+$ ALCMON    &lt;fct&gt; Used in the past month, Used in the past month, Did not use …
+$ ALCMDAYS  &lt;fct&gt; 6-19 days, 3-5 days, Non user or no past month use, Non user…
+$ MRJMON    &lt;fct&gt; Did not use in past month, Did not use in past month, Did no…
+$ MRJMDAYS  &lt;fct&gt; Non user or no past month use, Non user or no past month use…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(nsduh_slim, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"data"</span>, <span class="st">"nsduh_2023.rds"</span>), <span class="at">compress=</span><span class="st">"xz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/tidy-survey-r\.github\.io\/user-2025-survey-data-tutorial\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

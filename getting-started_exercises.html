@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey} – user 2025</title>
+<title>Getting Started Exercises – user 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -93,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -111,15 +145,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set-up</a>
+  <ul class="collapse">
+  <li><a href="#load-necessary-packages" id="toc-load-necessary-packages" class="nav-link" data-scroll-target="#load-necessary-packages">Load necessary packages</a></li>
+  <li><a href="#preview-data" id="toc-preview-data" class="nav-link" data-scroll-target="#preview-data">Preview data</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}</h1>
+<h1 class="title">Getting Started Exercises</h1>
 </div>
 
 
@@ -136,9 +181,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the tutorial. We include slides and exercises.</p>
+<section id="set-up" class="level1">
+<h1>Set-up</h1>
+<section id="load-necessary-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-necessary-packages">Load necessary packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preview-data" class="level2">
+<h2 class="anchored" data-anchor-id="preview-data">Preview data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(towny)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 414
+Columns: 25
+$ name                     &lt;chr&gt; "Addington Highlands", "Adelaide Metcalfe", "…
+$ website                  &lt;chr&gt; "https://addingtonhighlands.ca", "https://ade…
+$ status                   &lt;chr&gt; "lower-tier", "lower-tier", "lower-tier", "lo…
+$ csd_type                 &lt;chr&gt; "township", "township", "township", "township…
+$ census_div               &lt;chr&gt; "Lennox and Addington", "Middlesex", "Simcoe"…
+$ latitude                 &lt;dbl&gt; 45.00000, 42.95000, 44.13333, 45.52917, 43.85…
+$ longitude                &lt;dbl&gt; -77.25000, -81.70000, -79.93333, -76.89694, -…
+$ land_area_km2            &lt;dbl&gt; 1293.99, 331.11, 371.53, 519.59, 66.64, 116.6…
+$ population_1996          &lt;int&gt; 2429, 3128, 9359, 2837, 64430, 1027, 8315, 16…
+$ population_2001          &lt;int&gt; 2402, 3149, 10082, 2824, 73753, 956, 8593, 18…
+$ population_2006          &lt;int&gt; 2512, 3135, 10695, 2716, 90167, 958, 8654, 19…
+$ population_2011          &lt;int&gt; 2517, 3028, 10603, 2844, 109600, 864, 9196, 2…
+$ population_2016          &lt;int&gt; 2318, 2990, 10975, 2935, 119677, 969, 9680, 2…
+$ population_2021          &lt;int&gt; 2534, 3011, 10989, 2995, 126666, 954, 9949, 2…
+$ density_1996             &lt;dbl&gt; 1.88, 9.45, 25.19, 5.46, 966.84, 8.81, 21.22,…
+$ density_2001             &lt;dbl&gt; 1.86, 9.51, 27.14, 5.44, 1106.74, 8.20, 21.93…
+$ density_2006             &lt;dbl&gt; 1.94, 9.47, 28.79, 5.23, 1353.05, 8.22, 22.09…
+$ density_2011             &lt;dbl&gt; 1.95, 9.14, 28.54, 5.47, 1644.66, 7.41, 23.47…
+$ density_2016             &lt;dbl&gt; 1.79, 9.03, 29.54, 5.65, 1795.87, 8.31, 24.71…
+$ density_2021             &lt;dbl&gt; 1.96, 9.09, 29.58, 5.76, 1900.75, 8.18, 25.39…
+$ pop_change_1996_2001_pct &lt;dbl&gt; -0.0111, 0.0067, 0.0773, -0.0046, 0.1447, -0.…
+$ pop_change_2001_2006_pct &lt;dbl&gt; 0.0458, -0.0044, 0.0608, -0.0382, 0.2226, 0.0…
+$ pop_change_2006_2011_pct &lt;dbl&gt; 0.0020, -0.0341, -0.0086, 0.0471, 0.2155, -0.…
+$ pop_change_2011_2016_pct &lt;dbl&gt; -0.0791, -0.0125, 0.0351, 0.0320, 0.0919, 0.1…
+$ pop_change_2016_2021_pct &lt;dbl&gt; 0.0932, 0.0070, 0.0013, 0.0204, 0.0584, -0.01…</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<ol type="1">
+<li>How many different types of CSD (<code>csd_type</code>) are there in the dataset?</li>
+</ol>
+<ol start="2" type="1">
+<li>How many different types of CSD and status (<code>status</code>) are there in the dataset?</li>
+</ol>
+<ol start="3" type="1">
+<li>What is the proportion of each type of CSD?</li>
+</ol>
+<ol start="4" type="1">
+<li>What is the proportion of each status within type of CSD?</li>
+</ol>
+<ol start="5" type="1">
+<li>What is the mean population of all of the municipalities in 2021?</li>
+</ol>
+<ol start="6" type="1">
+<li>What is the mean population by CSD Type in 2021?</li>
+</ol>
+<ol start="7" type="1">
+<li>What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.</li>
+</ol>
+<ol start="8" type="1">
+<li>Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
