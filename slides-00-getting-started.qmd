@@ -7,7 +7,7 @@ title-slide-attributes:
 
 ---
 
-# Welcome {background-color='{{< brand color secondary >}}'}
+# Warm Up {background-color='{{< brand color secondary >}}'}
 
 ## Posit Cloud
 <!--TODO: Update this with Posit Cloud info-->
@@ -48,7 +48,7 @@ library(gt)
 glimpse(towny)
 ```
 
-## Your Turn {background-color='{{< brand color pink >}}' .smaller}
+## Your Turn {background-color='{{< brand color pink >}}'}
 
 ```{r}
 #| label: gs-ex-time
@@ -57,18 +57,9 @@ gs_ex_time <- 10
 gs_ex_warn <- 3
 ```
 
+- Open `getting-started_exercises.qmd`
+- Take `r gs_ex_time` minutes to set up Posit Cloud and finish the exercises individually. We will then go over together.
 
-- Take `r gs_ex_time` minutes to set up Posit Cloud and finish these exercises individually. We will then go over together.
-
-   1. How many different types of CSD (`csd_type`) are there in the dataset?
-   2. How many different types of CSD and status (`status`) are there in the dataset?
-   3. What is the proportion of each type of CSD?
-   4. What is the proportion of each status within type of CSD?
-   5. What is the mean population of all of the municipalities in 2021?
-   6. What is the mean population by CSD Type in 2021?
-   7. What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
-   8. Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
-   
 ```{r}
 #| label: gs-ex-clock
 #| echo: false
@@ -238,9 +229,39 @@ towny %>%
   print(width=90)
 ```
 
-# Setup {background-color='{{< brand color secondary >}}'}
+## Ex. 8
 
-## Packages
+Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
+
+```{r}
+#| label: ex-8-code
+#| eval: false
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+```
+
+. . .
+
+```{r}
+#| label: ex-8-outp-custprint
+#| echo: false
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+```
+
+# Packages {background-color='{{< brand color secondary >}}'}
+
+## R Packages for Survey Analysis
+
+- {survey} package first on CRAN in 2003
+  - descriptive analysis
+  - statistical testing
+  - modeling
+  - weighting
+
+- {srvyr} package first on CRAN in 2016
+  - “wrapper” for {survey} with {tidyverse}-style syntax
+  - only descriptive analysis
+
+## Install Packages
 
 Install packages for data wrangling and survey analysis:
 
@@ -275,15 +296,17 @@ library(srvyrexploR)
 Note: Installation of packages is already done for you on Posit Cloud
 :::
 
+# Data {background-color='{{< brand color secondary >}}'}
+
 ## Today's Data
 
 **American National Election Studies (ANES – DeBell 2010)**
 
-  * Stored as `anes_2020`
+  * Stored as `anes_2020` in {srvyrexploR}
   
 **Residential Energy Consumption Survey (RECS – U.S. Energy Information Administration 2023b)**
 
-* Stored as `recs_2020`
+* Stored as `recs_2020` in {srvyrexploR}
 
 ## American National Election Studies (ANES) 2020 {.smaller}
 
@@ -363,7 +386,12 @@ anes_des <- anes_2020 %>%
     ids = V200010c,
     nest = TRUE
   )
+```
 
+## American National Election Studies Design Object
+
+```{r}
+#| label: anes-des-show
 anes_des
 ```
 
@@ -380,25 +408,14 @@ recs_des <- recs_2020 %>%
     scale = 59 / 60,
     mse = TRUE
   )
-
-recs_des
 ```
 
-# Survey Analysis Process {background-color='{{< brand color secondary >}}'}
+## Residential Energy Consumption Survey Design Object
 
-## Overview of Survey Analysis using {srvyr} Package
-
-::: incremental
-
-1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
-
-2. Subset data (if needed) using `filter()` (to create subpopulations)
-
-3. Specify domains of analysis using `group_by()`
-
-4. Within `summarize()`, specify variables to calculate, including means, totals, proportions, quantiles, and more
-
-:::
+```{r}
+#| label: recs-des-show
+recs_des
+```
 
 # Similarities (and Differences) Between {dplyr} and {srvyr} Functions {background-color='{{< brand color secondary >}}'}
 
@@ -557,6 +574,22 @@ towny %>%
 #| echo: false
 <<sv-non-svobj>>
 ```
+
+# Survey Analysis Process {background-color='{{< brand color secondary >}}'}
+
+## Overview of Survey Analysis using {srvyr} Package
+
+::: incremental
+
+1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
+
+2. Subset data (if needed) using `filter()` (to create subpopulations)
+
+3. Specify domains of analysis using `group_by()`
+
+4. Within `summarize()`, specify variables to calculate, including means, totals, proportions, quantiles, and more
+
+:::
 
 # Wrap Up {background-color='{{< brand color secondary >}}'}
 
