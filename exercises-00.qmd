@@ -72,3 +72,10 @@ glimpse(towny)
 #| label: exercise-00-07
  
 ```
+
+8. Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
+
+```{r}
+#| label: exercise-00-08
+
+```
