@@ -292,7 +292,7 @@ Note: Installation of packages is already done for you on Posit Cloud
 - Topics include voter registration status, candidate preference, opinions on country and government, party and ideology affiliation, opinions on policy, news sources, and more
 - Collaboration of Stanford, University of Michigan - funding by the National Science Foundation
 - <b>Target Population</b>: US citizens, 18 and older living in US 
-- <b>Mode</b>: Web, videoconference, or telephone.
+- <b>Mode</b>: Web, videoconference, or telephone
 - <b>Sample Information</b>: Pseudo-strata and pseudo-cluster included for variance estimation
 
 https://electionstudies.org/
