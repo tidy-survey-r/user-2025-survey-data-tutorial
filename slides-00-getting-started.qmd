@@ -385,7 +385,7 @@ recs_des
 
 # Survey Analysis Process {background-color='{{< brand color secondary >}}'}
 
-## Overview of Survey Analysis using `srvyr` Package
+## Overview of Survey Analysis using {srvyr} Package
 
 ::: incremental
 
