@@ -335,7 +335,7 @@ recs_2020 %>%
   glimpse()
 ```
 
-# Design Objects
+# Design Objects {background-color='{{< brand color secondary >}}'}
 
 ## Design Objects
 
