@@ -418,7 +418,7 @@ The {srvyr} package builds on the {survey} package by providing wrappers for fun
 - A few functions in {srvyr} have counterparts in {dplyr}
   - `dplyr::summarize()` and `srvyr::summarize()`
   - `dplyr::group_by()` and `srvyr::group_by()`
-- Based on the object class, it will recognize which package to use
+- Based on the object class, R will recognize which package to use
 
 ## Tibbles vs. survey table object
 
