@@ -249,7 +249,7 @@ install.packages(c("tidyverse", "survey", "srvyr"))
 
 . . .
 
-Install {srvyrexploR} to access the survey data:
+Install {srvyrexploR} to access the survey data for today's workshop:
 
 ```r
 install.packages("pak")
