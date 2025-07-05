@@ -17,7 +17,7 @@ title-slide-attributes:
   - Posit Cloud has the same features and appearance as RStudio for ease of use
 - Access the project and files via our link
 - Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
-- We will go through slides of content then work on exercises individually, then regroup to go over answers
+- We will go through slides of content then work on exercises independently, then regroup to go over answers
 
 ## Welcome to the Towny Data
 
