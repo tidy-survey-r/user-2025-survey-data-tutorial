@@ -20,19 +20,19 @@ library(srvyrexploR)
 
 Units can be selected in various ways such as:
 
-- Simple random sampling (with or without replacement): every unit has the same chance of being selected
+- **Simple random sampling (with or without replacement):** every unit has the same chance of being selected
 
-- Systematic sampling: sample individuals from an ordered list and sampling individuals at an interval with a random starting point
+- **Systematic sampling:** sample individuals from an ordered list and sampling individuals at an interval with a random starting point
 
-- Probability proportional to size: probability of selection is proportional to "size"
+- **Probability proportional to size:** probability of selection is proportional to "size"
 
 ## Complex designs
 
 Designs can also incorporate stratification and/or clustering:
 
-- Stratified sampling: divide population into mutually exclusive subgroups (strata). Randomly sample within each stratum
+- **Stratified sampling:** divide population into mutually exclusive subgroups (strata). Randomly sample within each stratum
 
-- Clustered sampling: divide population into mutually exclusive subgroups (clusters). Randomly sample clusters and then individuals within clusters
+- **Clustered sampling:** divide population into mutually exclusive subgroups (clusters). Randomly sample clusters and then individuals within clusters
 
 ## Why design matters?
 
@@ -56,9 +56,9 @@ Designs can also incorporate stratification and/or clustering:
 
 - We will show both ANES and RECS examples when diving into code
 
-# Specifying sampling designs in srvyr {background-color='{{< brand color secondary >}}'}
+# Specifying sampling designs in {srvyr} **without** replicate weights {background-color='{{< brand color secondary >}}'}
 
-## Specify the sampling design: no replicate weights provided
+## `as_survey_design()`: Syntax
 
 - Specifying the sampling design when you don't have replicate weights
 
@@ -103,6 +103,7 @@ apistrat %>% as_survey_design(ids = dnum, strata = stype, weights =pw, nest = TR
 
 - examples from `srvyr` help documentation
 
+# Example  {background-color='{{< brand color blue >}}'}
 
 ## Example: ANES 2020 {.smaller}
 
@@ -199,7 +200,9 @@ Replicate weights are another method to estimate variability. In general, they a
 - Jackknife
 - Bootstrap
 
-## Specify the survey object with replicate weights
+# Specifying sampling designs in {srvyr} **with** replicate weights {background-color='{{< brand color secondary >}}'}
+
+## `as_survey_rep()`: Syntax
 
 
 - [This](http://gdfe.co/srvyr/reference/as_survey_rep.html) creates a `tbl_svy` object that then correctly calculates weighted estimates and SEs
@@ -211,10 +214,8 @@ as_survey_rep(
   variables = NULL, # defaults to all in .data
   repweights = NULL, # Variables specifying the replication weights
   weights = NULL, # Variable specifying the analytic/main weight
-  type = c(
-    "BRR", "Fay", "JK1", "JKn", "bootstrap", "successive-difference", "ACS",
-    "other"
-  ), # Type of replication weight
+  type = c("BRR", "Fay", "JK1", "JKn", "bootstrap",
+           "successive-difference", "ACS","other"), # Type of replication weight
   combined_weights = TRUE, # TRUE if repweights already include sampling weights, usually TRUE
   rho = NULL, # Shrinkage factor for Fay's method
   bootstrap_average = NULL, # For type="bootstrap", if the bootstrap weights have been averaged, gives the number of iterations averaged over
@@ -268,6 +269,8 @@ bs_des <- dat %>%
 ```
 
 - Note: this uses fake data and can't be run, just syntax examples
+
+# Example {background-color='{{< brand color blue >}}'}
 
 ## Example: RECS 2020 {.smaller}
 
@@ -352,7 +355,7 @@ acs_des <- acs_pums %>%
 
 :::
 
-# Exercises {background-color='{{< brand color secondary >}}'}
+# Your turn {background-color='{{< brand color pink >}}'}
 
 ```{r}
 #| label: design-ex-clock
