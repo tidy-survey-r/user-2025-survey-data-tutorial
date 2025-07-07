@@ -1,0 +1,10 @@
+---
+title: "Slides"
+format: html
+---
+
+- Section 1: 
+
+- Section 2: 
+
+- [Section 3: Sampling Designs](slides-03-design.qmd)
