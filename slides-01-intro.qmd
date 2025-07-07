@@ -34,6 +34,15 @@ title-slide-attributes:
 Each of us give a brief intro on our experience/background
 :::
 
+## Prerequisites - tidyverse familiarity
+
+::: {.incremental}
+- Selecting a set of variables (`select(starts_with("TOT"))`)
+- Creating new variables with `mutate()`
+- Summarizing data with `summarize()`
+- Using `group_by()` with `summarize()` to create group summaries
+:::
+
 ## Background {.smaller}
 
 - This tutorial largely builds off our book: Exploring Complex Survey Data Analysis Using R
@@ -48,6 +57,12 @@ Each of us give a brief intro on our experience/background
    - Weighting (calibration, post-stratification, raking, etc.)
    - Survival analysis
    - Nonlinear models
+
+## How is survey analysis different?
+
+- Data often includes weights. These weights extrapolate each response to the population of interest
+- Data is often sampled in a complex manner using strata or clusters. This impacts how standard errors are calculated
+- Fortunately, the packages we discuss today do the hard math for you using tidyverse syntax you're familiar with
 
 ## Overview of tutorial
 
