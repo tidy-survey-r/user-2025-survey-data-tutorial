@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/slides-00-getting-started.html</loc>
-    <lastmod>2025-07-05T21:08:29.313Z</lastmod>
+    <lastmod>2025-07-07T21:19:36.129Z</lastmod>
   </url>
   <url>
     <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/Exercises/raw-data/design-data-create.html</loc>
-    <lastmod>2025-07-05T21:08:29.300Z</lastmod>
+    <lastmod>2025-07-07T21:19:36.116Z</lastmod>
   </url>
   <url>
     <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/index.html</loc>
-    <lastmod>2025-07-05T21:08:29.311Z</lastmod>
+    <lastmod>2025-07-07T21:19:36.127Z</lastmod>
   </url>
   <url>
     <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/getting-started_exercises.html</loc>
-    <lastmod>2025-07-05T21:08:29.301Z</lastmod>
+    <lastmod>2025-07-07T21:19:36.117Z</lastmod>
   </url>
   <url>
-    <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/slides.html</loc>
-    <lastmod>2025-07-05T21:08:29.313Z</lastmod>
+    <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/slides-00.html</loc>
+    <lastmod>2025-07-07T21:19:36.129Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/slides-03-design.html</loc>
+    <lastmod>2025-07-07T21:19:36.129Z</lastmod>
   </url>
   <url>
     <loc>https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/Exercises/design-exercises.html</loc>
-    <lastmod>2025-07-05T21:08:29.300Z</lastmod>
+    <lastmod>2025-07-07T21:19:36.116Z</lastmod>
   </url>
 </urlset>
