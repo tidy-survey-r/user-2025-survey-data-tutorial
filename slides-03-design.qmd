@@ -9,7 +9,7 @@ title-slide-attributes:
 ```{r}
 #| label: load-packages-data
 #| echo: false
-
+options(width = 77)
 library(srvyr)
 library(srvyrexploR)
 ```
@@ -44,6 +44,8 @@ Designs can also incorporate stratification and/or clustering:
 
 ## Determining the design {.smaller}
 
+::: {.incremental}
+
 - Check the documentation such as methodology, design, analysis guide, or technical documentation
 
 - Documentation will indicate the variables needed to specify the design. Look for:
@@ -54,7 +56,13 @@ Designs can also incorporate stratification and/or clustering:
 
 - Documentation may include SAS, SUDAAN, Stata and/or R syntax
 
+:::
+
+::: {.notes}
 - We will show both ANES and RECS examples when diving into code
+:::
+
+
 
 # Specifying sampling designs in {srvyr} **without** replicate weights {background-color='{{< brand color secondary >}}'}
 
@@ -62,7 +70,7 @@ Designs can also incorporate stratification and/or clustering:
 
 - Specifying the sampling design when you don't have replicate weights
 
-- [This](http://gdfe.co/srvyr/reference/as_survey_design.html) creates a `tbl_svy` object that then correctly calculates weighted estimates and SEs
+- `as_survey_design()` creates a `tbl_svy` object that then correctly calculates weighted estimates and SEs
 
 ```{r}
 #| eval: false
@@ -78,36 +86,64 @@ as_survey_design(
 )
 ```
 
+
 ## Syntax for common designs  {.smaller}
 
+Load in the example data from {survey} package:
+
 ```r
-data(api, package="survey") # <1>
-
-apisrs %>% as_survey_design(fpc = fpc) # <2>
-
-apistrat %>% as_survey_design(strata = stype, weights = pw) # <3>
-
-apiclus1 %>% as_survey_design(ids = dnum, weights = pw, fpc = fpc) # <4>
-
-apiclus2 %>% as_survey_design(ids = c(dnum, snum), fpc = c(fpc1, fpc2)) # <5>
-
-apistrat %>% as_survey_design(ids = dnum, strata = stype, weights =pw, nest = TRUE) # <6>
+data(api, package="survey")
 ```
 
-1. Load in example data from {survey} package
-2. Simple random sample (SRS)
-3. Stratified SRS
-4. One-stage cluster sample with a FPC variable
-5. Two-stage cluster sample, weights computed from population size
-6. Stratified, cluster design
+. . .
 
-- examples from `srvyr` help documentation
+Simple Random Sample (SRS)
+
+```r
+apisrs %>% as_survey_design(fpc = fpc)
+```
+
+. . .
+
+Stratified SRS
+
+```r
+apistrat %>% as_survey_design(strata = stype, weights = pw)
+```
+
+. . .
+
+One-stage cluster sample with a FPC variable
+
+```r
+apiclus1 %>% as_survey_design(ids = dnum, weights = pw, fpc = fpc)
+```
+
+. . .
+
+Two-stage cluster sample, weights computed from population size
+
+```r
+apiclus2 %>% as_survey_design(ids = c(dnum, snum), fpc = c(fpc1, fpc2))
+```
+
+. . .
+
+Stratified, cluster design
+
+```r
+apistrat %>% as_survey_design(ids = dnum, strata = stype, weights =pw, nest = TRUE)
+```
+
+::: aside
+Examples from `srvyr` help documentation
+:::
 
 # Example  {background-color='{{< brand color blue >}}'}
 
 ## Example: ANES 2020 {.smaller}
 
-- [User Guide and Codebook](https://electionstudies.org/data-center/2020-time-series-study/) : Section "Data Analysis, Weights, and Variance Estimation" includes information on weights and strata/cluster variables
+- User Guide and Codebook^[<https://electionstudies.org/data-center/2020-time-series-study/>] : Section "Data Analysis, Weights, and Variance Estimation" includes information on weights and strata/cluster variables
 
 > For analysis of the complete set of cases using pre-election data only, including all
 cases and representative of the 2020 electorate, use the full sample pre-election
@@ -122,7 +158,7 @@ V200010a| V200010c| V200010d
 V200010b| V200010c| V200010d
 
 
-## Example: ANES 2020 Syntax {.smaller}
+## Example: ANES 2020 Syntax
 
 ```{r}
 #| label: design-anes-example
@@ -136,8 +172,6 @@ anes_des <- anes %>%
     ids = V200010c, #<4>
     nest = TRUE
   ) #<5>
-
-summary(anes_des) #<6>
 ```
 
 1. Adjust the weight of the ANES data to reflect the national population
@@ -145,7 +179,15 @@ summary(anes_des) #<6>
 3. Specify the strata variable per documentation
 4. Specify the cluster variable per documentation
 5. Indicate that the clusters are nested within strata
-6. Summarize the design object
+
+## Example: ANES 2020 Design
+
+```{r}
+#| label: design-anes-examp-print
+
+summary(anes_des)
+```
+
 
 ## National Health and Nutrition Examination Survey (NHANES) {.smaller}
 
@@ -186,7 +228,7 @@ nhanes_des <- nhanes %>%
 
 ## Replicate weights overview {.smaller}
 
-Replicate weights are another method to estimate variability. In general, they are contstructed by:
+Replicate weights are another method to estimate variability. In general, they are constructed by:
 
 1. Divide the sample into subsample replicates that mirror the design of the sample
 2. Calculate weights for each replicate using the same procedures for the full-sample weight (i.e., nonresponse and post-stratification)
@@ -204,8 +246,7 @@ Replicate weights are another method to estimate variability. In general, they a
 
 ## `as_survey_rep()`: Syntax
 
-
-- [This](http://gdfe.co/srvyr/reference/as_survey_rep.html) creates a `tbl_svy` object that then correctly calculates weighted estimates and SEs
+- `as_survey_rep()` creates a `tbl_svy` object that then correctly calculates weighted estimates and SEs
 
 ```{r}
 #| eval: false
@@ -215,7 +256,7 @@ as_survey_rep(
   repweights = NULL, # Variables specifying the replication weights
   weights = NULL, # Variable specifying the analytic/main weight
   type = c("BRR", "Fay", "JK1", "JKn", "bootstrap",
-           "successive-difference", "ACS","other"), # Type of replication weight
+    "successive-difference", "ACS", "other"), # Type of replication weight
   combined_weights = TRUE, # TRUE if repweights already include sampling weights, usually TRUE
   rho = NULL, # Shrinkage factor for Fay's method
   bootstrap_average = NULL, # For type="bootstrap", if the bootstrap weights have been averaged, gives the number of iterations averaged over
@@ -226,11 +267,12 @@ as_survey_rep(
 )
 ```
 
+
 ## Syntax for common replicate methods {.smaller}
 
 ```{r}
 #| eval: FALSE
-#| code-line-numbers: "1-5|7-12|14-19|21-26"
+#| code-line-numbers: "1-7|9-16|18-25|27-34"
 
 brr_des <- dat %>%
   as_survey_rep(
@@ -274,7 +316,7 @@ bs_des <- dat %>%
 
 ## Example: RECS 2020 {.smaller}
 
-- [Using the microdata file to compute estimates and relative standard errors](https://www.eia.gov/consumption/residential/data/2020/pdf/microdata-guide.pdf)
+- Using the microdata file to compute estimates and relative standard errors^[<https://www.eia.gov/consumption/residential/data/2020/pdf/microdata-guide.pdf>]
 
 > The following instructions are examples for calculating any RECS estimate using the final weights
 (NWEIGHT) and the associated RSE using the replicate weights (NWEIGHT1 – NWEIGHT60).
@@ -295,7 +337,7 @@ RECS <- svrepdesign(
 )
 ```
 
-## Example: RECS 2020 Syntax {.smaller}
+## Example: RECS 2020 Syntax
 
 ```{r}
 #| label: design-recs-example
@@ -306,10 +348,10 @@ recs_des <- recs_2020 %>%
     repweights = NWEIGHT1:NWEIGHT60, #<2>
     type = "JK1", #<3>
     scale = 59 / 60, #<4>
-    mse = TRUE
-  ) #<5>
+    mse = TRUE #<5>
+  ) 
 
-summary(recs_des) #<6>
+
 ```
 
 
@@ -318,7 +360,14 @@ summary(recs_des) #<6>
 3. Specify the replicate type per documentation
 4. Specify the scale
 5. Specify using MSE for variance estimation
-6. Summarize the survey object
+
+## Example: RECS 2020 Output
+
+```{r}
+#| label: design-recs-examp-print
+
+summary(recs_des) #<6>
+```
 
 ## American Community Survey (ACS)
 
