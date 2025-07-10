@@ -64,7 +64,7 @@ recs_des <- recs_2020 %>%
 # Hint - you'll need the recs_des object
 ```
 
-2. In, 2015, the average household spent $1,856 on energy expenditure^[<https://www.eia.gov/consumption/residential/data/2015/c&e/pdf/ce1.1.pdf>]. Accounting for inflation, this would be $2,036 in 2020. Test whether energy costs (`TOTALDOL`) have increased in 2020 from 2015, accounting for inflation.
+2. In 2015, the average household spent $1,856 on energy expenditure^[<https://www.eia.gov/consumption/residential/data/2015/c&e/pdf/ce1.1.pdf>]. Accounting for inflation, this would be $2,036 in 2020. Test whether energy costs (`TOTALDOL`) have increased in 2020 from 2015, accounting for inflation.
 
 ```{r}
 #| label: testing-exercise-2
