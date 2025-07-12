@@ -18,7 +18,6 @@ library(survey)
 library(srvyr)
 library(srvyrexploR)
 library(gt)
-library(countdown)
 library(broom)
 
 recs_des <- recs_2020 %>%
@@ -43,6 +42,7 @@ anes_des <- anes_adjwgt %>%
     nest = TRUE
   )
 
+options(width=77)
 ```
 
 # t-tests {background-color='{{< brand color secondary >}}'}
@@ -118,7 +118,7 @@ svyttest(formula,
 ```
 
 ::: {.notes}
-- as `design` argument is the second arugument, dot notation is needed
+- as `design` argument is the second argument, dot notation is needed
 :::
 
 # Dot notation {background-color='{{< brand color secondary >}}'}
@@ -341,7 +341,7 @@ countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*6
 
 ## Chi-square tests
 
-- compare multiple proportions to see if they are statistically different from each othter
+- Compare multiple proportions to see if they are statistically different from each other
 
 ::: {.incremental}
 - Different types:
@@ -391,7 +391,8 @@ svychisq(formula,
 
 ## Example: goodness-of-fit test
 
-- Is the education distribution from the 2020 ANES survey data the same as the 18+ population in the U.S. as of 2020?
+- Let's check to see if the education levels from the ANES match the levels from the ACS
+- Here is the education breakdown from the ACS in 2020
   - 11% had less than a high school degree
   - 27% had a high school degree
   - 29% had some college or an associate’s degree
@@ -399,7 +400,8 @@ svychisq(formula,
 
 ## Example: goodness-of-fit test
 
-Let's check to see if the education levels from the ANES match the levels from the ACS
+- Let's check to see if the education levels from the ANES match the levels from the ACS
+- Here is the education breakdown from our survey data
 
 ```{r}
 #| label: chisq-gof-educ1
@@ -409,7 +411,10 @@ anes_des %>%
   group_by(Education) %>%
   summarize(p = survey_mean())
 ```
-
+::: {.notes}
+- Use `drop_na()` to first remove any missing data from the `Education` variable
+- Use `group_by()` and `summarize()` to get the proportions by `Education` level
+:::
 ## Example: goodness-of-fit test
 
 Let's collapse Bachelor's and Graduate degrees into a single category for comparison.
@@ -451,7 +456,7 @@ anes_des_educ %>%
 
 ```{r}
 #| label: chisq-gof-graph
-#| echo: false
+#| code-fold: true
 
 anes_des_educ %>%
   drop_na(Education2) %>%
@@ -483,7 +488,7 @@ anes_des_educ %>%
 
 ```
 
-# Examples <br> test of independence and homogeneity {background-color='{{< brand color blue >}}'}
+# Example <br> test of independence {background-color='{{< brand color blue >}}'}
 
 ## Example: test of independence
 
@@ -521,7 +526,7 @@ countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*6
 
 # Analysis of Variance (ANOVA) {background-color='{{< brand color secondary >}}'}
 
-## ANOVA
+## ANOVA syntax
 
 Use Analysis of Variance (ANOVA) to compare two or more means.
 
