@@ -1,28 +1,14 @@
 ---
-title: "Complex Survey <br>Data Analysis"
-subtitle: "A Tidy Introduction with {srvyr} and {survey}"
-author: 
-  - Stephanie A. Zimmer
-  - Rebecca J. Powell
-  - Isabella C. Velásquez
-institute:
-  - RTI International
-  - Fors Marsh
-  - Posit
-format: revealjs
-slide-number: true
-title-slide-attributes: 
-      data-background: "#087e8b"
-      data-background-image: "images/cover.png"
-      data-background-position: 90% center
-      data-background-size: 25%
-      style: "text-align: left; right: 16%"
+title: "Slides"
+format: html
 ---
 
-# Background
+- [Section 1: Introduction](slides-01-intro.qmd)
 
-# Categorical data
+- [Section 2: Getting started](slides-02-getting-started.qmd)
 
-# Continuous data
+- [Section 3: Descriptive analysis](slides-03-descriptive-analysis.qmd)
 
-# Design
+- [Section 4: Statistical testing](slides-04-stattesting.qmd)
+
+- [Section 5: Sampling designs](slides-05-design.qmd)
