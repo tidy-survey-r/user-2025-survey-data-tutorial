@@ -526,6 +526,10 @@ countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*6
 
 # Analysis of Variance (ANOVA) {background-color='{{< brand color secondary >}}'}
 
+## ANOVA
+
+Use Analysis of Variance (ANOVA) to compare two or more means.
+
 ## ANOVA syntax
 
 Use Analysis of Variance (ANOVA) to compare two or more means.
