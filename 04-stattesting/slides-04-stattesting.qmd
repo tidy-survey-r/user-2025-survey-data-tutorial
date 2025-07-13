@@ -89,7 +89,6 @@ svyttest(formula,
 - Similar to `t.test()` function in base R with the formula and the data arguments
 :::
 
-
 ## t-test syntax
 
 ```{r}
@@ -324,10 +323,10 @@ recs_des %>%
   )
 ```
 
-
 # Your Turn {background-color='{{< brand color pink >}}'}
 
-Open `ttest_exercises.qmd`
+* Open `04-testing-exercises.qmd`
+* Work through **Exercises - Part 1**
 
 ```{r}
 #| label: ttest-ex-clock
@@ -515,7 +514,8 @@ anes_des %>%
 
 # Your Turn {background-color='{{< brand color pink >}}'}
 
-Open `chisq_exercises.qmd`
+* Open `04-testing-exercises.qmd`
+* Work through **Exercises - Part 2**
 
 ```{r}
 #| label: chisq-ex-clock
@@ -567,7 +567,8 @@ recs_des %>%
 
 # Your Turn {background-color='{{< brand color pink >}}'}
 
-Open `anova_exercises.qmd`
+* Open `04-testing-exercises.qmd`
+* Work through **Exercises - Part 3**
 
 ```{r}
 #| label: anova-ex-clock

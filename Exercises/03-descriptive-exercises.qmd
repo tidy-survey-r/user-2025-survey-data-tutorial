@@ -47,7 +47,7 @@ recs_des <- recs_2020 %>%
   )
 ```
 
-### Exercises
+### Exercises - Part 1
 
 1. How many females have a graduate degree (according to the ANES data)?
 
@@ -72,6 +72,8 @@ recs_des <- recs_2020 %>%
 ```{r}
 # Hint: The variable VotedPres2016 indicates whether someone voted in 2016.
 ```
+
+### Exercises - Part 2
 
 5. What is the design effect for the proportion of people who voted early? 
 

@@ -35,7 +35,7 @@ website:
       - href: 04-stattesting/index.qmd
         text: 04 - Statistical Testing
       - href: 05-design/index.qmd
-        text: 05 - Design
+        text: 05 - Sampling Designs
 
   page-footer:
     right: "This page is built with 💜 and [Quarto](https://quarto.org/)."

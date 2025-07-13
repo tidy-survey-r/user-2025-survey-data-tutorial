@@ -57,193 +57,12 @@ gs_ex_warn <- 3
 ```
 
 - Open `02-getting-started_exercises.qmd`
-- Take `r gs_ex_time` minutes to set up Posit Cloud and finish the exercises individually. We will then go over together.
+- Take `r gs_ex_time` minutes to set up Posit Cloud and finish the exercises individually.
 
 ```{r}
 #| label: gs-ex-clock
 #| echo: false
 countdown::countdown(minutes = gs_ex_time, seconds = 0, play_sound = TRUE, warn_when = gs_ex_warn * 60)
-```
-   
-## Ex. 1
-
-How many different types of CSD are there in the dataset?
-
-```{r}
-#| label: ex-1-code-a
-#| eval: false
-towny %>%
-  count(csd_type)
-```
-
-. . .
-
-or
-
-```{r}
-#| label: ex-1-code-b
-#| eval: false
-towny %>%
-  group_by(csd_type) %>%
-  summarize(n = n(), .groups = "drop")
-```
-
-. . .
-
-```{r}
-#| label: ex-1-outp
-#| echo: false
-<<ex-1-code-a>>
-```
-
-## Ex. 2
-
-How many different types of CSD and status are there in the dataset?
-
-```{r}
-#| label: ex-2-code-a
-#| eval: false
-towny %>%
-  count(csd_type, status)
-```
-
-. . .
-
-or
-
-```{r}
-#| label: ex-2-code-b
-#| eval: false
-towny %>%
-  group_by(csd_type, status) %>%
-  summarize(n = n(), .groups = "drop")
-```
-
-. . .
-
-```{r}
-#| label: ex-2-outp
-#| echo: false
-<<ex-2-code-b>>
-```
-
-## Ex. 3
-
-What is the proportion of each type of CSD?
-
-```{r}
-#| label: ex-3-code
-#| eval: false
-towny %>%
-  count(csd_type) %>%
-  mutate(p = n / sum(n))
-```
-
-. . .
-
-```{r}
-#| label: ex-3-outp
-#| echo: false
-<<ex-3-code>>
-```
-
-## Ex. 4
-
-What is the proportion of each status within type of CSD?
-
-```{r}
-#| label: ex-4-code
-#| eval: false
-towny %>%
-  count(csd_type, status) %>%
-  group_by(csd_type) %>%
-  mutate(p = n / sum(n))
-```
-
-. . .
-
-```{r}
-#| label: ex-4-outp
-#| echo: false
-<<ex-4-code>>
-```
-
-## Ex. 5
-
-What is the mean population of all of the municipalities in 2021?
-
-```{r}
-#| label: ex-5-code
-#| eval: false
-towny %>%
-  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
-```
-
-. . .
-
-```{r}
-#| label: ex-5-outp
-#| echo: false
-<<ex-5-code>>
-```
-
-## Ex. 6
-
-What is the mean population by CSD in 2021?
-
-```{r}
-#| label: ex-6-code
-#| eval: false
-towny %>%
-  group_by(csd_type) %>%
-  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
-```
-
-. . .
-
-```{r}
-#| label: ex-6-outp
-#| echo: false
-<<ex-6-code>>
-```
-
-## Ex. 7
-
-What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
-
-```{r}
-#| label: ex-7-code
-#| eval: false
-towny %>%
-  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
-```
-
-. . .
-
-```{r}
-#| label: ex-7-outp-custprint
-#| echo: false
-towny %>%
-  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE))) %>%
-  print(width=90)
-```
-
-## Ex. 8
-
-Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
-
-```{r}
-#| label: ex-8-code
-#| eval: false
-t.test(towny$population_1996, towny$population_2016, paired = TRUE)
-```
-
-. . .
-
-```{r}
-#| label: ex-8-outp-custprint
-#| echo: false
-t.test(towny$population_1996, towny$population_2016, paired = TRUE)
 ```
 
 # Packages {background-color='{{< brand color secondary >}}'}
@@ -608,3 +427,186 @@ towny %>%
 * {srvyr} wraps {survey} so that we can use friendly, "tidy" syntax
 * Based on the object type, R will know whether to use {dplyr} or {srvyr}
 * All functions must be done on the survey design object, not the raw data
+
+# Extra Content {background-color='{{< brand color secondary >}}'}
+
+## Ex. 1
+
+How many different types of CSD are there in the dataset?
+
+```{r}
+#| label: ex-1-code-a
+#| eval: false
+towny %>%
+  count(csd_type)
+```
+
+. . .
+
+or
+
+```{r}
+#| label: ex-1-code-b
+#| eval: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+. . .
+
+```{r}
+#| label: ex-1-outp
+#| echo: false
+<<ex-1-code-a>>
+```
+
+## Ex. 2
+
+How many different types of CSD and status are there in the dataset?
+
+```{r}
+#| label: ex-2-code-a
+#| eval: false
+towny %>%
+  count(csd_type, status)
+```
+
+. . .
+
+or
+
+```{r}
+#| label: ex-2-code-b
+#| eval: false
+towny %>%
+  group_by(csd_type, status) %>%
+  summarize(n = n(), .groups = "drop")
+```
+
+. . .
+
+```{r}
+#| label: ex-2-outp
+#| echo: false
+<<ex-2-code-b>>
+```
+
+## Ex. 3
+
+What is the proportion of each type of CSD?
+
+```{r}
+#| label: ex-3-code
+#| eval: false
+towny %>%
+  count(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+. . .
+
+```{r}
+#| label: ex-3-outp
+#| echo: false
+<<ex-3-code>>
+```
+
+## Ex. 4
+
+What is the proportion of each status within type of CSD?
+
+```{r}
+#| label: ex-4-code
+#| eval: false
+towny %>%
+  count(csd_type, status) %>%
+  group_by(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+. . .
+
+```{r}
+#| label: ex-4-outp
+#| echo: false
+<<ex-4-code>>
+```
+
+## Ex. 5
+
+What is the mean population of all of the municipalities in 2021?
+
+```{r}
+#| label: ex-5-code
+#| eval: false
+towny %>%
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| label: ex-5-outp
+#| echo: false
+<<ex-5-code>>
+```
+
+## Ex. 6
+
+What is the mean population by CSD in 2021?
+
+```{r}
+#| label: ex-6-code
+#| eval: false
+towny %>%
+  group_by(csd_type) %>%
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| label: ex-6-outp
+#| echo: false
+<<ex-6-code>>
+```
+
+## Ex. 7
+
+What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
+
+```{r}
+#| label: ex-7-code
+#| eval: false
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
+```
+
+. . .
+
+```{r}
+#| label: ex-7-outp-custprint
+#| echo: false
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE))) %>%
+  print(width=90)
+```
+
+## Ex. 8
+
+Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
+
+```{r}
+#| label: ex-8-code
+#| eval: false
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+```
+
+. . .
+
+```{r}
+#| label: ex-8-outp-custprint
+#| echo: false
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+```

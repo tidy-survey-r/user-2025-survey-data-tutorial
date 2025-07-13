@@ -404,7 +404,9 @@ acs_des <- acs_pums %>%
 
 :::
 
-# Your turn {background-color='{{< brand color pink >}}'}
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+Open `05-design-exercises.qmd`
 
 ```{r}
 #| label: design-ex-clock
