@@ -1,6 +1,19 @@
 ---
 title: "Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}"
+subtitle: useR! 2025 tutorial held at Duke University
+backgroundcolor: "white"
 ---
 
-This is the website for the useR 2025 tutorial held at Duke University on August 8, 2025.
+🗓️ Date: 8 August 2025
 
+🕗 Time: 13:00 - 16:30 ET
+
+## Abstract
+
+This interactive tutorial will introduce how to conduct analysis of survey data in R. We will first introduce a unifying workflow of tidy survey analysis in R for analysis of survey microdata with weights. We will cover topics of descriptive analysis, including functions to obtain weighted proportions, means, quantiles, and correlations from survey data. Then, we will discuss some statistical testing, including t-tests for comparing means and χ-squared tests for comparing proportions. Finally, we will discuss common probability sampling designs and how to create the survey design objects in R to account for the sampling design. The tutorial will include time for exercises using data from the 2020 American National Election Study and the 2020 Residential Energy Consumption Survey, so you can get hands-on experience with the functions. We will be using Posit Cloud, so you do not need to have R or RStudio preinstalled on your computer. For the best learning experience, we recommend you have some prior experience with R and the tidyverse, including familiarity with `mutate()`, `summarize()`, `count()`, and `group_by()`.
+
+------------------------------------------------------------------------
+
+![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+The website is based on a template by [Mine Çetinkaya-Rundel](https://mine-cr.com/), used with appreciation and adapted for this workshop.
