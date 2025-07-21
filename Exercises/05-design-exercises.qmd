@@ -11,7 +11,7 @@ library(srvyr)
 library(readr)
 ```
 
-## Exercises
+### Exercises
 
 In these exercises, you will be given a study and the data. How would you create the survey object with design variables or replicate weights, as applicable?
 
