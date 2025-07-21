@@ -40,7 +40,7 @@ nsduh_2023 <- read_rds(here::here("Exercises", "data", "nsduh_2023.rds"))
 glimpse(nsduh_2023)
 ```
 
-### Bonus Exercise
+#### Bonus Exercise
 
    - Find a public use file of your own
    - Download the data
