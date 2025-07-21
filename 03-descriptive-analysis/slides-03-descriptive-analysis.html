@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<link href="./images/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/tabby.min.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-57476271c5f0467c372e20ff5d25630e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57476271c5f0467c372e20ff5d25630e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>useR 2025 – Descriptive Analysis</title>
+  <title>Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey} – Descriptive Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -94,11 +94,11 @@
     code span.vs { color: #da4453; } /* VerbatimString */
     code span.wa { color: #da4453; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-8164cf76d6be4ed125fa33063385f9fc.css">
-  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8164cf76d6be4ed125fa33063385f9fc.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -186,6 +186,8 @@
       margin-right: 0; 
     }
   </style>
+  <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -215,7 +217,7 @@
 </div>
 </section>
 <section>
-<section id="types-of-data" class="title-slide slide level1 smaller center">
+<section id="types-of-data" class="title-slide slide level1 smaller center" data-background-color="#087e8b">
 <h1>Types of Data</h1>
 
 </section>
@@ -236,7 +238,7 @@
 <!--TODO: Make a chart-->
 </section></section>
 <section>
-<section id="types-of-measures" class="title-slide slide level1 center">
+<section id="types-of-measures" class="title-slide slide level1 center" data-background-color="#087e8b">
 <h1>Types of Measures</h1>
 
 </section>
@@ -273,7 +275,7 @@
 </ul>
 </section></section>
 <section>
-<section id="survey-analysis-process" class="title-slide slide level1 center">
+<section id="survey-analysis-process" class="title-slide slide level1 center" data-background-color="#087e8b">
 <h1>Survey Analysis Process</h1>
 
 </section>
@@ -320,8 +322,8 @@
 </ol>
 </section></section>
 <section>
-<section id="calculating-variables" class="title-slide slide level1 center">
-<h1>Calculating Variables</h1>
+<section id="count-of-observations" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Count of Observations</h1>
 
 </section>
 <section id="survey_count-count-of-observations" class="slide level2">
@@ -336,7 +338,7 @@
 </div>
 </section>
 <section id="survey_count-syntax" class="slide level2">
-<h2><code>survey_count()</code>: Syntax</h2>
+<h2><code>survey_count()</code> Syntax</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|2|3|4|5|6|7|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">survey_count</span>(</span>
 <span id="cb3-2"><a></a>   x,</span>
@@ -348,9 +350,14 @@
 <span id="cb3-8"><a></a>   <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>)</span>
 <span id="cb3-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section></section>
+<section>
+<section id="example-count-of-observations" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>count of observations</h1>
+
 </section>
-<section id="survey_count-example" class="slide level2">
-<h2><code>survey_count</code>: Example</h2>
+<section id="example-count-of-observations-1" class="slide level2">
+<h2>Example: count of observations</h2>
 <p>Calculate the estimated number of households in the U.S. using (RECS) data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -367,8 +374,8 @@
 </div>
 </div>
 </section>
-<section id="survey_count-subgroup-example" class="slide level2">
-<h2><code>survey_count</code>: Subgroup Example</h2>
+<section id="example-count-of-subgroups" class="slide level2">
+<h2>Example: count of subgroups</h2>
 <p>Calculate the estimated number of observations for Region and Division:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -393,6 +400,11 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="summation-of-variables" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Summation of Variables</h1>
+
 </section>
 <section id="survey_total-summation-of-variables" class="slide level2">
 <h2><code>survey_total()</code>: Summation of Variables</h2>
@@ -406,7 +418,7 @@
 </div>
 </section>
 <section id="survey_total-syntax" class="slide level2">
-<h2><code>survey_total()</code>: Syntax</h2>
+<h2><code>survey_total()</code> syntax</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">survey_total</span>(</span>
 <span id="cb8-2"><a></a>  x,</span>
@@ -417,9 +429,14 @@
 <span id="cb8-7"><a></a>  <span class="at">df =</span> <span class="cn">NULL</span></span>
 <span id="cb8-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section></section>
+<section>
+<section id="example-summation-of-variables" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>summation of variables</h1>
+
 </section>
-<section id="survey_total-example" class="slide level2">
-<h2><code>survey_total()</code>: Example</h2>
+<section id="example-calculating-total-estimate-discrete" class="slide level2">
+<h2>Example: Calculating total estimate (discrete)</h2>
 <p>Calculate the U.S. population count estimate:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -449,8 +466,8 @@
       }</style></aside>
 </div>
 </section>
-<section id="survey_total-continuous-data-example" class="slide level2">
-<h2><code>survey_total()</code>: Continuous Data Example</h2>
+<section id="example-calculating-total-estimate-continuous" class="slide level2">
+<h2>Example: Calculating total estimate (continuous)</h2>
 <p>Calculate the total cost of electricity in whole dollars:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -467,8 +484,8 @@
 </div>
 </div>
 </section>
-<section id="survey_total-group-by-example" class="slide level2">
-<h2><code>survey_total()</code>: Group By Example</h2>
+<section id="example-calculating-total-estimate-with-groups" class="slide level2">
+<h2>Example: Calculating total estimate with groups</h2>
 <p>Calculate the variation in the cost of electricity in whole dollars across regions:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|2|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -499,6 +516,11 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section></section>
+<section>
+<section id="means-and-proportions" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Means and proportions</h1>
+
 </section>
 <section id="survey_mean-and-survey_prop-means-and-proportions" class="slide level2">
 <h2><code>survey_mean()</code> and <code>survey_prop()</code>: Means and Proportions</h2>
@@ -511,7 +533,7 @@
 </div>
 </section>
 <section id="survey_mean-syntax" class="slide level2">
-<h2><code>survey_mean()</code>: Syntax</h2>
+<h2><code>survey_mean()</code> Syntax</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15" data-code-line-numbers="|2|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">survey_mean</span>(</span>
 <span id="cb15-2"><a></a>  x,</span>
@@ -539,7 +561,7 @@
       }</style></aside>
 </section>
 <section id="survey_prop-syntax" class="slide level2">
-<h2><code>survey_prop()</code>: Syntax</h2>
+<h2><code>survey_prop()</code> Syntax</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16" data-code-line-numbers="|1,2|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">survey_prop</span>(</span>
 <span id="cb16-2"><a></a>  <span class="at">na.rm =</span> <span class="cn">FALSE</span>,</span>
@@ -566,9 +588,14 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section></section>
+<section>
+<section id="example-means-and-proportions" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>means and proportions</h1>
+
 </section>
-<section id="survey_mean-one-variable-proportion-example" class="slide level2">
-<h2><code>survey_mean()</code>: One Variable Proportion Example</h2>
+<section id="example-one-variable-proportion" class="slide level2">
+<h2>Example: One Variable Proportion</h2>
 <p>Calculate the proportion of people in each region in the RECS data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -589,8 +616,8 @@
 </div>
 </div>
 </section>
-<section id="survey_mean-one-variable-proportion-example-1" class="slide level2">
-<h2><code>survey_mean()</code>: One Variable Proportion Example</h2>
+<section id="example-one-variable-proportion-1" class="slide level2">
+<h2>Example: One Variable Proportion</h2>
 <p>Calculate the proportion of people in each region in the RECS data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -622,8 +649,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="survey_mean-conditional-proportions-example" class="slide level2">
-<h2><code>survey_mean()</code>: Conditional Proportions Example</h2>
+<section id="example-conditional-proportions" class="slide level2">
+<h2>Example: Conditional Proportions</h2>
 <p>Calculate the proportion of housing units by Region and whether air conditioning (A/C) is used:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -662,8 +689,8 @@
       }</style></aside>
 </div>
 </section>
-<section id="survey_mean-joint-proportions-example" class="slide level2">
-<h2><code>survey_mean()</code>: Joint Proportions Example</h2>
+<section id="example-joint-proportions" class="slide level2">
+<h2>Example: Joint Proportions</h2>
 <p>Calculate the joint proportion for each combination using <code>interact()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -701,8 +728,8 @@
       }</style></aside>
 </div>
 </section>
-<section id="survey_mean-overall-mean-example" class="slide level2">
-<h2><code>survey_mean()</code>: Overall Mean Example</h2>
+<section id="example-overall-mean" class="slide level2">
+<h2>Example: Overall Mean</h2>
 <p>Calculate the estimated average cost of electricity in the U.S.:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -721,8 +748,8 @@
 </div>
 </div>
 </section>
-<section id="survey_mean-mean-by-subgroup-example" class="slide level2">
-<h2><code>survey_mean()</code>: Mean by Subgroup Example</h2>
+<section id="example-mean-by-subgroup" class="slide level2">
+<h2>Example: Mean by Subgroup</h2>
 <p>Calculate the estimated average cost of electricity in the U.S. by each region:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -742,6 +769,27 @@
 </div>
 </div>
 </div>
+</section></section>
+<section id="your-turn" class="title-slide slide level1 center" data-background-color="#ff8484">
+<h1>Your Turn</h1>
+<ul>
+<li>Open <code>03-descriptive-exercises.qmd</code></li>
+<li>Work through <strong>Exercises - Part 1</strong></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_3878c379" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<section id="quantiles-and-medians" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Quantiles and Medians</h1>
+
 </section>
 <section id="survey_quantile-and-survey_median-quantiles-and-medians" class="slide level2">
 <h2><code>survey_quantile()</code> and <code>survey_median()</code>: Quantiles and Medians</h2>
@@ -754,7 +802,7 @@
 </div>
 </section>
 <section id="survey_quantile-syntax" class="slide level2">
-<h2><code>survey_quantile()</code>: Syntax</h2>
+<h2><code>survey_quantile()</code> Syntax</h2>
 <div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">survey_quantile</span>(</span>
 <span id="cb29-2"><a></a>  x,</span>
 <span id="cb29-3"><a></a>  quantiles,</span>
@@ -767,9 +815,14 @@
 <span id="cb29-10"><a></a>            <span class="st">"hf4"</span>, <span class="st">"hf5"</span>, <span class="st">"hf6"</span>, <span class="st">"hf7"</span>, <span class="st">"hf8"</span>, <span class="st">"hf9"</span>),</span>
 <span id="cb29-11"><a></a>  <span class="at">df =</span> <span class="cn">NULL</span></span>
 <span id="cb29-12"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="example-quantiles-and-medians" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>quantiles and medians</h1>
+
 </section>
-<section id="survey_quantile-example" class="slide level2">
-<h2><code>survey_quantile()</code>: Example</h2>
+<section id="example-quantiles" class="slide level2">
+<h2>Example: Quantiles</h2>
 <p>Calculate the first quartile (p=0.25), the median (p=0.5), and the third quartile (p=0.75) of electric bills:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -788,9 +841,14 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="example-quantiles-and-medians-1" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>quantiles and medians</h1>
+
 </section>
-<section id="survey_median-example" class="slide level2">
-<h2><code>survey_median()</code>: Example</h2>
+<section id="example-median" class="slide level2">
+<h2>Example: median</h2>
 <p>Calculate the estimated median cost of electricity in the U.S.:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -806,6 +864,11 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="correlations" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Correlations</h1>
+
 </section>
 <section id="survey_corr-measure-the-linear-relationship-between-two-continuous-variables" class="slide level2">
 <h2><code>survey_corr()</code>: Measure the linear relationship between two continuous variables</h2>
@@ -817,7 +880,7 @@
 </div>
 </section>
 <section id="survey_corr-syntax" class="slide level2">
-<h2><code>survey_corr()</code>: Syntax</h2>
+<h2><code>survey_corr()</code> Syntax</h2>
 <div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">survey_corr</span>(</span>
 <span id="cb34-2"><a></a>  x,</span>
 <span id="cb34-3"><a></a>  y,</span>
@@ -826,9 +889,14 @@
 <span id="cb34-6"><a></a>  <span class="at">level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb34-7"><a></a>  <span class="at">df =</span> <span class="cn">NULL</span></span>
 <span id="cb34-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="example-correlation" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>correlation</h1>
+
 </section>
-<section id="survey_corr-example" class="slide level2">
-<h2><code>survey_corr()</code>: Example</h2>
+<section id="example-correlation-1" class="slide level2">
+<h2>Example: correlation</h2>
 <p>Calculate the correlation between the total square footage of homes and electricity consumption:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -844,9 +912,14 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="unweighted-analysis" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Unweighted analysis</h1>
+
 </section>
 <section id="unweighted-unweighted-analysis" class="slide level2">
-<h2><code>unweighted()</code>: Unweighted Analysis</h2>
+<h2><code>unweighted()</code>: Unweighted analysis</h2>
 <div>
 <ul>
 <li class="fragment">Sometimes, it is helpful to calculate an unweighted estimate of a given variable</li>
@@ -854,9 +927,14 @@
 <li class="fragment">Used in conjunction with any {dplyr} functions</li>
 </ul>
 </div>
+</section></section>
+<section>
+<section id="example-unweighted-analysis" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>unweighted analysis</h1>
+
 </section>
-<section id="unweighted-example" class="slide level2">
-<h2><code>unweighted()</code>: Example</h2>
+<section id="example-unweighted-analysis-1" class="slide level2">
+<h2>Example: Unweighted Analysis</h2>
 <p>Calculate the unweighted average household electricity cost:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -875,6 +953,11 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="subpopulation-analysis" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Subpopulation analysis</h1>
+
 </section>
 <section id="filter-subpopulation-analysis" class="slide level2">
 <h2><code>filter()</code>: Subpopulation Analysis</h2>
@@ -884,9 +967,14 @@
 <li class="fragment">Must be done after creating the survey design object</li>
 </ul>
 </div>
+</section></section>
+<section>
+<section id="example-subpopulation-analysis" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>subpopulation analysis</h1>
+
 </section>
-<section id="filter-example" class="slide level2">
-<h2><code>filter()</code>: Example</h2>
+<section id="example-subpopulation-analysis-1" class="slide level2">
+<h2>Example: subpopulation analysis</h2>
 <p>Calculate an estimate of the average amount spent on natural gas among housing units using natural gas:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -905,6 +993,11 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="adding-summary-rows" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Adding summary rows</h1>
+
 </section>
 <section id="cascade-adding-summary-rows" class="slide level2">
 <h2><code>cascade()</code>: Adding Summary Rows</h2>
@@ -925,9 +1018,14 @@
 <span id="cb41-5"><a></a>  <span class="at">.fill_level_top =</span> <span class="cn">FALSE</span>, </span>
 <span id="cb41-6"><a></a>  <span class="at">.groupings =</span> <span class="cn">NULL</span></span>
 <span id="cb41-7"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="example-summary-rows" class="title-slide slide level1 center" data-background-color="#0b3954">
+<h1>Example <br>summary rows</h1>
+
 </section>
-<section id="cascade-example" class="slide level2">
-<h2><code>cascade()</code>: Example</h2>
+<section id="example-adding-summary-rows" class="slide level2">
+<h2>Example: Adding summary rows</h2>
 <p>Calculate the average household electricity cost. Let’s build on it to show the features of <code>cascade()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -944,8 +1042,8 @@
 </div>
 </div>
 </section>
-<section id="cascade-example-1" class="slide level2">
-<h2><code>cascade()</code>: Example</h2>
+<section id="example-adding-summary-rows-with-groups" class="slide level2">
+<h2>Example: Adding summary rows with groups</h2>
 <p>Group by region:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -967,8 +1065,8 @@
 </div>
 </div>
 </section>
-<section id="cascade-example-2" class="slide level2">
-<h2><code>cascade()</code>: Example</h2>
+<section id="example-adding-summary-rows-with-groups-1" class="slide level2">
+<h2>Example: Adding summary rows with groups</h2>
 <p>Give the summary row a better name with <code>.fill</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -993,8 +1091,8 @@
 </div>
 </div>
 </section>
-<section id="cascade-example-3" class="slide level2">
-<h2><code>cascade()</code>: Example</h2>
+<section id="example-adding-summary-rows-with-groups-2" class="slide level2">
+<h2>Example: Adding summary rows with groups</h2>
 <p>Move the summary row to the top with <code>.fill_level_top = TRUE</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
@@ -1021,7 +1119,7 @@
 </div>
 </section></section>
 <section>
-<section id="wrap-up" class="title-slide slide level1 center">
+<section id="wrap-up" class="title-slide slide level1 center" data-background-color="#087e8b">
 <h1>Wrap Up</h1>
 
 </section>
@@ -1047,31 +1145,46 @@
 <li><code>filter()</code> and <code>group_by()</code> precede the calculation functions, but still follow the design object</li>
 <li>There are additional functions for unweighted analyses and calculating summary rows</li>
 </ul>
-
-
 </section></section>
+<section id="your-turn-1" class="title-slide slide level1 center" data-background-color="#ff8484">
+<h1>Your Turn</h1>
+<ul>
+<li>Open <code>03-descriptive-exercises.qmd</code></li>
+<li>Work through <strong>Exercises - Part 2</strong></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_dfd2a9d9" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/favicon.png" class="slide-logo"></p>
+<p><img src="../images/favicon.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Started Exercises – useR 2025</title>
+<title>design-exercises – Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,13 +58,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <link href="../images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,20 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-8c7f78a393ad4a7b26f55cfb8ad6546c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-df226ee5516f45dd32be02d165bb1b5a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e0d7625f612b09683ea3df9504e83882.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -106,169 +89,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/favicon.png" alt="" class="navbar-logo">
-    </a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">useR 2025</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../slides.html"> 
-<span class="menu-text">Slides</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
   <div id="quarto-announcement" data-announcement-id="62408a73ab7bd3faf26c27766302fa10" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Join us at useR on August 8, 2025 for our workshop: Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}. <a href="https://user2025.r-project.org/register">Register here!</a></p>
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01-introduction/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01 - Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02-getting-started/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 - Getting Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03-descriptive-analysis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03 - Descriptive Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04-stattesting/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04 - Statistical Testing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05-design/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05 - Sampling Designs</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set-up</a>
-  <ul class="collapse">
-  <li><a href="#load-necessary-packages" id="toc-load-necessary-packages" class="nav-link" data-scroll-target="#load-necessary-packages">Load necessary packages</a></li>
-  <li><a href="#preview-data" id="toc-preview-data" class="nav-link" data-scroll-target="#preview-data">Preview data</a></li>
-  </ul></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set-up</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/Exercises/getting-started-exercises.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/Exercises/05-design-exercises.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Getting Started Exercises</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="set-up" class="level1">
-<h1>Set-up</h1>
-<section id="load-necessary-packages" class="level2">
-<h2 class="anchored" data-anchor-id="load-necessary-packages">Load necessary packages</h2>
+<section id="set-up" class="level3">
+<h3 class="anchored" data-anchor-id="set-up">Set-up</h3>
+<section id="load-necessary-packages" class="level4">
+<h4 class="anchored" data-anchor-id="load-necessary-packages">Load necessary packages</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.2     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.1.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="preview-data" class="level2">
-<h2 class="anchored" data-anchor-id="preview-data">Preview data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(towny)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 414
-Columns: 25
-$ name                     &lt;chr&gt; "Addington Highlands", "Adelaide Metcalfe", "…
-$ website                  &lt;chr&gt; "https://addingtonhighlands.ca", "https://ade…
-$ status                   &lt;chr&gt; "lower-tier", "lower-tier", "lower-tier", "lo…
-$ csd_type                 &lt;chr&gt; "township", "township", "township", "township…
-$ census_div               &lt;chr&gt; "Lennox and Addington", "Middlesex", "Simcoe"…
-$ latitude                 &lt;dbl&gt; 45.00000, 42.95000, 44.13333, 45.52917, 43.85…
-$ longitude                &lt;dbl&gt; -77.25000, -81.70000, -79.93333, -76.89694, -…
-$ land_area_km2            &lt;dbl&gt; 1293.99, 331.11, 371.53, 519.59, 66.64, 116.6…
-$ population_1996          &lt;int&gt; 2429, 3128, 9359, 2837, 64430, 1027, 8315, 16…
-$ population_2001          &lt;int&gt; 2402, 3149, 10082, 2824, 73753, 956, 8593, 18…
-$ population_2006          &lt;int&gt; 2512, 3135, 10695, 2716, 90167, 958, 8654, 19…
-$ population_2011          &lt;int&gt; 2517, 3028, 10603, 2844, 109600, 864, 9196, 2…
-$ population_2016          &lt;int&gt; 2318, 2990, 10975, 2935, 119677, 969, 9680, 2…
-$ population_2021          &lt;int&gt; 2534, 3011, 10989, 2995, 126666, 954, 9949, 2…
-$ density_1996             &lt;dbl&gt; 1.88, 9.45, 25.19, 5.46, 966.84, 8.81, 21.22,…
-$ density_2001             &lt;dbl&gt; 1.86, 9.51, 27.14, 5.44, 1106.74, 8.20, 21.93…
-$ density_2006             &lt;dbl&gt; 1.94, 9.47, 28.79, 5.23, 1353.05, 8.22, 22.09…
-$ density_2011             &lt;dbl&gt; 1.95, 9.14, 28.54, 5.47, 1644.66, 7.41, 23.47…
-$ density_2016             &lt;dbl&gt; 1.79, 9.03, 29.54, 5.65, 1795.87, 8.31, 24.71…
-$ density_2021             &lt;dbl&gt; 1.96, 9.09, 29.58, 5.76, 1900.75, 8.18, 25.39…
-$ pop_change_1996_2001_pct &lt;dbl&gt; -0.0111, 0.0067, 0.0773, -0.0046, 0.1447, -0.…
-$ pop_change_2001_2006_pct &lt;dbl&gt; 0.0458, -0.0044, 0.0608, -0.0382, 0.2226, 0.0…
-$ pop_change_2006_2011_pct &lt;dbl&gt; 0.0020, -0.0341, -0.0086, 0.0471, 0.2155, -0.…
-$ pop_change_2011_2016_pct &lt;dbl&gt; -0.0791, -0.0125, 0.0351, 0.0320, 0.0919, 0.1…
-$ pop_change_2016_2021_pct &lt;dbl&gt; 0.0932, 0.0070, 0.0013, 0.0204, 0.0584, -0.01…</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="exercises" class="level1">
-<h1>Exercises</h1>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<p>In these exercises, you will be given a study and the data. How would you create the survey object with design variables or replicate weights, as applicable?</p>
 <ol type="1">
-<li>How many different types of CSD (<code>csd_type</code>) are there in the dataset?</li>
+<li><p>California Health Interview Survey (CHIS) - 2023</p>
+<ul>
+<li><a href="https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/chis-design-and-methods/chis-design">CHIS Design</a></li>
+<li><a href="https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/access-chis-data">CHIS Resources</a></li>
+<li>The code below reads in a dataset select set of columns of the 2023 Adult CHIS Public Use File. Create the survey object.</li>
+</ul></li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chis_adult_2023 <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"data"</span>, <span class="st">"chis_adult_2023.rds"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(chis_adult_2023)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 21,671
+Columns: 84
+$ PUF1Y_ID   &lt;chr&gt; "23021436", "23009146", "23005039", "23025815", "23010158",…
+$ ASTCUR     &lt;fct&gt; No current asthma, No current asthma, No current asthma, No…
+$ RACEHP2_P1 &lt;fct&gt; White, White, White, Other single/multiple race, Asian, Asi…
+$ RAKEDW0    &lt;dbl&gt; 377.76342, 5440.82230, 1510.73568, 189.35127, 816.45231, 10…
+$ RAKEDW1    &lt;dbl&gt; 379.67385, 5423.54632, 1524.34483, 189.04169, 823.97981, 10…
+$ RAKEDW2    &lt;dbl&gt; 377.67206, 5501.09481, 1518.55832, 189.20316, 813.52862, 10…
+$ RAKEDW3    &lt;dbl&gt; 391.87241, 5422.38467, 1518.87859, 189.67529, 812.89534, 10…
+$ RAKEDW4    &lt;dbl&gt; 383.52718, 5498.89734, 1501.34474, 187.64245, 811.32652, 10…
+$ RAKEDW5    &lt;dbl&gt; 379.36716, 5426.12142, 1497.12070, 189.18938, 797.03189, 10…
+$ RAKEDW6    &lt;dbl&gt; 372.56373, 5456.04102, 1525.81079, 188.55471, 807.12411, 10…
+$ RAKEDW7    &lt;dbl&gt; 373.88851, 5518.54856, 1507.19963, 191.93340, 814.08142, 10…
+$ RAKEDW8    &lt;dbl&gt; 386.89715, 5481.25082, 1532.46184, 185.18966, 829.15080, 10…
+$ RAKEDW9    &lt;dbl&gt; 380.30036, 5393.13753, 1482.86902, 192.35734, 799.39751, 10…
+$ RAKEDW10   &lt;dbl&gt; 396.80874, 5520.21994, 1512.59631, 188.96238, 823.09128, 10…
+$ RAKEDW11   &lt;dbl&gt; 381.20852, 5560.46991, 1513.11707, 191.01037, 809.26274, 10…
+$ RAKEDW12   &lt;dbl&gt; 370.08881, 5471.17062, 1490.55583, 190.17599, 828.57677, 10…
+$ RAKEDW13   &lt;dbl&gt; 381.63377, 5539.08920, 1503.27857, 190.02121, 825.39467, 10…
+$ RAKEDW14   &lt;dbl&gt; 387.73313, 5531.07340, 1518.70073, 185.98445, 816.56755, 10…
+$ RAKEDW15   &lt;dbl&gt; 373.96319, 5461.81096, 1488.12767, 186.04791, 1643.84520, 1…
+$ RAKEDW16   &lt;dbl&gt; 375.63387, 5425.88871, 1539.72594, 185.85065, 821.55347, 10…
+$ RAKEDW17   &lt;dbl&gt; 375.90868, 5413.12792, 1532.15331, 190.06499, 817.35716, 10…
+$ RAKEDW18   &lt;dbl&gt; 374.06907, 5409.66538, 1533.86418, 188.83553, 812.23683, 10…
+$ RAKEDW19   &lt;dbl&gt; 370.70155, 5335.39076, 3030.67675, 190.35148, 816.76742, 10…
+$ RAKEDW20   &lt;dbl&gt; 376.16361, 5542.36138, 1520.98004, 190.40463, 795.17561, 11…
+$ RAKEDW21   &lt;dbl&gt; 376.66374, 5438.99627, 1529.29484, 188.40847, 836.53256, 10…
+$ RAKEDW22   &lt;dbl&gt; 372.88810, 5407.19403, 1512.71368, 194.52411, 815.79660, 10…
+$ RAKEDW23   &lt;dbl&gt; 377.08123, 5511.05350, 1501.40871, 187.07666, 822.90284, 10…
+$ RAKEDW24   &lt;dbl&gt; 378.14045, 5447.60615, 1532.24763, 191.06993, 819.86697, 10…
+$ RAKEDW25   &lt;dbl&gt; 376.63905, 5469.76063, 1499.22198, 190.37025, 826.91579, 10…
+$ RAKEDW26   &lt;dbl&gt; 381.21627, 5424.59692, 1503.23199, 184.82446, 821.61634, 10…
+$ RAKEDW27   &lt;dbl&gt; 736.12313, 5392.15220, 1508.96013, 189.40821, 812.01521, 10…
+$ RAKEDW28   &lt;dbl&gt; 374.87207, 5399.98490, 1502.29676, 189.41890, 825.64499, 10…
+$ RAKEDW29   &lt;dbl&gt; 370.48273, 5609.82334, 1504.46387, 193.33981, 822.45949, 10…
+$ RAKEDW30   &lt;dbl&gt; 374.08421, 5478.56452, 1529.79756, 190.29283, 823.20287, 10…
+$ RAKEDW31   &lt;dbl&gt; 375.93944, 5531.46321, 1517.66913, 187.70034, 831.32689, 10…
+$ RAKEDW32   &lt;dbl&gt; 376.77720, 5454.02908, 1523.81288, 190.89860, 818.75318, 10…
+$ RAKEDW33   &lt;dbl&gt; 373.90451, 5359.04687, 1496.22835, 187.71859, 808.17450, 10…
+$ RAKEDW34   &lt;dbl&gt; 384.70325, 5372.82318, 1513.76344, 0.00000, 804.31669, 1087…
+$ RAKEDW35   &lt;dbl&gt; 385.93101, 5540.75364, 1515.22343, 189.41755, 841.06640, 10…
+$ RAKEDW36   &lt;dbl&gt; 380.05346, 5367.44428, 1540.28237, 189.23365, 807.56729, 10…
+$ RAKEDW37   &lt;dbl&gt; 383.44112, 5499.94872, 1514.47617, 185.00184, 816.35734, 10…
+$ RAKEDW38   &lt;dbl&gt; 380.96955, 5365.76141, 1533.75380, 190.40014, 803.55967, 10…
+$ RAKEDW39   &lt;dbl&gt; 378.53806, 5408.72203, 1509.70452, 190.37006, 820.94697, 10…
+$ RAKEDW40   &lt;dbl&gt; 373.32674, 5618.84749, 1512.48396, 185.96514, 835.63063, 10…
+$ RAKEDW41   &lt;dbl&gt; 375.60203, 5442.86619, 1507.47738, 188.91416, 797.63435, 10…
+$ RAKEDW42   &lt;dbl&gt; 388.49579, 5468.25392, 1514.51889, 192.55026, 831.84420, 10…
+$ RAKEDW43   &lt;dbl&gt; 379.04804, 5657.00804, 1504.12435, 187.34036, 821.21227, 10…
+$ RAKEDW44   &lt;dbl&gt; 372.79291, 5412.42624, 1510.57340, 189.99224, 811.94509, 10…
+$ RAKEDW45   &lt;dbl&gt; 387.31702, 5380.19192, 1524.80976, 189.34965, 796.24619, 10…
+$ RAKEDW46   &lt;dbl&gt; 378.68040, 5455.72685, 1499.24639, 190.23263, 804.89197, 0.…
+$ RAKEDW47   &lt;dbl&gt; 379.80074, 5479.65824, 1491.39890, 189.03908, 816.88308, 10…
+$ RAKEDW48   &lt;dbl&gt; 377.62516, 5370.25650, 1513.32532, 190.51240, 817.18117, 10…
+$ RAKEDW49   &lt;dbl&gt; 370.27108, 5374.99529, 1534.30372, 195.08625, 819.42334, 10…
+$ RAKEDW50   &lt;dbl&gt; 381.09146, 5623.57965, 1529.57536, 191.14493, 799.42589, 10…
+$ RAKEDW51   &lt;dbl&gt; 372.93695, 5609.68675, 1518.73015, 185.10356, 810.56250, 10…
+$ RAKEDW52   &lt;dbl&gt; 376.83386, 5416.01179, 1502.63013, 190.52319, 825.65017, 10…
+$ RAKEDW53   &lt;dbl&gt; 389.22721, 5464.54688, 1510.69820, 191.24272, 856.36362, 10…
+$ RAKEDW54   &lt;dbl&gt; 375.42718, 5516.58306, 1487.37912, 190.05101, 801.45826, 10…
+$ RAKEDW55   &lt;dbl&gt; 384.84576, 5492.52884, 1505.72717, 187.44860, 811.25627, 10…
+$ RAKEDW56   &lt;dbl&gt; 383.56347, 5647.00544, 1511.08240, 191.69014, 831.28855, 10…
+$ RAKEDW57   &lt;dbl&gt; 380.48633, 5606.80831, 1511.94020, 192.65707, 794.17496, 10…
+$ RAKEDW58   &lt;dbl&gt; 373.62795, 5757.47977, 1512.46551, 187.94741, 815.14317, 10…
+$ RAKEDW59   &lt;dbl&gt; 378.91924, 5477.69162, 1507.52377, 197.38367, 817.99470, 10…
+$ RAKEDW60   &lt;dbl&gt; 379.50452, 5477.71051, 1544.63224, 183.65976, 816.89856, 10…
+$ RAKEDW61   &lt;dbl&gt; 376.64977, 5452.65149, 1514.34498, 188.45472, 814.88040, 10…
+$ RAKEDW62   &lt;dbl&gt; 383.56295, 5491.55744, 1501.05195, 190.40998, 800.40138, 10…
+$ RAKEDW63   &lt;dbl&gt; 373.75339, 5419.57694, 1516.86197, 190.99482, 781.46844, 10…
+$ RAKEDW64   &lt;dbl&gt; 377.09404, 5438.36416, 1476.57247, 190.49051, 821.19084, 10…
+$ RAKEDW65   &lt;dbl&gt; 382.93142, 5410.64353, 1528.48797, 187.00515, 825.62659, 10…
+$ RAKEDW66   &lt;dbl&gt; 371.80213, 5483.77954, 1508.08229, 194.32258, 824.90959, 10…
+$ RAKEDW67   &lt;dbl&gt; 376.80663, 5494.01669, 1506.71439, 192.39086, 814.74078, 10…
+$ RAKEDW68   &lt;dbl&gt; 376.07679, 5382.78726, 1502.21384, 186.68741, 802.94914, 10…
+$ RAKEDW69   &lt;dbl&gt; 378.27932, 5393.35827, 1514.61013, 190.74435, 810.13806, 10…
+$ RAKEDW70   &lt;dbl&gt; 369.99802, 5501.78894, 1521.28708, 186.60201, 830.13613, 10…
+$ RAKEDW71   &lt;dbl&gt; 374.53516, 5499.46675, 1512.58341, 191.23757, 805.99356, 10…
+$ RAKEDW72   &lt;dbl&gt; 387.86304, 5404.68519, 1492.87434, 190.87869, 815.55435, 10…
+$ RAKEDW73   &lt;dbl&gt; 374.74585, 5491.12022, 1498.81821, 187.83433, 819.17877, 10…
+$ RAKEDW74   &lt;dbl&gt; 379.83108, 5413.06749, 1508.31555, 189.78261, 815.79475, 10…
+$ RAKEDW75   &lt;dbl&gt; 382.49719, 5487.47759, 1551.93120, 186.79749, 823.61018, 10…
+$ RAKEDW76   &lt;dbl&gt; 380.05337, 5418.50610, 1520.87989, 184.52873, 814.85938, 10…
+$ RAKEDW77   &lt;dbl&gt; 379.98450, 5434.79433, 1480.95731, 190.16368, 812.64372, 10…
+$ RAKEDW78   &lt;dbl&gt; 382.62349, 5523.48197, 1491.87493, 186.64661, 814.11781, 10…
+$ RAKEDW79   &lt;dbl&gt; 372.87396, 5462.95628, 1516.71710, 189.64531, 813.59217, 10…
+$ RAKEDW80   &lt;dbl&gt; 382.94937, 5420.72648, 1523.64843, 185.78273, 811.93065, 10…</code></pre>
+</div>
+</div>
 <ol start="2" type="1">
-<li>How many different types of CSD and status (<code>status</code>) are there in the dataset?</li>
+<li><p>National Survey on Drug Use and Health (NSDUH) - 2023</p>
+<ul>
+<li><a href="https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/methodology">NSDUH Methodology</a></li>
+<li><a href="https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/datafiles">NSDUH Download Data Files</a></li>
+<li>The code below reads in a dataset select set of columns of the 2023 NSDUH Public Use File. Create the survey object.</li>
+</ul></li>
 </ol>
-<ol start="3" type="1">
-<li>What is the proportion of each type of CSD?</li>
-</ol>
-<ol start="4" type="1">
-<li>What is the proportion of each status within type of CSD?</li>
-</ol>
-<ol start="5" type="1">
-<li>What is the mean population of all of the municipalities in 2021?</li>
-</ol>
-<ol start="6" type="1">
-<li>What is the mean population by CSD Type in 2021?</li>
-</ol>
-<ol start="7" type="1">
-<li>What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.</li>
-</ol>
-<ol start="8" type="1">
-<li>Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.</li>
-</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nsduh_2023 <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Exercises"</span>, <span class="st">"data"</span>, <span class="st">"nsduh_2023.rds"</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(nsduh_2023)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 56,705
+Columns: 9
+$ QUESTID2  &lt;dbl&gt; 10000053, 10000679, 10001208, 10001260, 10001588, 10004996, …
+$ ANALWT2_C &lt;dbl&gt; 3276.46987, 15630.08295, 4018.17239, 10711.70954, 8195.10478…
+$ VESTR_C   &lt;dbl&gt; 40031, 40021, 40043, 40030, 40023, 40048, 40003, 40038, 4004…
+$ VEREP     &lt;dbl&gt; 2, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 2, 2, 1, 1, 1, 1, …
+$ AGE3      &lt;fct&gt; 50-64, 35-49, 35-49, 12-13, 50-64, 18-20, 30-34, 65+, 30-34,…
+$ ALCMON    &lt;fct&gt; Used in the past month, Used in the past month, Did not use …
+$ ALCMDAYS  &lt;fct&gt; 6-19 days, 3-5 days, Non user or no past month use, Non user…
+$ MRJMON    &lt;fct&gt; Did not use in past month, Did not use in past month, Did no…
+$ MRJMDAYS  &lt;fct&gt; Non user or no past month use, Non user or no past month use…</code></pre>
+</div>
+</div>
+<section id="bonus-exercise" class="level4">
+<h4 class="anchored" data-anchor-id="bonus-exercise">Bonus Exercise</h4>
+<ul>
+<li>Find a public use file of your own</li>
+<li>Download the data</li>
+<li>Read in the data</li>
+<li>Create the survey object</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -690,8 +746,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/Exercises/05-design-exercises.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with 💜 and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/Exercises/getting-started-exercises.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer></body></html>
+</body></html>
