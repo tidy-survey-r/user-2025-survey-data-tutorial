@@ -18,7 +18,7 @@ Dr. Stephanie Zimmer is a senior survey statistician with 10 years experience in
 
 [{{< fa brands linkedin >}}](https://www.linkedin.com/in/stephanie-zimmer/) [{{< fa brands github >}}](https://github.com/szimmer) [{{< fa brands bluesky >}}](https://bsky.app/profile/statsteph.bsky.social)
 
-Dr. Rebecca Powell is the director of data management and survey programming at Fors Marsh. Under her leadership, data management and survey programming team members create web surveys, data sets, and reports for a variety of projects, including those with the Internal Revenue Service (IRS), the U.S. Department of Defense (DoD), and the U.S. Department of Health and Human Services (HHS). Throughout her career, Dr. Powell’s research has focused on ensuring quality data through survey research methods.
+Dr. Rebecca Powell is the director of Data & Research Operations at Fors Marsh. Her research interests focus on visual design of questionnaires and contact materials. Dr. Powell is a Certified RStudio Tidyverse Trainer and has taught courses and webinars on data management in R and tidy survey analysis in R at both AAPOR and MAPOR. She has a PhD in Survey Research and Methodology from the University of Nebraska-Lincoln and a BS and MS in Applied Statistics from Rochester Institute of Technology. 
 
 [{{< fa brands linkedin >}}](https://www.linkedin.com/in/rebecca-powell-1416226b/) [{{< fa brands github >}}](https://github.com/rpowell22)
 
