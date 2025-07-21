@@ -2,27 +2,45 @@ project:
   type: website
 
 website:
-  favicon: images/favicon.png
-  title: "useR 2025"
-  description: "Homepage for useR Complex Survey Data Analysis Tutorial."
+  title: "Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}"
+  description: "Homepage for useR Complex Survey Data Analysis Tutorial at useR! 2025."
   site-url: https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/
   repo-url: https://github.com/tidy-survey-r/user-2025-survey-data-tutorial
-  repo-actions: [source]
+  repo-actions: [source, issue]
+  page-navigation: true
+  favicon: images/favicon.png
+  search: false
   announcement:
     icon: info-circle
     dismissable: true
     content: "Join us at useR on August 8, 2025 for our workshop: Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}. [Register here!](https://user2025.r-project.org/register)"
     type: primary
     position: below-navbar
-  navbar:
-    background: primary
-    search: true
-    left:
+  sidebar:
+    background: "#ecf3f9"
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+    style: docked
+    collapse-level: 2
+    contents:
       - href: index.qmd
         text: Home
-      - href: slides.qmd
-        text: Slides
+      - href: 01-introduction/index.qmd
+        text: 01 - Introduction
+      - href: 02-getting-started/index.qmd
+        text: 02 - Getting Started
+      - href: 03-descriptive-analysis/index.qmd
+        text: 03 - Descriptive Analysis
+      - href: 04-stattesting/index.qmd
+        text: 04 - Statistical Testing
+      - href: 05-design/index.qmd
+        text: 05 - Sampling Designs
 
+  page-footer:
+    right: "This page is built with 💜 and [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2025"
+    background: "#087e8b"
 
 format:
   html:
@@ -35,6 +53,7 @@ format:
 editor: source
 
 execute:
+  freeze: auto
   echo: true
   
 highlight-style: atom-one

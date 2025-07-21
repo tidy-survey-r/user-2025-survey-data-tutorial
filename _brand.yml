@@ -9,9 +9,9 @@ meta:
 logo:
   images:
     favicon:
-      path: images/favicon.png
+      path: ../images/favicon.png
     full:
-      path: images/logo.png
+      path: ../images/logo.png
     header:
       path: images/header.png
   small: favicon
