@@ -1,0 +1,115 @@
+```{r}
+#| label: sol-load-package
+#| include: false
+
+library(tidyverse)
+library(gt)
+```
+
+
+
+1. How many different types of CSD (`csd_type`) are there in the dataset?
+
+```{r}
+#| label: sol-00-01
+#| code-fold: true
+#| code-summary: "Show the solution"
+
+towny %>%
+  count(csd_type)
+
+```
+
+2. How many different types of CSD and status (`status`) are there in the dataset?
+
+```{r}
+#| label: sol-00-02
+#| code-fold: true
+#| code-summary: "Show the solution"
+
+towny %>%
+  count(csd_type, status)
+```
+
+3. What is the proportion of each type of CSD?
+
+```{r}
+#| label: sol-00-03
+#| code-fold: true
+#| code-summary: "Show the solution"
+
+towny %>%
+  count(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+4. What is the proportion of each status within type of CSD?
+
+```{r}
+#| label: sol-00-04
+#| code-fold: true
+#| code-summary: "Show the solution"
+ 
+towny %>%
+  count(csd_type, status) %>%
+  group_by(csd_type) %>%
+  mutate(p = n / sum(n))
+```
+
+5. What is the mean population of all of the municipalities in 2021?
+
+```{r}
+#| label: sol-00-05
+#| code-fold: true
+#| code-summary: "Show the solution"
+ 
+towny %>%
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
+
+```
+
+6. What is the mean population by CSD Type in 2021?
+
+```{r}
+#| label: sol-00-06
+#| code-fold: true
+#| code-summary: "Show the solution"
+ 
+towny %>%
+  group_by(csd_type) %>%
+  summarize(mean_pop = mean(population_2021, na.rm = TRUE))
+```
+
+7. What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.
+
+```{r}
+#| label: sol-00-07
+#| code-fold: true
+#| code-summary: "Show the solution"
+ 
+towny %>%
+  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
+
+```
+
+8. Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.
+
+```{r}
+#| label: sol-00-08
+#| code-fold: true
+#| code-summary: "Show the solution"
+
+t.test(towny$population_1996, towny$population_2016, paired = TRUE)
+
+```
+
+or
+
+```{r}
+#| label: sol-00-08-alt
+#| code-fold: true
+#| code-summary: "Show another solution"
+
+t.test(population_1996-population_2016~1, data=towny)
+
+```
