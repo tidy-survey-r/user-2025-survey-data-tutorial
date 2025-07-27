@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}</title>
+<title>02 - Getting Started – Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,24 +20,57 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<link href="./01-introduction/index.html" rel="next">
-<link href="./images/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-8c7f78a393ad4a7b26f55cfb8ad6546c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f4df6946479901d00992b0b27d4ac640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<link href="../03-descriptive-analysis/index.html" rel="next">
+<link href="../01-introduction/index.html" rel="prev">
+<link href="../images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8c7f78a393ad4a7b26f55cfb8ad6546c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f4df6946479901d00992b0b27d4ac640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -55,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -67,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02-getting-started/index.html">02 - Getting Started</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -81,45 +114,45 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-introduction/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../01-introduction/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01 - Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-getting-started/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../02-getting-started/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">02 - Getting Started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-descriptive-analysis/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../03-descriptive-analysis/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03 - Descriptive Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-stattesting/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../04-stattesting/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">04 - Statistical Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-design/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../05-design/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">05 - Sampling Designs</span></a>
   </div>
 </li>
@@ -133,18 +166,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#instructors" id="toc-instructors" class="nav-link" data-scroll-target="#instructors">Instructors</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a>
+  <ul class="collapse">
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set-up</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/02-getting-started/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}</h1>
-<p class="subtitle lead">useR! 2025 tutorial held at Duke University</p>
+<h1 class="title">02 - Getting Started</h1>
 </div>
 
 
@@ -161,25 +196,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>🗓️ Date: 8 August 2025</p>
-<p>🕗 Time: 13:00 - 16:30 ET</p>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>This interactive tutorial will introduce how to conduct analysis of survey data in R. We will first introduce a unifying workflow of tidy survey analysis in R for analysis of survey microdata with weights. We will cover topics of descriptive analysis, including functions to obtain weighted proportions, means, quantiles, and correlations from survey data. Then, we will discuss some statistical testing, including t-tests for comparing means and χ-squared tests for comparing proportions. Finally, we will discuss common probability sampling designs and how to create the survey design objects in R to account for the sampling design. The tutorial will include time for exercises using data from the 2020 American National Election Study and the 2020 Residential Energy Consumption Survey, so you can get hands-on experience with the functions. We will be using Posit Cloud, so you do not need to have R or RStudio preinstalled on your computer. For the best learning experience, we recommend you have some prior experience with R and the tidyverse, including familiarity with <code>mutate()</code>, <code>summarize()</code>, <code>count()</code>, and <code>group_by()</code>.</p>
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
+<p><a href="slides-02-getting-started.html" target="_blank">View slides in full screen</a></p>
+<iframe class="slide-deck" src="slides-02-getting-started.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 </section>
-<section id="instructors" class="level2">
-<h2 class="anchored" data-anchor-id="instructors">Instructors</h2>
-<p>Dr.&nbsp;Stephanie Zimmer is a senior survey statistician with 10 years experience in survey sampling and design, survey weighting and analysis, and data management. She is an expert statistical programmer in R, SAS, and SUDAAN. She earned her PhD in Statistics from Iowa State University and her BS in Statistics from NC State. After earning the RStudio Tidyverse Trainer certification, she co-taught two courses on tidy survey analysis in R. She is currently a Senior Research Statistician at RTI International.</p>
-<p><a href="https://www.linkedin.com/in/stephanie-zimmer/"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a href="https://github.com/szimmer"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://bsky.app/profile/statsteph.bsky.social"><i class="fa-brands fa-bluesky" aria-label="bluesky"></i></a></p>
-<p>Dr.&nbsp;Rebecca Powell is the director of Data &amp; Research Operations at Fors Marsh. Her research interests focus on visual design of questionnaires and contact materials. Dr.&nbsp;Powell is a Certified RStudio Tidyverse Trainer and has taught courses and webinars on data management in R and tidy survey analysis in R at both AAPOR and MAPOR. She has a PhD in Survey Research and Methodology from the University of Nebraska-Lincoln and a BS and MS in Applied Statistics from Rochester Institute of Technology.</p>
-<p><a href="https://www.linkedin.com/in/rebecca-powell-1416226b/"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a href="https://github.com/rpowell22"><i class="fa-brands fa-github" aria-label="github"></i></a></p>
-<p>Isabella Velásquez is a Senior Product Marketing Manager at Posit, PBC. She is also a content strategist, data enthusiast, and author. Her goal is to drive engagement around all the awesome things happening at Posit.</p>
-<p><a href="https://www.linkedin.com/in/ivelasq/"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a href="https://github.com/ivelasq"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://bsky.app/profile/ivelasq3.bsky.social"><i class="fa-brands fa-bluesky" aria-label="bluesky"></i></a></p>
-<hr>
-<p><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" class="img-fluid"> This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
-<p>The website is based on a template by <a href="https://mine-cr.com/">Mine Çetinkaya-Rundel</a>, used with appreciation and adapted for this workshop.</p>
+<section id="your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn">Your Turn</h2>
+<section id="set-up" class="level3">
+<h3 class="anchored" data-anchor-id="set-up">Set-up</h3>
+<section id="load-necessary-packages" class="level4">
+<h4 class="anchored" data-anchor-id="load-necessary-packages">Load necessary packages</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preview-data" class="level4">
+<h4 class="anchored" data-anchor-id="preview-data">Preview data</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(towny)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 414
+Columns: 25
+$ name                     &lt;chr&gt; "Addington Highlands", "Adelaide Metcalfe", "…
+$ website                  &lt;chr&gt; "https://addingtonhighlands.ca", "https://ade…
+$ status                   &lt;chr&gt; "lower-tier", "lower-tier", "lower-tier", "lo…
+$ csd_type                 &lt;chr&gt; "township", "township", "township", "township…
+$ census_div               &lt;chr&gt; "Lennox and Addington", "Middlesex", "Simcoe"…
+$ latitude                 &lt;dbl&gt; 45.00000, 42.95000, 44.13333, 45.52917, 43.85…
+$ longitude                &lt;dbl&gt; -77.25000, -81.70000, -79.93333, -76.89694, -…
+$ land_area_km2            &lt;dbl&gt; 1293.99, 331.11, 371.53, 519.59, 66.64, 116.6…
+$ population_1996          &lt;int&gt; 2429, 3128, 9359, 2837, 64430, 1027, 8315, 16…
+$ population_2001          &lt;int&gt; 2402, 3149, 10082, 2824, 73753, 956, 8593, 18…
+$ population_2006          &lt;int&gt; 2512, 3135, 10695, 2716, 90167, 958, 8654, 19…
+$ population_2011          &lt;int&gt; 2517, 3028, 10603, 2844, 109600, 864, 9196, 2…
+$ population_2016          &lt;int&gt; 2318, 2990, 10975, 2935, 119677, 969, 9680, 2…
+$ population_2021          &lt;int&gt; 2534, 3011, 10989, 2995, 126666, 954, 9949, 2…
+$ density_1996             &lt;dbl&gt; 1.88, 9.45, 25.19, 5.46, 966.84, 8.81, 21.22,…
+$ density_2001             &lt;dbl&gt; 1.86, 9.51, 27.14, 5.44, 1106.74, 8.20, 21.93…
+$ density_2006             &lt;dbl&gt; 1.94, 9.47, 28.79, 5.23, 1353.05, 8.22, 22.09…
+$ density_2011             &lt;dbl&gt; 1.95, 9.14, 28.54, 5.47, 1644.66, 7.41, 23.47…
+$ density_2016             &lt;dbl&gt; 1.79, 9.03, 29.54, 5.65, 1795.87, 8.31, 24.71…
+$ density_2021             &lt;dbl&gt; 1.96, 9.09, 29.58, 5.76, 1900.75, 8.18, 25.39…
+$ pop_change_1996_2001_pct &lt;dbl&gt; -0.0111, 0.0067, 0.0773, -0.0046, 0.1447, -0.…
+$ pop_change_2001_2006_pct &lt;dbl&gt; 0.0458, -0.0044, 0.0608, -0.0382, 0.2226, 0.0…
+$ pop_change_2006_2011_pct &lt;dbl&gt; 0.0020, -0.0341, -0.0086, 0.0471, 0.2155, -0.…
+$ pop_change_2011_2016_pct &lt;dbl&gt; -0.0791, -0.0125, 0.0351, 0.0320, 0.0919, 0.1…
+$ pop_change_2016_2021_pct &lt;dbl&gt; 0.0932, 0.0070, 0.0013, 0.0204, 0.0584, -0.01…</code></pre>
+</div>
+</div>
+</section>
+<section id="exercises" class="level4">
+<h4 class="anchored" data-anchor-id="exercises">Exercises</h4>
+<ol type="1">
+<li>How many different types of CSD (<code>csd_type</code>) are there in the dataset?</li>
+</ol>
+<ol start="2" type="1">
+<li>How many different types of CSD and status (<code>status</code>) are there in the dataset?</li>
+</ol>
+<ol start="3" type="1">
+<li>What is the proportion of each type of CSD?</li>
+</ol>
+<ol start="4" type="1">
+<li>What is the proportion of each status within type of CSD?</li>
+</ol>
+<ol start="5" type="1">
+<li>What is the mean population of all of the municipalities in 2021?</li>
+</ol>
+<ol start="6" type="1">
+<li>What is the mean population by CSD Type in 2021?</li>
+</ol>
+<ol start="7" type="1">
+<li>What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.</li>
+</ol>
+<ol start="8" type="1">
+<li>Run a simple t-test to see if the average population in 1996 is different from the average population in 2016.</li>
+</ol>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -602,10 +699,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../01-introduction/index.html" class="pagination-link" aria-label="01 - Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">01 - Introduction</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-introduction/index.html" class="pagination-link" aria-label="01 - Introduction">
-        <span class="nav-page-text">01 - Introduction</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../03-descriptive-analysis/index.html" class="pagination-link" aria-label="03 - Descriptive Analysis">
+        <span class="nav-page-text">03 - Descriptive Analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -617,7 +717,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/02-getting-started/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with 💜 and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
