@@ -31,28 +31,28 @@ Calculate point estimates of...
 
 - *Uncertainty estimates*, such as confidence intervals.
 
-# Types of data {background-color='{{< brand color secondary >}}'}
+# Types of Data {background-color='{{< brand color secondary >}}' .smaller}
 
-## Types of data
+## Types of Data
 
 ::: incremental
 
-* **Categorical/nominal data**: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)
-* **Ordinal data**: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)
-* **Discrete data**: variables that are counted or measured, such as number of children
-* **Continuous data**: variables that are measured and whose values can lie anywhere on an interval, such as income
+* Categorical/nominal data: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)
+* Ordinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)
+* Discrete data: variables that are counted or measured, such as number of children
+* Continuous data: variables that are measured and whose values can lie anywhere on an interval, such as income
 
 :::
 
-## Types of data
+## Types of Data
 
 We can determine which statistics to use depending on the type of data.
 
 <!--TODO: Make a chart-->
 
-# Types of measures {background-color='{{< brand color secondary >}}'}
+# Types of Measures {background-color='{{< brand color secondary >}}'}
 
-## Measures of distribution
+## Measures of Distribution
 
 Measures of distribution describe how often an event or response occurs. 
 
@@ -61,29 +61,29 @@ We cover the following functions:
 * Count of observations (`survey_count()` and `survey_tally()`)
 * Summation of variables (`survey_total()`)
 
-## Measures of central tendency
+## Measures of Central Tendency
 
 Measures of central tendency find the central (or average) responses. These measures include means and medians. 
 
 * Means and proportions (`survey_mean()` and `survey_prop()`)
 * Quantiles and medians (`survey_quantile()` and `survey_median()`)
 
-## Measure of relationships
+## Measure of Relationships
 
 Measures of relationship describe how variables relate to each other. These measures include correlations and ratios. 
 
 - Correlations (`survey_corr()`)
 - Ratios (`survey_ratio()`)
 
-## Measures of dispersion
+## Measures of Dispersion
 
 Measures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances. We cover the following functions:
 
 - Variances and standard deviations (`survey_var()` and `survey_sd()`)
 
-# Survey analysis process {background-color='{{< brand color secondary >}}'}
+# Survey Analysis Process {background-color='{{< brand color secondary >}}'}
 
-## Overview of survey analysis using the {srvyr} package
+## Overview of Survey Analysis using the {srvyr} Package
 
 1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
 
@@ -95,7 +95,7 @@ anes_adjwgt <- anes_2020 %>%
   mutate(Weight = Weight / sum(Weight) * targetpop)
 ```
 
-## Overview of survey analysis using the {srvyr} package
+## Overview of Survey Analysis using the {srvyr} Package
 
 :::: {.columns}
 
@@ -138,9 +138,7 @@ recs_des <- recs_2020 %>%
 
 ::::
 
-## Overview of survey analysis using the {srvyr} package
-
-1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
+## Overview of Survey Analysis using the {srvyr}` Package
 
 2. Subset data (if needed) using `filter()` (to create subpopulations)
 
@@ -148,9 +146,9 @@ recs_des <- recs_2020 %>%
 
 4. Specify variables to calculate, including means, totals, proportions, quantiles, and more
 
-# Counts and totals {background-color='{{< brand color secondary >}}'}
+# Count of Observations {background-color='{{< brand color secondary >}}'}
 
-## `survey_count()`
+## `survey_count()`: Count of Observations
 
 ::: incremental
 - Calculate the estimated observation counts for a given variable or combination of variables
@@ -159,7 +157,7 @@ recs_des <- recs_2020 %>%
 - `survey_count()` functions similarly to `dplyr::count()` in that it is <b>NOT</b> called within `summarize()`
 :::
 
-## `survey_count()`: syntax
+## `survey_count()` Syntax
 
 ```{r}
 #| eval: false
@@ -175,9 +173,9 @@ survey_count(
 )
 ```
 
-# `survey_count`: examples {background-color='{{< brand color blue >}}'}
+# Example <br>count of observations {background-color='{{< brand color blue >}}'}
 
-## `survey_count`: example
+## Example: count of observations
 
 Calculate the estimated number of households in the U.S. using (RECS) data:
 
@@ -194,7 +192,7 @@ recs_des %>%
   survey_count()
 ```
 
-## `survey_count`: subgroup example
+## Example: count of subgroups
 
 Calculate the estimated number of observations for Region and Division:
 
@@ -213,7 +211,9 @@ recs_des %>%
   survey_count(Region, Division, name = "N")
 ```
 
-## `survey_total()`
+# Summation of Variables {background-color='{{< brand color secondary >}}'}
+
+## `survey_total()`: Summation of Variables
 
 ::: incremental
 - Calculate the estimated total quantity in a population
@@ -222,7 +222,7 @@ recs_des %>%
 - If used with no x-variable, `survey_total()` calculates a population count estimate within `summarize()`
 :::
 
-## `survey_total()`: syntax
+## `survey_total()` syntax
 
 ```{r}
 #| eval: false
@@ -236,9 +236,9 @@ survey_total(
 )
 ```
 
-# `survey_total()`: examples {background-color='{{< brand color blue >}}'}
+# Example <br>summation of variables {background-color='{{< brand color blue >}}'}
 
-## `survey_total()`: example
+## Example: Calculating total estimate (discrete)
 
 Calculate the U.S. population count estimate:
 
@@ -260,7 +260,7 @@ recs_des %>%
 Note that this result obtained from `survey_total()` is equivalent to the ones from the `survey_count()`, but `survey_total()` is called within `summarize()`.
 :::
 
-## `survey_total()`: continuous data example
+## Example: Calculating total estimate (continuous)
 
 Calculate the total cost of electricity in whole dollars:
 
@@ -278,7 +278,7 @@ recs_des %>%
   summarize(elec_bill = survey_total(DOLLAREL))
 ```
 
-## `survey_total()`: `group_by()` example
+## Example: Calculating total estimate with groups
 
 Calculate the variation in the cost of electricity in whole dollars across regions:
 
@@ -295,7 +295,325 @@ recs_des %>%
 Recall that `group_by()` precedes the creation of variables.
 :::
 
-## `unweighted()`
+# Means and proportions {background-color='{{< brand color secondary >}}'}
+
+## `survey_mean()` and `survey_prop()`: Means and Proportions
+
+::: incremental
+- Calculate the estimated observation counts for a given variable or combination of variables
+- `survey_mean()` applied to continuous data, `survey_prop()` to catagorical data
+- Must be called within `summarize()`
+:::
+
+## `survey_mean()` Syntax
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|2|6"
+survey_mean(
+  x,
+  na.rm = FALSE,
+  vartype = c("se", "ci", "var", "cv"),
+  level = 0.95,
+  proportion = FALSE,
+  prop_method = c("logit", "likelihood", "asin", "beta", "mean"),
+  deff = FALSE,
+  df = NULL
+)
+```
+
+::: notes
+The survey_mean() function includes the first argument x, representing the variable or expression on which the mean should be calculated. The survey_mean() function can be used to calculate both means and proportions. Its proportion argument defaults to FALSE, indicating it is used for calculating means. If we wish to calculate a proportion using survey_mean(), we need to set the proportion argument to TRUE.
+:::
+
+## `survey_prop()` Syntax
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|1,2|5"
+survey_prop(
+  na.rm = FALSE,
+  vartype = c("se", "ci", "var", "cv"),
+  level = 0.95,
+  proportion = TRUE,
+  prop_method = 
+    c("logit", "likelihood", "asin", "beta", "mean", "xlogit"),
+  deff = FALSE,
+  df = NULL
+)
+```
+
+::: notes
+The survey_prop() does not have an argument to include the variables directly. Instead, prior to summarize(), we must use the group_by() function to specify the variables of interest for survey_prop(). For survey_mean(), including a group_by() function allows us to obtain the means by different groups.
+
+In the survey_prop() function, the proportion argument defaults to TRUE because the function is specifically designed for calculating proportions.
+:::
+
+# Example <br>means and proportions {background-color='{{< brand color blue >}}'}
+
+## Example: One Variable Proportion
+
+Calculate the proportion of people in each region in the RECS data:
+
+```{r}
+#| eval: false
+recs_des %>%
+  group_by(Region) %>%
+  summarize(p = survey_prop())
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  group_by(Region) %>%
+  summarize(p = survey_prop())
+```
+
+## Example: One Variable Proportion
+
+Calculate the proportion of people in each region in the RECS data:
+
+```{r}
+#| eval: false
+recs_des %>%
+  group_by(Region) %>%
+  summarize(p = survey_mean())
+```
+
+```{r}
+#| echo: false
+recs_des %>%
+  group_by(Region) %>%
+  summarize(p = survey_mean())
+```
+
+::: notes
+Note that the proportions in column p add up to one. The survey_prop() function is essentially the same as using survey_mean() with a categorical variable and without specifying a numeric variable in the x argument.
+:::
+
+## Example: Conditional Proportions
+
+Calculate the proportion of housing units by Region and whether air conditioning (A/C) is used:
+
+```{r}
+#| eval: false
+recs_des %>%
+  group_by(Region, ACUsed) %>%
+  summarize(p = survey_prop())
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  group_by(Region, ACUsed) %>%
+  summarize(p = survey_prop())
+```
+
+::: notes
+When specifying multiple variables, the proportions are conditional. In the results above, notice that the proportions sum to 1 within each region. This can be interpreted as the proportion of housing units with A/C within each region. For example, in the Northeast region, approximately 11.0% of housing units don’t have A/C, while around 89.0% have A/C.
+:::
+
+## Example: Joint Proportions
+
+Calculate the joint proportion for each combination using `interact()`:
+
+```{r}
+#| eval: false
+recs_des %>%
+  group_by(interact(Region, ACUsed)) %>%
+  summarize(p = survey_prop())
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  group_by(interact(Region, ACUsed)) %>%
+  summarize(p = survey_prop())
+```
+
+::: notes
+In this case, all proportions sum to 1, not just within regions. This means that 15.8% of the population lives in the Northeast and has A/C. As noted earlier, we can use both the survey_prop() and survey_mean() functions, and they produce the same results. 
+:::
+
+## Example: Overall Mean
+
+Calculate the estimated average cost of electricity in the U.S.:
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|3"
+recs_des %>%
+  summarize(elec_bill = survey_mean(DOLLAREL,
+    vartype = c("se", "ci")
+  ))
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  summarize(elec_bill = survey_mean(DOLLAREL,
+    vartype = c("se", "ci")
+  ))
+```
+
+## Example: Mean by Subgroup
+
+Calculate the estimated average cost of electricity in the U.S. by each region:
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|2"
+recs_des %>%
+  group_by(Region) %>%
+  summarize(elec_bill = survey_mean(DOLLAREL))
+```
+
+. . .
+
+```{r}
+#| echo: false
+#| code-line-numbers: "|2"
+recs_des %>%
+  group_by(Region) %>%
+  summarize(elec_bill = survey_mean(DOLLAREL))
+```
+
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+* Open `03-descriptive-exercises.qmd`
+* Work through **Exercises - Part 1**
+
+```{r}
+#| label: descriptive-ex-clock-1
+#| echo: false
+# 10 minutes, warning at 5 minutes
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when=5*60)
+```
+
+# Quantiles and Medians {background-color='{{< brand color secondary >}}'}
+
+## `survey_quantile()` and `survey_median()`: Quantiles and Medians
+
+::: incremental
+- Calculate quantiles at specific points
+- Because median is a special, common case of quantiles, there is the `survey_median()` function
+- Must be called within `summarize()`
+:::
+
+## `survey_quantile()` Syntax
+
+```r
+survey_quantile(
+  x,
+  quantiles,
+  na.rm = FALSE,
+  vartype = c("se", "ci", "var", "cv"),
+  level = 0.95,
+  interval_type = 
+    c("mean", "beta", "xlogit", "asin", "score", "quantile"),
+  qrule = c("math", "school", "shahvaish", "hf1", "hf2", "hf3", 
+            "hf4", "hf5", "hf6", "hf7", "hf8", "hf9"),
+  df = NULL
+)
+```
+
+# Example <br>quantiles and medians {background-color='{{< brand color blue >}}'}
+
+## Example: Quantiles
+
+Calculate the first quartile (p=0.25), the median (p=0.5), and the third quartile (p=0.75) of electric bills:
+
+```{r}
+#| eval: false
+recs_des %>%
+  summarize(elec_bill = survey_quantile(DOLLAREL,
+    quantiles = c(0.25, .5, 0.75)
+  ))
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  summarize(elec_bill = survey_quantile(DOLLAREL,
+    quantiles = c(0.25, .5, 0.75)
+  ))
+```
+
+# Example <br>quantiles and medians {background-color='{{< brand color blue >}}'}
+
+## Example: median
+
+Calculate the estimated median cost of electricity in the U.S.:
+
+```{r}
+#| eval: false
+recs_des %>%
+  summarize(elec_bill = survey_median(DOLLAREL))
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  summarize(elec_bill = survey_median(DOLLAREL))
+```
+
+# Correlations {background-color='{{< brand color secondary >}}'}
+
+## `survey_corr()`: Measure the linear relationship between two continuous variables
+
+::: incremental
+- The most commonly used method is Pearson’s correlation
+- Ranges between –1 and 1
+:::
+
+## `survey_corr()` Syntax
+
+```r
+survey_corr(
+  x,
+  y,
+  na.rm = FALSE,
+  vartype = c("se", "ci", "var", "cv"),
+  level = 0.95,
+  df = NULL
+)
+```
+
+# Example <br>correlation {background-color='{{< brand color blue >}}'}
+
+## Example: correlation
+
+Calculate the correlation between the total square footage of homes and electricity consumption:
+
+```{r}
+#| eval: false
+recs_des %>%
+  summarize(SQFT_Elec_Corr = survey_corr(TOTSQFT_EN, BTUEL))
+```
+
+. . .
+
+```{r}
+#| echo: false
+recs_des %>%
+  summarize(SQFT_Elec_Corr = survey_corr(TOTSQFT_EN, BTUEL))
+```
+
+# Unweighted analysis {background-color='{{< brand color secondary >}}'}
+
+## `unweighted()`: Unweighted analysis
 
 ::: incremental
 
@@ -305,9 +623,9 @@ Recall that `group_by()` precedes the creation of variables.
 
 :::
 
-# `unweighted()`: example {background-color='{{< brand color blue >}}'}
+# Example <br>unweighted analysis {background-color='{{< brand color blue >}}'}
 
-## `unweighted()`: example 
+## Example: Unweighted Analysis
 
 Calculate the unweighted average household electricity cost: 
 
@@ -332,342 +650,18 @@ recs_des %>%
   )
 ```
 
-# Your Turn {background-color='{{< brand color pink >}}'}
+# Subpopulation analysis {background-color='{{< brand color secondary >}}'}
 
-Open `descriptive_01.qmd`
-
-```{r}
-#| label: desc1-ex-clock
-#| echo: false
-# 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
-```
-
-# Means, proportions, and quantiles {background-color='{{< brand color secondary >}}'}
-
-## `survey_mean()` and `survey_prop()`
+## `filter()`: Subpopulation Analysis
 
 ::: incremental
-- Calculate the estimated observation counts for a given variable or combination of variables
-- `survey_mean()` applied to continuous data, `survey_prop()` to catagorical data
-- Must be called within `summarize()`
-:::
-
-## `survey_mean()`: syntax
-
-```{r}
-#| eval: false
-#| code-line-numbers: "|2|6"
-survey_mean(
-  x,
-  na.rm = FALSE,
-  vartype = c("se", "ci", "var", "cv"),
-  level = 0.95,
-  proportion = FALSE,
-  prop_method = c("logit", "likelihood", "asin", "beta", "mean"),
-  deff = FALSE,
-  df = NULL
-)
-```
-
-::: notes
-The survey_mean() function includes the first argument x, representing the variable or expression on which the mean should be calculated. The survey_mean() function can be used to calculate both means and proportions. Its proportion argument defaults to FALSE, indicating it is used for calculating means. If we wish to calculate a proportion using survey_mean(), we need to set the proportion argument to TRUE.
-:::
-
-## `survey_prop()`: syntax
-
-```{r}
-#| eval: false
-#| code-line-numbers: "|1,2|5"
-survey_prop(
-  na.rm = FALSE,
-  vartype = c("se", "ci", "var", "cv"),
-  level = 0.95,
-  proportion = TRUE,
-  prop_method = 
-    c("logit", "likelihood", "asin", "beta", "mean", "xlogit"),
-  deff = FALSE,
-  df = NULL
-)
-```
-
-::: notes
-The survey_prop() does not have an argument to include the variables directly. Instead, prior to summarize(), we must use the group_by() function to specify the variables of interest for survey_prop(). For survey_mean(), including a group_by() function allows us to obtain the means by different groups.
-
-In the survey_prop() function, the proportion argument defaults to TRUE because the function is specifically designed for calculating proportions.
-:::
-
-# `survey_mean()` and `survey_prop()`: examples {background-color='{{< brand color blue >}}'}
-
-## `survey_prop()`: one variable proportion example
-
-Calculate the proportion of people in each region in the RECS data:
-
-```{r}
-#| eval: false
-recs_des %>%
-  group_by(Region) %>%
-  summarize(p = survey_prop())
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  group_by(Region) %>%
-  summarize(p = survey_prop())
-```
-
-## `survey_mean()`: one variable proportion example
-
-Calculate the proportion of people in each region in the RECS data:
-
-```{r}
-#| eval: false
-recs_des %>%
-  group_by(Region) %>%
-  summarize(p = survey_mean())
-```
-
-```{r}
-#| echo: false
-recs_des %>%
-  group_by(Region) %>%
-  summarize(p = survey_mean())
-```
-
-::: notes
-Note that the proportions in column p add up to one. The survey_prop() function is essentially the same as using survey_mean() with a categorical variable and without specifying a numeric variable in the x argument.
-:::
-
-## `survey_prop()`: conditional proportions example
-
-Calculate the proportion of housing units by Region and whether air conditioning (A/C) is used:
-
-```{r}
-#| eval: false
-recs_des %>%
-  group_by(Region, ACUsed) %>%
-  summarize(p = survey_prop())
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  group_by(Region, ACUsed) %>%
-  summarize(p = survey_prop())
-```
-
-::: notes
-When specifying multiple variables, the proportions are conditional. In the results above, notice that the proportions sum to 1 within each region. This can be interpreted as the proportion of housing units with A/C within each region. For example, in the Northeast region, approximately 11.0% of housing units don’t have A/C, while around 89.0% have A/C.
-:::
-
-## `survey_prop()`: joint proportions example
-
-Calculate the joint proportion for each combination using `interact()`:
-
-```{r}
-#| eval: false
-recs_des %>%
-  group_by(interact(Region, ACUsed)) %>%
-  summarize(p = survey_prop())
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  group_by(interact(Region, ACUsed)) %>%
-  summarize(p = survey_prop())
-```
-
-::: notes
-In this case, all proportions sum to 1, not just within regions. This means that 15.8% of the population lives in the Northeast and has A/C. As noted earlier, we can use both the survey_prop() and survey_mean() functions, and they produce the same results. 
-:::
-
-## `survey_mean()`: overall mean example
-
-Calculate the estimated average cost of electricity in the U.S.:
-
-```{r}
-#| eval: false
-#| code-line-numbers: "|3"
-recs_des %>%
-  summarize(elec_bill = survey_mean(DOLLAREL,
-    vartype = c("se", "ci")
-  ))
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  summarize(elec_bill = survey_mean(DOLLAREL,
-    vartype = c("se", "ci")
-  ))
-```
-
-## `survey_mean()`: mean by subgroup example
-
-Calculate the estimated average cost of electricity in the U.S. by each region:
-
-```{r}
-#| eval: false
-#| code-line-numbers: "|2"
-recs_des %>%
-  group_by(Region) %>%
-  summarize(elec_bill = survey_mean(DOLLAREL))
-```
-
-. . .
-
-```{r}
-#| echo: false
-#| code-line-numbers: "|2"
-recs_des %>%
-  group_by(Region) %>%
-  summarize(elec_bill = survey_mean(DOLLAREL))
-```
-
-## `survey_quantile()` and `survey_median()`
-
-::: incremental
-- Calculate quantiles at specific points
-- Because median is a special, common case of quantiles, there is the `survey_median()` function
-- Must be called within `summarize()`
-:::
-
-## `survey_quantile()`: syntax
-
-```r
-survey_quantile(
-  x,
-  quantiles,
-  na.rm = FALSE,
-  vartype = c("se", "ci", "var", "cv"),
-  level = 0.95,
-  interval_type = 
-    c("mean", "beta", "xlogit", "asin", "score", "quantile"),
-  qrule = c("math", "school", "shahvaish", "hf1", "hf2", "hf3", 
-            "hf4", "hf5", "hf6", "hf7", "hf8", "hf9"),
-  df = NULL
-)
-```
-
-# `survey_quantile()` and `survey_median()`: examples {background-color='{{< brand color blue >}}'}
-
-## `survey_quantile()`: example 
-
-Calculate the first quartile (p=0.25), the median (p=0.5), and the third quartile (p=0.75) of electric bills:
-
-```{r}
-#| eval: false
-recs_des %>%
-  summarize(elec_bill = survey_quantile(DOLLAREL,
-    quantiles = c(0.25, .5, 0.75)
-  ))
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  summarize(elec_bill = survey_quantile(DOLLAREL,
-    quantiles = c(0.25, .5, 0.75)
-  ))
-```
-
-## `survey_median()`: example
-
-Calculate the estimated median cost of electricity in the U.S.:
-
-```{r}
-#| eval: false
-recs_des %>%
-  summarize(elec_bill = survey_median(DOLLAREL))
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  summarize(elec_bill = survey_median(DOLLAREL))
-```
-
-# Your Turn {background-color='{{< brand color pink >}}'}
-
-Open `descriptive_02.qmd`
-
-```{r}
-#| label: desc2-ex-clock
-#| echo: false
-# 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
-```
-
-# Correlations {background-color='{{< brand color secondary >}}'}
-
-## `survey_corr()`
-
-::: incremental
-- Measure the linear relationship between two continuous variables
-- The most commonly used method is Pearson’s correlation
-- Ranges between –1 and 1
-:::
-
-## `survey_corr()`: syntax
-
-```r
-survey_corr(
-  x,
-  y,
-  na.rm = FALSE,
-  vartype = c("se", "ci", "var", "cv"),
-  level = 0.95,
-  df = NULL
-)
-```
-
-# `survey_corr()`: examples {background-color='{{< brand color blue >}}'}
-
-## `survey_corr()`: example 
-
-Calculate the correlation between the total square footage of homes and electricity consumption:
-
-```{r}
-#| eval: false
-recs_des %>%
-  summarize(SQFT_Elec_Corr = survey_corr(TOTSQFT_EN, BTUEL))
-```
-
-. . .
-
-```{r}
-#| echo: false
-recs_des %>%
-  summarize(SQFT_Elec_Corr = survey_corr(TOTSQFT_EN, BTUEL))
-```
-
-# Helper functions for survey analysis {background-color='{{< brand color secondary >}}'}
-
-## `filter()`
-
-::: incremental
-- Subpopulation analysis
 - Use `filter()` to subset a survey object for analysis
 - Must be done after creating the survey design object
 :::
 
-# `filter()`: example {background-color='{{< brand color blue >}}'}
+# Example <br>subpopulation analysis {background-color='{{< brand color blue >}}'}
 
-## `filter()`: example
+## Example: subpopulation analysis
 
 Calculate an estimate of the average amount spent on natural gas among housing units using natural gas:
 
@@ -691,7 +685,9 @@ recs_des %>%
   ))
 ```
 
-## `cascade()`
+# Adding summary rows {background-color='{{< brand color secondary >}}'}
+
+## `cascade()`: Adding Summary Rows
 
 ::: incremental
 - Creates a summary row for the estimate representing the entire population
@@ -699,7 +695,7 @@ recs_des %>%
 - Used instead of `summarize()`
 :::
 
-## `cascade()`: syntax
+## `cascade()`: Syntax
 
 ```r
 cascade(
@@ -711,9 +707,9 @@ cascade(
 )
 ```
 
-# `cascade()`: examples {background-color='{{< brand color blue >}}'}
+# Example <br>summary rows {background-color='{{< brand color blue >}}'}
 
-## `cascade()`: example
+## Example: Adding summary rows
 
 Calculate the average household electricity cost. Let's build on it to show the features of `cascade()`:
 
@@ -732,7 +728,7 @@ recs_des %>%
   cascade(DOLLAREL_mn = survey_mean(DOLLAREL))
 ```
 
-## `cascade()`: example
+## Example: Adding summary rows with groups
 
 Group by region:
 
@@ -753,7 +749,7 @@ recs_des %>%
   cascade(DOLLAREL_mn = survey_mean(DOLLAREL))
 ```
 
-## `cascade()`: example
+## Example: Adding summary rows with groups
 
 Give the summary row a better name with `.fill`:
 
@@ -780,7 +776,7 @@ recs_des %>%
   )
 ```
 
-## `cascade()`: example
+## Example: Adding summary rows with groups
 
 Move the summary row to the top with `.fill_level_top = TRUE`:
 
@@ -809,34 +805,35 @@ recs_des %>%
   )
 ```
 
-# Your Turn {background-color='{{< brand color pink >}}'}
+# Wrap Up {background-color='{{< brand color secondary >}}'}
 
-Open `descriptive_03.qmd`
-
-```{r}
-#| label: desc3-ex-clock
-#| echo: false
-# 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
-```
-
-# Descriptive analysis summary {background-color='{{< brand color secondary >}}'}
-
-## Summary
+## Wrap Up
 
 Descriptive analyses...
 
 - lay the groundwork for the next steps of running statistical tests or developing models
 - help us glean insight into the data, the underlying population, and any unique aspects of the data or population
 
-## Summary
+## Wrap Up
 
 The {srvyr} package has functions for calculating measures of distribution, central tendency, relationship, and dispersion.
 
 - Depending on the type of data, we determine what statistics to calculate
 
-## Summary
+## Wrap Up
 
 - We create variables after creating the design object, running the functions on the `tbl_svy` object
 - `filter()` and `group_by()` precede the calculation functions, but still follow the design object
 - There are additional functions for unweighted analyses and calculating summary rows
+
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+* Open `03-descriptive-exercises.qmd`
+* Work through **Exercises - Part 2**
+
+```{r}
+#| label: descriptive-ex-clock-2
+#| echo: false
+# 10 minutes, warning at 5 minutes
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when=5*60)
+```

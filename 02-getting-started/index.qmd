@@ -1,0 +1,16 @@
+---
+title: "02 - Getting Started"
+backgroundcolor: "white"
+---
+
+## Slides
+
+[View slides in full screen](slides-02-getting-started.html){target="_blank"}
+
+```{=html}
+<iframe class="slide-deck" src="slides-02-getting-started.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+## Your Turn
+
+{{< include ../Exercises/02-getting-started-exercises.qmd >}}

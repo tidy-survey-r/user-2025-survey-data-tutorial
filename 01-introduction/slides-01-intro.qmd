@@ -1,0 +1,115 @@
+---
+title: "Complex Survey <br>Data Analysis"
+subtitle: "A Tidy Introduction with {srvyr} and {survey}"
+author: 
+  - Stephanie A. Zimmer
+  - Rebecca J. Powell
+  - Isabella C. Velásquez
+institute:
+  - RTI International
+  - Fors Marsh
+  - Posit
+format: revealjs
+date: 2025-08-08
+slide-number: true
+title-slide-attributes: 
+      data-background: "#087e8b"
+      data-background-image: "../images/cover.png"
+      data-background-position: 90% center
+      data-background-size: 25%
+      style: "text-align: left; right: 16%"
+---
+
+# Introduction
+
+## About Us
+
+- Stephanie Zimmer, RTI International
+
+- Rebecca Powell, Fors Marsh
+
+- Isabella Velásquez, Posit
+
+::: {.notes}
+Each of us give a brief intro on our experience/background
+:::
+
+## Prerequisites - tidyverse familiarity
+
+::: {.incremental}
+- Selecting a set of variables (`select(starts_with("TOT"))`)
+- Creating new variables with `mutate()`
+- Summarizing data with `summarize()`
+- Using `group_by()` with `summarize()` to create group summaries
+:::
+
+## Background {.smaller}
+
+- This tutorial largely builds off our book: Exploring Complex Survey Data Analysis Using R
+  - <https://tidy-survey-r.github.io/site/>
+- This book covers additional topics outside this tutorial including:
+  - Overview of survey process
+  - Linear regression and logistic regression
+  - Communication of results (tables and plots)
+  - Reproducible research best practices
+
+- Not covered
+   - Weighting (calibration, post-stratification, raking, etc.)
+   - Survival analysis
+   - Nonlinear models
+
+## How is survey analysis different?
+
+- Data often includes weights. These weights extrapolate each response to the population of interest
+- Data is often sampled in a complex manner using strata or clusters. This impacts how standard errors are calculated
+- Fortunately, the packages we discuss today do the hard math for you using tidyverse syntax you're familiar with
+
+## Overview of tutorial
+
+- At the end of this tutorial, you should be able to 
+   - Calculate point estimates and their standard errors with survey data 
+      - Proportions, totals, and counts
+      - Means, quantiles, and correlations
+   - Perform t-tests and chi-squared tests
+   - Specify a survey design in R to create a survey object
+
+## Overview of survey process
+
+```{mermaid}
+%%| echo: false
+
+flowchart TD
+  A[Survey Concept]-->B[Sampling Design]
+  A-->C[Questionnaire Design]
+  A-->D[Data Collection Planning]
+  B-->E[Data Collection]
+  C-->E
+  D-->E
+  E-->F[Post-Survey Processing]
+  F-->G[Analysis]
+  G-->H[Reporting]
+  style G fill:#ff8484
+```
+
+
+::: {.notes}
+- This tutorial focuses on the Analysis step
+- We assume you are working with public use or restricted use files that already have weights
+- As time allows, we may touch on reporting
+:::
+
+
+## Roadmap for today
+
+- Getting started
+- Descriptive analysis
+- Statistical testing
+- Survey design objects
+
+## Logistics
+
+- We will be using Posit Cloud for exercises 
+- All materials are found at:
+  - <https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/> (Site)
+  - <https://github.com/tidy-survey-r/user-2025-survey-data-tutorial> (Source)
+- Sticky notes

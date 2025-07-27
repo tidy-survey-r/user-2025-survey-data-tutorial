@@ -1,0 +1,49 @@
+### Set-up
+
+#### Load necessary packages
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+library(dplyr)
+library(srvyr)
+library(readr)
+```
+
+### Exercises
+
+In these exercises, you will be given a study and the data. How would you create the survey object with design variables or replicate weights, as applicable?
+
+1.  California Health Interview Survey (CHIS) - 2023
+
+    -   [CHIS Design](https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/chis-design-and-methods/chis-design)
+    -   [CHIS Resources](https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/access-chis-data)
+    -   The code below reads in a dataset select set of columns of the 2023 Adult CHIS Public Use File. Create the survey object.
+    
+```{r}
+#| label: design-exercise-1
+chis_adult_2023 <- read_rds(here::here("Exercises", "data", "chis_adult_2023.rds"))
+glimpse(chis_adult_2023)
+```
+
+    
+2. National Survey on Drug Use and Health (NSDUH) - 2023
+
+    - [NSDUH Methodology](https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/methodology)
+    - [NSDUH Download Data Files](https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/datafiles)
+    - The code below reads in a dataset select set of columns of the 2023 NSDUH Public Use File. Create the survey object.
+    
+```{r}
+#| label: design-exercise-2
+nsduh_2023 <- read_rds(here::here("Exercises", "data", "nsduh_2023.rds"))
+glimpse(nsduh_2023)
+```
+
+#### Bonus Exercise
+
+   - Find a public use file of your own
+   - Download the data
+   - Read in the data
+   - Create the survey object
+

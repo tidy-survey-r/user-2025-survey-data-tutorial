@@ -1,0 +1,104 @@
+### Set-up
+
+#### Load necessary packages
+
+```{r}
+#| label: set-up
+#| message: false
+#| warning: false
+library(tidyverse)
+library(srvyr)
+library(srvyrexploR)
+```
+
+#### Load in data and preview it
+
+```{r}
+#| label: data-summary
+glimpse(recs_2020)
+glimpse(anes_2020)
+```
+
+Find codebooks here:
+
+  - [RECS 2020](https://tidy-survey-r.github.io/tidy-survey-book/recs-cb.html)
+  - [ANES 2020](https://tidy-survey-r.github.io/tidy-survey-book/anes-cb.html)
+
+#### Create design objects for usage
+
+```{r}
+#| label: design-obj
+
+anes_des <- anes_2020 %>%
+  mutate(Weight = V200010b / sum(V200010b) * 231034125) %>%
+    as_survey_design(
+    weights = Weight,
+    strata = V200010d,
+    ids = V200010c,
+    nest = TRUE
+  )
+
+recs_des <- recs_2020 %>%
+  as_survey_rep(
+    weights = NWEIGHT,
+    repweights = NWEIGHT1:NWEIGHT60,
+    type = "JK1",
+    scale = 59 / 60,
+    mse = TRUE
+  )
+
+```
+
+### Exercises - Part 1
+
+1. For households that use thermostats, they are asked what temperature they set their home during the daytime in the winter (`WinterTempDay`) and in the summer (`SummerTempDay`). Test whether daytime winter and daytime summer temperatures of homes are set the same.
+
+```{r}
+#| label: testing-exercise-1
+
+# Hint - you'll need the recs_des object
+```
+
+2. In 2015, the average household spent $1,856 on energy expenditure^[<https://www.eia.gov/consumption/residential/data/2015/c&e/pdf/ce1.1.pdf>]. Accounting for inflation, this would be $2,036 in 2020. Test whether energy costs (`TOTALDOL`) have increased in 2020 from 2015, accounting for inflation.
+
+```{r}
+#| label: testing-exercise-2
+
+# Hint - you'll need the recs_des object
+```
+
+### Exercises - Part 2
+
+3. Is there a relationship between party identification (`PartyID`) and whether people voted early (`EarlyVote2020`)?
+
+```{r}
+#| label: testing-exercise-3
+
+# Hint - you'll need the anes_des object
+```
+
+4. Is there a relationship between party identification (`PartyID`) and trust in the government (`TrustGovernment`)? Use Wald as the `statistic` option.
+
+```{r}
+#| label: testing-exercise-4
+
+# Hint - you'll need the anes_des object
+```
+
+5. Is there a difference in the distribution of gender (`Gender`) across early voting status (`EarlyVote2020`)?
+
+```{r}
+#| label: testing-exercise-5
+
+# Hint - you'll need the anes_des object
+```
+
+### Exercises - Part 3
+
+6. Test whether average electric bill (`DOLLAREL`) varies by region (`Region`).
+
+```{r}
+#| label: testing-exercise-6
+
+# Hint - you'll need the recs_des object
+```
