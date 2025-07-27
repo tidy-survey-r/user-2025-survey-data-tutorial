@@ -14,3 +14,10 @@ backgroundcolor: "white"
 ## Your Turn
 
 {{< include ../Exercises/05-design-exercises.qmd >}}
+
+## Solutions
+
+<details>
+  <summary>See the solutions</summary>
+  {{< include ../Exercises/05-design-exercises-solutions.qmd >}}
+</details>

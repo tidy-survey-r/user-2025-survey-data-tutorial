@@ -1,25 +1,13 @@
-### Set-up
-
-#### Load necessary packages
 
 ```{r}
-#| label: load-packages
+#| label: sol-load-packages
 #| message: false
 #| warning: false
+#| include: false
 library(dplyr)
 library(srvyr)
 library(srvyrexploR)
 ```
-
-#### Load in data and preview it
-
-```{r}
-#| label: data-summary
-glimpse(chis_2023)
-glimpse(nsduh_2023)
-```
-
-### Exercises
 
 In these exercises, you will be given a study and the data. How would you create the survey object with design variables or replicate weights, as applicable?
 
@@ -30,9 +18,20 @@ In these exercises, you will be given a study and the data. How would you create
     -   Create the survey object using the data.
     
 ```{r}
-#| label: design-exercise-1
+#| label: design-sol-1
+#| code-fold: true
+#| code-summary: "Show the solution"
 
-# Start with chis_2023
+chis_des <- 
+  chis_2023 %>%
+  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type="other", scale=1, rscales=1, mse=TRUE)
+
+# or 
+chis_des2 <- 
+  chis_2023 %>%
+  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type="JKn", scale=1, rscales=1, mse=TRUE)
+
+chis_des
 ```
 
     
@@ -43,15 +42,13 @@ In these exercises, you will be given a study and the data. How would you create
     - Create the survey object using the data.
     
 ```{r}
-#| label: design-exercise-2
+#| label: design-sol-2
+#| code-fold: true
+#| code-summary: "Show the solution"
 
-# Start with nsduh_2023
+nsduh_des <- 
+  nsduh_2023 %>%
+  as_survey_design(weights = ANALWT2_C, strata = VESTR_C, ids = VEREP, nest=TRUE)
+
+nsduh_des
 ```
-
-3. **Advanced bonus exercise** 
-
-   - Find a public use file of your own
-   - Download the data
-   - Read in the data
-   - Create the survey object
-

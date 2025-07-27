@@ -17,4 +17,7 @@ backgroundcolor: "white"
 
 ## Solutions
 
-{{< include ../Exercises/02-getting-started-exercise-solutions.qmd >}}
+<details>
+  <summary>See the solutions</summary>
+  {{< include ../Exercises/02-getting-started-exercise-solutions.qmd >}}
+</details>
