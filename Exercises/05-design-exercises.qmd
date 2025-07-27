@@ -11,7 +11,15 @@ library(srvyr)
 library(srvyrexploR)
 ```
 
-#### Exercises
+#### Load in data and preview it
+
+```{r}
+#| label: data-summary
+glimpse(chis_2023)
+glimpse(nsduh_2023)
+```
+
+### Exercises
 
 In these exercises, you will be given a study and the data. How would you create the survey object with design variables or replicate weights, as applicable?
 
@@ -19,11 +27,12 @@ In these exercises, you will be given a study and the data. How would you create
 
     -   [CHIS Design](https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/chis-design-and-methods/chis-design)
     -   [CHIS Resources](https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/access-chis-data)
-    -   The code below shows the columns of the 2023 Adult CHIS Public Use File (`chis_2023`) which is in the {srvyexploR} package. Create the survey object using the data.
+    -   Create the survey object using the data.
     
 ```{r}
 #| label: design-exercise-1
-glimpse(chis_2023)
+
+# Start with chis_2023
 ```
 
     
@@ -31,11 +40,12 @@ glimpse(chis_2023)
 
     - [NSDUH Methodology](https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/methodology)
     - [NSDUH Download Data Files](https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/datafiles)
-    -   The code below shows the columns of the 2023 NSDUH Public Use File (`nsduh_2023`) which is in the {srvyexploR} package. Create the survey object using the data.
+    - Create the survey object using the data.
     
 ```{r}
 #| label: design-exercise-2
-glimpse(nsduh_2023)
+
+# Start with nsduh_2023
 ```
 
 #### Bonus Exercise
