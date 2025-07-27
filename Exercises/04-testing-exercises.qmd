@@ -7,6 +7,7 @@
 #| message: false
 #| warning: false
 library(tidyverse)
+library(survey)
 library(srvyr)
 library(srvyrexploR)
 ```
@@ -66,9 +67,11 @@ recs_des <- recs_2020 %>%
 # Hint - you'll need the recs_des object
 ```
 
+3. **Advanced bonus exercise** Look through the RECS dataset and develop your own hypothesis about a mean or difference of means and test it!
+
 ### Exercises - Part 2
 
-3. Is there a relationship between party identification (`PartyID`) and whether people voted early (`EarlyVote2020`)?
+4. Is there a relationship between party identification (`PartyID`) and whether people voted early (`EarlyVote2020`)?
 
 ```{r}
 #| label: testing-exercise-3
@@ -76,7 +79,7 @@ recs_des <- recs_2020 %>%
 # Hint - you'll need the anes_des object
 ```
 
-4. Is there a relationship between party identification (`PartyID`) and trust in the government (`TrustGovernment`)? Use Wald as the `statistic` option.
+5. Is there a relationship between party identification (`PartyID`) and trust in the government (`TrustGovernment`)? Use Wald as the `statistic` option.
 
 ```{r}
 #| label: testing-exercise-4
@@ -84,7 +87,7 @@ recs_des <- recs_2020 %>%
 # Hint - you'll need the anes_des object
 ```
 
-5. Is there a difference in the distribution of gender (`Gender`) across early voting status (`EarlyVote2020`)?
+6. Is there a difference in the distribution of gender (`Gender`) across early voting status (`EarlyVote2020`)?
 
 ```{r}
 #| label: testing-exercise-5
@@ -92,9 +95,12 @@ recs_des <- recs_2020 %>%
 # Hint - you'll need the anes_des object
 ```
 
+7. **Advanced bonus exercise** Look through the ANES dataset and develop your own hypothesis and test it!
+
+
 ### Exercises - Part 3
 
-6. Test whether average electric bill (`DOLLAREL`) varies by region (`Region`).
+8. Test whether average electric bill (`DOLLAREL`) varies by region (`Region`).
 
 ```{r}
 #| label: testing-exercise-6
