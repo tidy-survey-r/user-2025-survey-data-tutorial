@@ -73,34 +73,49 @@ recs_des <- recs_2020 %>%
 # Hint: The variable VotedPres2016 indicates whether someone voted in 2016.
 ```
 
+5. **Advanced bonus exercise** What percentage of people used air-conditioning (A/C) in each state according to the RECS data? Extra bonus: Make a plot or map of this data by state
+
+```{r}
+# Hint: The variable `state_postal` indicates the state and `ACUsed` indicates whether the household used A/C
+```
+
+
 ### Exercises - Part 2
 
-5. What is the design effect for the proportion of people who voted early? 
+6. What is the design effect for the proportion of people who voted early? 
 
 ```{r}
 # Hint: The variable `EarlyVote2020` indicates whether someone voted early in 2020.
 ```
 
-6. What is the median temperature people set their thermostats to at night during the winter (using the RECS data)?
+7. What is the median temperature people set their thermostats to at night during the winter (using the RECS data)?
 
 ```{r}
 # Hint: The variable `WinterTempNight` indicates the temperature that people set their thermostat to in the winter at night.
 ```
 
-7. People sometimes set their temperature differently over different seasons and during the day. What median temperatures do people set their thermostats to in the summer and winter, both during the day and at night? Include confidence intervals.
+8. People sometimes set their temperature differently over different seasons and during the day. What median temperatures do people set their thermostats to in the summer and winter, both during the day and at night? Include confidence intervals.
 
 ```{r}
 # Hint: Use the variables `WinterTempDay`, `WinterTempNight`, `SummerTempDay`, and `SummerTempNight.`
 ```
 
-8. What is the correlation between the temperature that people set their temperature at during the night and during the day in the summer?
+9. What is the correlation between the temperature that people set their temperature at during the night and during the day in the summer?
 
 ```{r}
-
+# Hint: use the variables `SummerTempNight` and `SummerTempDay`
 ```
 
-9. What is the 1st, 2nd, and 3rd quartile of money spent on energy by Building America (BA) climate zone?
+10. What is the 1st, 2nd, and 3rd quartile of money spent on energy by Building America (BA) climate zone?
 
 ```{r}
 # Hint: `TOTALDOL` indicates the total amount spent on all fuel, and `ClimateRegion_BA` indicates the BA climate zones.
 ```
+
+11. **Advanced bonus exercise** What is the average money spent on energy per square foot by state? Extra bonus: Make a plot or map of this data by state
+
+```{r}
+# Hint: The variable `state_postal` indicates the state, `TOTALDOL` is the amount of money spent on energy, and `TOTSQFT_EN` is the square footage
+```
+
+
