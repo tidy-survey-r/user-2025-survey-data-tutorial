@@ -163,13 +163,13 @@ recs_des <- recs_2020 %>%
 #| eval: false
 #| code-line-numbers: "|2|3|4|5|6|7|8"
 survey_count(
-   x,
-   ...,
-   wt = NULL,
-   sort = FALSE,
-   name = "n",
-   .drop = dplyr::group_by_drop_default(x),
-   vartype = c("se", "ci", "var", "cv")
+  x,
+  ...,
+  wt = NULL,
+  sort = FALSE,
+  name = "n",
+  .drop = dplyr::group_by_drop_default(x),
+  vartype = c("se", "ci", "var", "cv")
 )
 ```
 
@@ -336,7 +336,7 @@ survey_prop(
   vartype = c("se", "ci", "var", "cv"),
   level = 0.95,
   proportion = TRUE,
-  prop_method = 
+  prop_method =
     c("logit", "likelihood", "asin", "beta", "mean", "xlogit"),
   deff = FALSE,
   df = NULL
@@ -495,7 +495,7 @@ recs_des %>%
 #| label: descriptive-ex-clock-1
 #| echo: false
 # 10 minutes, warning at 5 minutes
-countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Quantiles and Medians {background-color='{{< brand color secondary >}}'}
@@ -835,5 +835,5 @@ The {srvyr} package has functions for calculating measures of distribution, cent
 #| label: descriptive-ex-clock-2
 #| echo: false
 # 10 minutes, warning at 5 minutes
-countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```

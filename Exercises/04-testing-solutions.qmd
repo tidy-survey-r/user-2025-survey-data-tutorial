@@ -43,7 +43,7 @@ recs_des <- recs_2020 %>%
 
 recs_des %>%
   filter(!is.na(SummerTempDay), !is.na(WinterTempDay)) %>%
-  svyttest(WinterTempDay-SummerTempDay~0, design=.)
+  svyttest(WinterTempDay - SummerTempDay ~ 0, design = .)
 ```
 
 2. In 2015, the average household spent $1,856 on energy expenditure^[<https://www.eia.gov/consumption/residential/data/2015/c&e/pdf/ce1.1.pdf>]. Accounting for inflation, this would be $2,036 in 2020. Test whether energy costs (`TOTALDOL`) have increased in 2020 from 2015, accounting for inflation.
@@ -54,7 +54,7 @@ recs_des %>%
 #| code-summary: "Show the solution"
 
 recs_des %>%
-  svyttest(I(TOTALDOL-2036)~0, design = .)
+  svyttest(I(TOTALDOL - 2036) ~ 0, design = .)
 ```
 
 ### Exercises - Part 2
@@ -70,12 +70,12 @@ anes_des %>%
   filter(!is.na(PartyID), !is.na(EarlyVote2020)) %>%
   group_by(PartyID, EarlyVote2020) %>%
   summarize(
-    p=survey_mean()
+    p = survey_mean()
   )
 
 anes_des %>%
   filter(!is.na(PartyID), !is.na(EarlyVote2020)) %>%
-  svychisq(~ EarlyVote2020 + PartyID, design=.)
+  svychisq(~ EarlyVote2020 + PartyID, design = .)
 ```
 
 5. Is there a relationship between party identification (`PartyID`) and trust in the government (`TrustGovernment`)? Use Wald as the `statistic` option.
@@ -89,12 +89,12 @@ anes_des %>%
   filter(!is.na(PartyID), !is.na(TrustGovernment)) %>%
   group_by(PartyID, TrustGovernment) %>%
   summarize(
-    p=survey_mean()
+    p = survey_mean()
   )
 
 anes_des %>%
   filter(!is.na(PartyID), !is.na(TrustGovernment)) %>%
-  svychisq(~ TrustGovernment + PartyID, design=., statistic="Wald")
+  svychisq(~ TrustGovernment + PartyID, design = ., statistic = "Wald")
 ```
 
 6. Is there a difference in the distribution of gender (`Gender`) across early voting status (`EarlyVote2020`)?
@@ -110,12 +110,12 @@ anes_des %>%
   filter(!is.na(Gender), !is.na(EarlyVote2020)) %>%
   group_by(Gender, EarlyVote2020) %>%
   summarize(
-    p=survey_mean()
+    p = survey_mean()
   )
 
 anes_des %>%
   filter(!is.na(Gender), !is.na(EarlyVote2020)) %>%
-  svychisq(~ Gender + EarlyVote2020, design=., statistic="Wald")
+  svychisq(~ Gender + EarlyVote2020, design = ., statistic = "Wald")
 ```
 
 ### Exercises - Part 3
@@ -126,13 +126,13 @@ anes_des %>%
 #| label: testing-sol-6
 #| code-fold: true
 #| code-summary: "Show the solution"
-#| 
+#|
 recs_des %>%
   group_by(Region) %>%
   cascade(
-    ElecBill=survey_mean(DOLLAREL), .fill="US"
+    ElecBill = survey_mean(DOLLAREL), .fill = "US"
   )
 
 recs_des %>%
-  svyglm(DOLLAREL ~ Region, design=.)
+  svyglm(DOLLAREL ~ Region, design = .)
 ```
