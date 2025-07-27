@@ -17,7 +17,6 @@ library(gt)
 
 towny %>%
   count(csd_type)
-
 ```
 
 2. How many different types of CSD and status (`status`) are there in the dataset?
@@ -49,7 +48,7 @@ towny %>%
 #| label: sol-00-04
 #| code-fold: true
 #| code-summary: "Show the solution"
- 
+
 towny %>%
   count(csd_type, status) %>%
   group_by(csd_type) %>%
@@ -62,10 +61,9 @@ towny %>%
 #| label: sol-00-05
 #| code-fold: true
 #| code-summary: "Show the solution"
- 
+
 towny %>%
   summarize(mean_pop = mean(population_2021, na.rm = TRUE))
-
 ```
 
 6. What is the mean population by CSD Type in 2021?
@@ -74,7 +72,7 @@ towny %>%
 #| label: sol-00-06
 #| code-fold: true
 #| code-summary: "Show the solution"
- 
+
 towny %>%
   group_by(csd_type) %>%
   summarize(mean_pop = mean(population_2021, na.rm = TRUE))
@@ -86,10 +84,9 @@ towny %>%
 #| label: sol-00-07
 #| code-fold: true
 #| code-summary: "Show the solution"
- 
-towny %>%
-  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
 
+towny %>%
+  summarize(across(starts_with("population"), ~ mean(.x, na.rm = TRUE)))
 ```
 
 8. Run a t-test to see if the average population in 1996 is different from the average population in 2016.
@@ -100,7 +97,6 @@ towny %>%
 #| code-summary: "Show the solution"
 
 t.test(towny$population_1996, towny$population_2016, paired = TRUE)
-
 ```
 
 or
@@ -110,6 +106,5 @@ or
 #| code-fold: true
 #| code-summary: "Show another solution"
 
-t.test(population_1996-population_2016~1, data=towny)
-
+t.test(population_1996 - population_2016 ~ 1, data = towny)
 ```

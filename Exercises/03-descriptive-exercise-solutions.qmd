@@ -44,7 +44,7 @@ recs_des <- recs_2020 %>%
 
 anes_des %>%
   survey_count(Gender, Education) %>%
-  filter(Gender=="Female", Education=="Graduate")
+  filter(Gender == "Female", Education == "Graduate")
 ```
 
 2. What percentage of people identify as “Strong Democrat”? 
@@ -58,9 +58,9 @@ anes_des %>%
   filter(!is.na(PartyID)) %>%
   group_by(PartyID) %>%
   summarize(
-    p=survey_prop()
+    p = survey_prop()
   ) %>%
-  filter(PartyID=="Strong democrat")
+  filter(PartyID == "Strong democrat")
 ```
 
 3. What percentage of people who voted in the 2020 election identify as “Strong Republican”? 
@@ -71,13 +71,13 @@ anes_des %>%
 #| code-summary: "Show the solution"
 
 anes_des %>%
-  filter(VotedPres2020=="Yes") %>%
+  filter(VotedPres2020 == "Yes") %>%
   group_by(PartyID) %>%
   filter(!is.na(PartyID)) %>%
   summarize(
-    p=survey_prop()
+    p = survey_prop()
   ) %>%
-  filter(PartyID=="Strong republican")
+  filter(PartyID == "Strong republican")
 ```
 
 4. What percentage of people voted in both the 2016 election and the 2020 election? Include the logit confidence interval. 
@@ -91,7 +91,7 @@ anes_des %>%
   filter(!is.na(VotedPres2016), !is.na(VotedPres2020)) %>%
   group_by(interact(VotedPres2016, VotedPres2020)) %>%
   summarize(
-    p=survey_prop(vartype = "ci", prop_method="likelihood")
+    p = survey_prop(vartype = "ci", prop_method = "likelihood")
   )
 ```
 
@@ -105,7 +105,7 @@ anes_des %>%
 ac_by_state <- recs_des %>%
   group_by(state_postal) %>%
   summarize(
-    PctAC=survey_mean(ACUsed*100)
+    PctAC = survey_mean(ACUsed * 100)
   )
 
 ac_by_state
@@ -113,14 +113,15 @@ ac_by_state
 library(usmap)
 
 us_map() %>%
-  left_join(ac_by_state, by=c("abbr"="state_postal")) %>%
-  ggplot(aes(fill=PctAC)) +
+  left_join(ac_by_state, by = c("abbr" = "state_postal")) %>%
+  ggplot(aes(fill = PctAC)) +
   geom_sf() +
   ggthemes::theme_map() +
-  scale_fill_viridis_c(name="A/C Used (%)") +
-  labs(title = "Percent of housing units using air-conditioning, 2020",
-       caption= "U.S. Energy Information Administration, 2024. Residential Energy Consumption 2020")
-  
+  scale_fill_viridis_c(name = "A/C Used (%)") +
+  labs(
+    title = "Percent of housing units using air-conditioning, 2020",
+    caption = "U.S. Energy Information Administration, 2024. Residential Energy Consumption 2020"
+  )
 ```
 
 
@@ -136,9 +137,9 @@ us_map() %>%
 anes_des %>%
   group_by(EarlyVote2020) %>%
   summarize(
-    p=survey_mean(deff=TRUE)
+    p = survey_mean(deff = TRUE)
   ) %>%
-  filter(EarlyVote2020=="Yes")
+  filter(EarlyVote2020 == "Yes")
 ```
 
 7. What is the median temperature people set their thermostats to at night during the winter (using the RECS data)?
@@ -161,21 +162,21 @@ recs_des %>%
 #| code-fold: true
 #| code-summary: "Show the solution"
 
-ests_med_temps <- 
+ests_med_temps <-
   recs_des %>%
   summarize(
-    across(contains("Temp"), ~survey_median(.x, na.rm=TRUE, vartype="ci"))
+    across(contains("Temp"), ~ survey_median(.x, na.rm = TRUE, vartype = "ci"))
   )
 
 ests_med_temps
 
 ests_med_temps %>%
-  pivot_longer(cols=everything()) %>%
-  separate_wider_delim (name, delim="_", names=c("Var", "EstType"), too_few="align_start") %>%
+  pivot_longer(cols = everything()) %>%
+  separate_wider_delim(name, delim = "_", names = c("Var", "EstType"), too_few = "align_start") %>%
   mutate(
-    EstType=if_else(is.na(EstType), "Median", EstType)
+    EstType = if_else(is.na(EstType), "Median", EstType)
   ) %>%
-  pivot_wider(names_from=EstType, values_from=value)
+  pivot_wider(names_from = EstType, values_from = value)
 ```
 
 9. What is the correlation between the temperature that people set their temperature at during the night and during the day in the summer?
@@ -201,8 +202,8 @@ recs_des %>%
 recs_des %>%
   group_by(ClimateRegion_BA) %>%
   cascade(
-    EnergyCost=survey_quantile(TOTALDOL, quantiles=c(.25, .5, .75)),
-    .fill="National"
+    EnergyCost = survey_quantile(TOTALDOL, quantiles = c(.25, .5, .75)),
+    .fill = "National"
   )
 ```
 
@@ -216,7 +217,7 @@ recs_des %>%
 energy_spend_by_state <- recs_des %>%
   group_by(state_postal) %>%
   summarize(
-    EnergyCost=survey_mean(TOTALDOL/TOTSQFT_EN)
+    EnergyCost = survey_mean(TOTALDOL / TOTSQFT_EN)
   )
 
 energy_spend_by_state
@@ -224,14 +225,15 @@ energy_spend_by_state
 library(usmap)
 
 us_map() %>%
-  left_join(energy_spend_by_state, by=c("abbr"="state_postal")) %>%
-  ggplot(aes(fill=EnergyCost)) +
+  left_join(energy_spend_by_state, by = c("abbr" = "state_postal")) %>%
+  ggplot(aes(fill = EnergyCost)) +
   geom_sf() +
   ggthemes::theme_map() +
-  scale_fill_viridis_c(name="$/sq ft") +
-  labs(title = "Average residential energy cost per square foot, 2020",
-       caption= "U.S. Energy Information Administration, 2024. Residential Energy Consumption 2020")
-  
+  scale_fill_viridis_c(name = "$/sq ft") +
+  labs(
+    title = "Average residential energy cost per square foot, 2020",
+    caption = "U.S. Energy Information Administration, 2024. Residential Energy Consumption 2020"
+  )
 ```
 
 

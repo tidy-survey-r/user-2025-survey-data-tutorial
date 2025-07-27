@@ -22,14 +22,14 @@ In these exercises, you will be given a study and the data. How would you create
 #| code-fold: true
 #| code-summary: "Show the solution"
 
-chis_des <- 
+chis_des <-
   chis_2023 %>%
-  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type="other", scale=1, rscales=1, mse=TRUE)
+  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type = "other", scale = 1, rscales = 1, mse = TRUE)
 
-# or 
-chis_des2 <- 
+# or
+chis_des2 <-
   chis_2023 %>%
-  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type="JKn", scale=1, rscales=1, mse=TRUE)
+  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type = "JKn", scale = 1, rscales = 1, mse = TRUE)
 
 chis_des
 ```
@@ -46,9 +46,9 @@ chis_des
 #| code-fold: true
 #| code-summary: "Show the solution"
 
-nsduh_des <- 
+nsduh_des <-
   nsduh_2023 %>%
-  as_survey_design(weights = ANALWT2_C, strata = VESTR_C, ids = VEREP, nest=TRUE)
+  as_survey_design(weights = ANALWT2_C, strata = VESTR_C, ids = VEREP, nest = TRUE)
 
 nsduh_des
 ```

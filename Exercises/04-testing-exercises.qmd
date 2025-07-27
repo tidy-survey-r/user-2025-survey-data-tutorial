@@ -31,7 +31,7 @@ Find codebooks here:
 
 anes_des <- anes_2020 %>%
   mutate(Weight = V200010b / sum(V200010b) * 231034125) %>%
-    as_survey_design(
+  as_survey_design(
     weights = Weight,
     strata = V200010d,
     ids = V200010c,
@@ -46,7 +46,6 @@ recs_des <- recs_2020 %>%
     scale = 59 / 60,
     mse = TRUE
   )
-
 ```
 
 ### Exercises - Part 1
