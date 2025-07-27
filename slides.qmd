@@ -1,0 +1,14 @@
+---
+title: "Slides"
+format: html
+---
+
+- [Section 1: Introduction](slides-01-intro.qmd)
+
+- [Section 2: Getting started](slides-02-getting-started.qmd)
+
+- [Section 3: Descriptive analysis](slides-03-descriptive-analysis.qmd)
+
+- [Section 4: Statistical testing](slides-04-stattesting.qmd)
+
+- [Section 5: Sampling designs](slides-05-design.qmd)

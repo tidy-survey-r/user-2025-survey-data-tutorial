@@ -1,33 +1,6 @@
 ---
 title: "Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}"
-subtitle: useR! 2025 tutorial held at Duke University
-backgroundcolor: "white"
 ---
 
-🗓️ Date: 8 August 2025
+This is the website for the useR 2025 tutorial held at Duke University on August 8, 2025.
 
-🕗 Time: 13:00 - 16:30 ET
-
-## Abstract
-
-This interactive tutorial will introduce how to conduct analysis of survey data in R. We will first introduce a unifying workflow of tidy survey analysis in R for analysis of survey microdata with weights. We will cover topics of descriptive analysis, including functions to obtain weighted proportions, means, quantiles, and correlations from survey data. Then, we will discuss some statistical testing, including t-tests for comparing means and χ-squared tests for comparing proportions. Finally, we will discuss common probability sampling designs and how to create the survey design objects in R to account for the sampling design. The tutorial will include time for exercises using data from the 2020 American National Election Study and the 2020 Residential Energy Consumption Survey, so you can get hands-on experience with the functions. We will be using Posit Cloud, so you do not need to have R or RStudio preinstalled on your computer. For the best learning experience, we recommend you have some prior experience with R and the tidyverse, including familiarity with `mutate()`, `summarize()`, `count()`, and `group_by()`.
-
-## Instructors
-
-Dr. Stephanie Zimmer is a senior survey statistician with 10 years experience in survey sampling and design, survey weighting and analysis, and data management. She is an expert statistical programmer in R, SAS, and SUDAAN. She earned her PhD in Statistics from Iowa State University and her BS in Statistics from NC State. After earning the RStudio Tidyverse Trainer certification, she co-taught two courses on tidy survey analysis in R. She is currently a Senior Research Statistician at RTI International.
-
-[{{< fa brands linkedin >}}](https://www.linkedin.com/in/stephanie-zimmer/) [{{< fa brands github >}}](https://github.com/szimmer) [{{< fa brands bluesky >}}](https://bsky.app/profile/statsteph.bsky.social)
-
-Dr. Rebecca Powell is the director of Data & Research Operations at Fors Marsh. Her research interests focus on visual design of questionnaires and contact materials. Dr. Powell is a Certified RStudio Tidyverse Trainer and has taught courses and webinars on data management in R and tidy survey analysis in R at both AAPOR and MAPOR. She has a PhD in Survey Research and Methodology from the University of Nebraska-Lincoln and a BS and MS in Applied Statistics from Rochester Institute of Technology. 
-
-[{{< fa brands linkedin >}}](https://www.linkedin.com/in/rebecca-powell-1416226b/) [{{< fa brands github >}}](https://github.com/rpowell22)
-
-Isabella Velásquez is a Senior Product Marketing Manager at Posit, PBC. She is also a content strategist, data enthusiast, and author. Her goal is to drive engagement around all the awesome things happening at Posit.
-
-[{{< fa brands linkedin >}}](https://www.linkedin.com/in/ivelasq/) [{{< fa brands github >}}](https://github.com/ivelasq) [{{< fa brands bluesky >}}](https://bsky.app/profile/ivelasq3.bsky.social)
-
-------------------------------------------------------------------------
-
-![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
-
-The website is based on a template by [Mine Çetinkaya-Rundel](https://mine-cr.com/), used with appreciation and adapted for this workshop.
