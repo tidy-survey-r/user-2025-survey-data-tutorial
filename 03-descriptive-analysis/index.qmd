@@ -1,0 +1,16 @@
+---
+title: "03 - Descriptive Analysis"
+backgroundcolor: "white"
+---
+
+## Slides
+
+[View slides in full screen](slides-03-descriptive-analysis.html){target="_blank"}
+
+```{=html}
+<iframe class="slide-deck" src="slides-03-descriptive-analysis.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+## Your Turn
+
+{{< include ../Exercises/03-descriptive-exercises.qmd >}}
