@@ -20,7 +20,7 @@ In these exercises, you will be given a study and the data. How would you create
 ```{r}
 #| label: design-sol-1
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 chis_des <-
   chis_2023 %>%
@@ -44,7 +44,7 @@ chis_des
 ```{r}
 #| label: design-sol-2
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 nsduh_des <-
   nsduh_2023 %>%

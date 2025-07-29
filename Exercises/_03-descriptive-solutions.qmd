@@ -40,7 +40,7 @@ recs_des <- recs_2020 %>%
 ```{r}
 #| label: desc-sol-1-1
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   survey_count(Gender, Education) %>%
@@ -52,7 +52,7 @@ anes_des %>%
 ```{r}
 #| label: desc-sol-1-2
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   filter(!is.na(PartyID)) %>%
@@ -68,7 +68,7 @@ anes_des %>%
 ```{r}
 #| label: desc-sol-1-3
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   filter(VotedPres2020 == "Yes") %>%
@@ -85,7 +85,7 @@ anes_des %>%
 ```{r}
 #| label: desc-sol-1-4
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   filter(!is.na(VotedPres2016), !is.na(VotedPres2020)) %>%
@@ -100,7 +100,7 @@ anes_des %>%
 ```{r}
 #| label: desc-sol-1-5
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 ac_by_state <- recs_des %>%
   group_by(state_postal) %>%
@@ -132,7 +132,7 @@ us_map() %>%
 ```{r}
 #| label: desc-sol-2-1
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   group_by(EarlyVote2020) %>%
@@ -147,7 +147,7 @@ anes_des %>%
 ```{r}
 #| label: desc-sol-2-2
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 recs_des %>%
   summarize(
@@ -160,7 +160,7 @@ recs_des %>%
 ```{r}
 #| label: desc-sol-2-3
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 ests_med_temps <-
   recs_des %>%
@@ -184,7 +184,7 @@ ests_med_temps %>%
 ```{r}
 #| label: desc-sol-2-4
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 recs_des %>%
   summarize(
@@ -197,7 +197,7 @@ recs_des %>%
 ```{r}
 #| label: desc-sol-2-5
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 recs_des %>%
   group_by(ClimateRegion_BA) %>%
@@ -212,7 +212,7 @@ recs_des %>%
 ```{r}
 #| label: desc-sol-2-6
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 energy_spend_by_state <- recs_des %>%
   group_by(state_postal) %>%

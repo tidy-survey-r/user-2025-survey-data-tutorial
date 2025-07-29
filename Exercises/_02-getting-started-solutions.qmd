@@ -13,7 +13,7 @@ library(gt)
 ```{r}
 #| label: sol-00-01
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   count(csd_type)
@@ -24,7 +24,7 @@ towny %>%
 ```{r}
 #| label: sol-00-02
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   count(csd_type, status)
@@ -35,7 +35,7 @@ towny %>%
 ```{r}
 #| label: sol-00-03
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   count(csd_type) %>%
@@ -47,7 +47,7 @@ towny %>%
 ```{r}
 #| label: sol-00-04
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   count(csd_type, status) %>%
@@ -60,7 +60,7 @@ towny %>%
 ```{r}
 #| label: sol-00-05
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   summarize(mean_pop = mean(population_2021, na.rm = TRUE))
@@ -71,7 +71,7 @@ towny %>%
 ```{r}
 #| label: sol-00-06
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   group_by(csd_type) %>%
@@ -83,7 +83,7 @@ towny %>%
 ```{r}
 #| label: sol-00-07
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 towny %>%
   summarize(across(starts_with("population"), ~ mean(.x, na.rm = TRUE)))
@@ -94,7 +94,7 @@ towny %>%
 ```{r}
 #| label: sol-00-08
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 t.test(towny$population_1996, towny$population_2016, paired = TRUE)
 ```
@@ -104,7 +104,7 @@ or
 ```{r}
 #| label: sol-00-08-alt
 #| code-fold: true
-#| code-summary: "Show another solution"
+#| code-summary: "Show code (another way)"
 
 t.test(population_1996 - population_2016 ~ 1, data = towny)
 ```

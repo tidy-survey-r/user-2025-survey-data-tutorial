@@ -39,7 +39,7 @@ recs_des <- recs_2020 %>%
 ```{r}
 #| label: testing-sol-1
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 recs_des %>%
   filter(!is.na(SummerTempDay), !is.na(WinterTempDay)) %>%
@@ -51,7 +51,7 @@ recs_des %>%
 ```{r}
 #| label: testing-sol-2
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 recs_des %>%
   svyttest(I(TOTALDOL - 2036) ~ 0, design = .)
@@ -64,7 +64,7 @@ recs_des %>%
 ```{r}
 #| label: testing-sol-3
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   filter(!is.na(PartyID), !is.na(EarlyVote2020)) %>%
@@ -83,7 +83,7 @@ anes_des %>%
 ```{r}
 #| label: testing-sol-4
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 anes_des %>%
   filter(!is.na(PartyID), !is.na(TrustGovernment)) %>%
@@ -102,7 +102,7 @@ anes_des %>%
 ```{r}
 #| label: testing-sol-5
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 
 # Hint - you'll need the anes_des object
 
@@ -125,7 +125,7 @@ anes_des %>%
 ```{r}
 #| label: testing-sol-6
 #| code-fold: true
-#| code-summary: "Show the solution"
+#| code-summary: "Show code"
 #|
 recs_des %>%
   group_by(Region) %>%
