@@ -10,12 +10,6 @@ website:
   page-navigation: true
   favicon: images/favicon.png
   search: false
-  announcement:
-    icon: info-circle
-    dismissable: true
-    content: "Join us at useR on August 8, 2025 for our workshop: Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}. [Register here!](https://user2025.r-project.org/register)"
-    type: primary
-    position: below-navbar
   sidebar:
     background: "#ecf3f9"
     logo: "images/logo.png"

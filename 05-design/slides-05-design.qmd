@@ -255,8 +255,10 @@ as_survey_rep(
   variables = NULL, # defaults to all in .data
   repweights = NULL, # Variables specifying the replication weights
   weights = NULL, # Variable specifying the analytic/main weight
-  type = c("BRR", "Fay", "JK1", "JKn", "bootstrap",
-    "successive-difference", "ACS", "other"), # Type of replication weight
+  type = c(
+    "BRR", "Fay", "JK1", "JKn", "bootstrap",
+    "successive-difference", "ACS", "other"
+  ), # Type of replication weight
   combined_weights = TRUE, # TRUE if repweights already include sampling weights, usually TRUE
   rho = NULL, # Shrinkage factor for Fay's method
   bootstrap_average = NULL, # For type="bootstrap", if the bootstrap weights have been averaged, gives the number of iterations averaged over
@@ -349,9 +351,7 @@ recs_des <- recs_2020 %>%
     type = "JK1", #<3>
     scale = 59 / 60, #<4>
     mse = TRUE #<5>
-  ) 
-
-
+  )
 ```
 
 

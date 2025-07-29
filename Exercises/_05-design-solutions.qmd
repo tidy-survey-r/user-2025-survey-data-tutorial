@@ -1,0 +1,54 @@
+
+```{r}
+#| label: sol-load-packages
+#| message: false
+#| warning: false
+#| include: false
+library(dplyr)
+library(srvyr)
+library(srvyrexploR)
+```
+
+In these exercises, you will be given a study and the data. How would you create the survey object with design variables or replicate weights, as applicable?
+
+1.  California Health Interview Survey (CHIS) - 2023
+
+    -   [CHIS Design](https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/chis-design-and-methods/chis-design)
+    -   [CHIS Resources](https://healthpolicy.ucla.edu/our-work/california-health-interview-survey-chis/access-chis-data)
+    -   Create the survey object using the data.
+    
+```{r}
+#| label: design-sol-1
+#| code-fold: true
+#| code-summary: "Show code"
+
+chis_des <-
+  chis_2023 %>%
+  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type = "other", scale = 1, rscales = 1, mse = TRUE)
+
+# or
+chis_des2 <-
+  chis_2023 %>%
+  as_survey_rep(weights = RAKEDW0, repweights = RAKEDW1:RAKEDW80, type = "JKn", scale = 1, rscales = 1, mse = TRUE)
+
+chis_des
+```
+
+    
+2. National Survey on Drug Use and Health (NSDUH) - 2023
+
+    - [NSDUH Methodology](https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/methodology)
+    - [NSDUH Download Data Files](https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/datafiles)
+    - Create the survey object using the data.
+    
+```{r}
+#| label: design-sol-2
+#| code-fold: true
+#| code-summary: "Show code"
+
+nsduh_des <-
+  nsduh_2023 %>%
+  as_survey_design(weights = ANALWT2_C, strata = VESTR_C, ids = VEREP, nest = TRUE)
+
+nsduh_des
+```

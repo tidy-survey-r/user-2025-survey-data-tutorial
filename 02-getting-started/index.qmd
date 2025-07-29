@@ -13,4 +13,11 @@ backgroundcolor: "white"
 
 ## Your Turn
 
-{{< include ../Exercises/02-getting-started-exercises.qmd >}}
+{{< include ../Exercises/_02-getting-started-exercises.qmd >}}
+
+## Solutions
+
+<details>
+  <summary>See the solutions</summary>
+  {{< include ../Exercises/_02-getting-started-solutions.qmd >}}
+</details>

@@ -10,7 +10,7 @@ title-slide-attributes:
 #| label: load-pkgs
 #| echo: false
 
-###Added this just to get my sections to run, but will want to move into a section where we talk about what to install and get running.
+### Added this just to get my sections to run, but will want to move into a section where we talk about what to install and get running.
 
 
 library(tidyverse)
@@ -42,7 +42,7 @@ anes_des <- anes_adjwgt %>%
     nest = TRUE
   )
 
-options(width=77)
+options(width = 77)
 ```
 
 # t-tests {background-color='{{< brand color secondary >}}'}
@@ -80,9 +80,11 @@ Syntax:
 #| label: syntax-ttest-1
 #| eval: false
 
-svyttest(formula,
-         design,
-         ...)
+svyttest(
+  formula,
+  design,
+  ...
+)
 ```
 
 ::: {.notes}
@@ -96,8 +98,9 @@ svyttest(formula,
 #| error: true
 
 recs_des %>%
-  svyttest(SummerTempNight - 68 ~ 0, 
-           na.rm = TRUE)
+  svyttest(SummerTempNight - 68 ~ 0,
+    na.rm = TRUE
+  )
 ```
 
 ## t-test syntax
@@ -111,9 +114,11 @@ Syntax:
 #| eval: false
 #| code-line-numbers: "2"
 
-svyttest(formula,
-         design,
-         ...)
+svyttest(
+  formula,
+  design,
+  ...
+)
 ```
 
 ::: {.notes}
@@ -130,7 +135,6 @@ Let's walk through an example using the `towny` data.
 #| label: dot-notation-0
 
 towny
-
 ```
 
 ## Dot notation 
@@ -141,7 +145,6 @@ Using the `towny` data, let's filter to only cities.
 #| label: dot-notation-1
 
 filter(towny, csd_type == "city")
-
 ```
 
 ## Dot notation
@@ -155,7 +158,6 @@ Using the `towny` data, let's filter to only cities.
 
 filter(towny, csd_type == "city")
 towny %>% filter(csd_type == "city")
-
 ```
 
 ```{r}
@@ -163,7 +165,6 @@ towny %>% filter(csd_type == "city")
 #| echo: false
 
 towny %>% filter(csd_type == "city")
-
 ```
 
 ## Dot notation 
@@ -185,7 +186,6 @@ towny %>% filter(., csd_type == "city")
 #| echo: false
 
 towny %>% filter(., csd_type == "city")
-
 ```
 
 ## Dot notation 
@@ -208,7 +208,6 @@ towny %>% filter(.data = ., csd_type == "city")
 #| echo: false
 
 towny %>% filter(.data = ., csd_type == "city")
-
 ```
 
 # Example <br>one-sample t-test {background-color='{{< brand color blue >}}'}
@@ -231,8 +230,8 @@ Test if the average U.S. household sets its temperature at a value different fro
 #| code-line-numbers: '|3|4'
 recs_des %>%
   svyttest(
-    formula = SummerTempNight - 68 ~ 0, 
-    design = ., 
+    formula = SummerTempNight - 68 ~ 0,
+    design = .,
     na.rm = TRUE
   )
 ```
@@ -280,7 +279,7 @@ Test if the electricity expenditure is significantly different for homes with an
 recs_des %>%
   svyttest(
     formula = DOLLAREL ~ ACUsed,
-    design = ., 
+    design = .,
     na.rm = TRUE
   )
 ```
@@ -297,7 +296,7 @@ Test if the electricity expenditure is significantly different for homes with an
 recs_des %>%
   svyttest(
     formula = DOLLAREL ~ ACUsed,
-    design = ., 
+    design = .,
     na.rm = TRUE
   )
 ```
@@ -318,7 +317,7 @@ Do U.S. households set their thermostat differently at night in the summer and w
 recs_des %>%
   svyttest(
     formula = SummerTempNight - WinterTempNight ~ 0,
-    design = ., 
+    design = .,
     na.rm = TRUE
   )
 ```
@@ -332,7 +331,7 @@ recs_des %>%
 #| label: ttest-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 
@@ -365,10 +364,11 @@ There are two functions that we use to compare proportions:
 #| code-line-numbers: "|2|3"
 
 svygofchisq(formula,
-            p,
-            design,
-            na.rm=TRUE,
-            ...)
+  p,
+  design,
+  na.rm = TRUE,
+  ...
+)
 ```
 
 ## Syntax for tests of independence and homogeneity
@@ -377,13 +377,16 @@ svygofchisq(formula,
 #| label: syntax-chisq-2
 #| eval: false
 #| code-line-numbers: "|3,4|2"
-#| 
+#|
 svychisq(formula,
-         design, 
-         statistic = c("F",  "Chisq", "Wald", "adjWald", 
-                       "lincom", "saddlepoint"),
-         na.rm=TRUE,
-         ...)
+  design,
+  statistic = c(
+    "F", "Chisq", "Wald", "adjWald",
+    "lincom", "saddlepoint"
+  ),
+  na.rm = TRUE,
+  ...
+)
 ```
 
 # Example <br>goodness-of-fit test {background-color='{{< brand color blue >}}'}
@@ -422,16 +425,17 @@ Let's collapse Bachelor's and Graduate degrees into a single category for compar
 #| label: chisq-gof-educ2
 
 anes_des_educ <- anes_des %>%
-  mutate(Education2 = 
-           fct_collapse(Education,
-                        "Bachelor or Higher" = c("Bachelor's","Graduate"))
-         )
+  mutate(
+    Education2 =
+      fct_collapse(Education,
+        "Bachelor or Higher" = c("Bachelor's", "Graduate")
+      )
+  )
 
 anes_des_educ %>%
   drop_na(Education2) %>%
   group_by(Education2) %>%
   summarize(p = survey_mean())
-
 ```
 
 
@@ -448,7 +452,6 @@ anes_des_educ %>%
     design = .,
     na.rm = TRUE
   )
-
 ```
 
 ## Results: goodness-of-fit test
@@ -482,9 +485,8 @@ anes_des_educ %>%
     width = 0.25
   ) +
   theme_bw() +
-  scale_color_manual(name = "Type", values = c("#ff8484","#0b3954")) +
+  scale_color_manual(name = "Type", values = c("#ff8484", "#0b3954")) +
   theme(legend.position = "bottom", legend.title = element_blank())
-
 ```
 
 # Example <br> test of independence {background-color='{{< brand color blue >}}'}
@@ -521,7 +523,7 @@ anes_des %>%
 #| label: chisq-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Analysis of Variance (ANOVA) {background-color='{{< brand color secondary >}}'}
@@ -547,7 +549,6 @@ svyglm(
   na.action = na.omit,
   df.resid = NULL
 )
-
 ```
 
 ## Example: ANOVA
@@ -559,10 +560,11 @@ svyglm(
 #| label: anova-ex
 
 recs_des %>%
-  svyglm(formula = SummerTempNight ~ Region,
-         design = .) %>% 
+  svyglm(
+    formula = SummerTempNight ~ Region,
+    design = .
+  ) %>%
   tidy()
-
 ```
 
 # Your Turn {background-color='{{< brand color pink >}}'}
@@ -574,5 +576,5 @@ recs_des %>%
 #| label: anova-ex-clock
 #| echo: false
 # 5 minutes, warning at 2 minutes
-countdown::countdown(minutes = 5, seconds = 0, play_sound = TRUE, warn_when=2*60)
+countdown::countdown(minutes = 5, seconds = 0, play_sound = TRUE, warn_when = 2 * 60)
 ```
