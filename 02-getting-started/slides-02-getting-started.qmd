@@ -9,10 +9,9 @@ title-slide-attributes:
 # Warm Up {background-color='{{< brand color secondary >}}'}
 
 ## Posit Cloud
-<!--TODO: Update this with Posit Cloud info-->
 <!--TODO: Work individually?-->
 
-- We will be using Posit Cloud for exercises
+- We will be using Posit Cloud for exercises: bit.ly/user-survey-tutorial 
   - Posit Cloud has the same features and appearance as RStudio for ease of use
 - Access the project and files via our link
 - Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
