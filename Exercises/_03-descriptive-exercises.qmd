@@ -73,7 +73,7 @@ recs_des <- recs_2020 %>%
 # Hint: The variable VotedPres2016 indicates whether someone voted in 2016.
 ```
 
-5. **Advanced bonus exercise** What percentage of people used air-conditioning (A/C) in each state according to the RECS data? Extra bonus: Make a plot or map of this data by state
+5. **Advanced bonus exercise** What percentage of people used air-conditioning (A/C) in each state according to the RECS data? Extra bonus: Make a plot or map of this data by state - the **usmap** package may be useful.
 
 ```{r}
 # Hint: The variable `state_postal` indicates the state and `ACUsed` indicates whether the household used A/C
@@ -106,7 +106,7 @@ recs_des <- recs_2020 %>%
 # Hint: use the variables `SummerTempNight` and `SummerTempDay`
 ```
 
-10. What is the 1st, 2nd, and 3rd quartile of money spent on energy by Building America (BA) climate zone?
+10. What is the 1st, 2nd, and 3rd quartile of money spent on energy by Building America (BA) climate zone? Include the national estimates as well.
 
 ```{r}
 # Hint: `TOTALDOL` indicates the total amount spent on all fuel, and `ClimateRegion_BA` indicates the BA climate zones.

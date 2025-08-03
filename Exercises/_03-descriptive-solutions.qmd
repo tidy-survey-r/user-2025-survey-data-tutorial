@@ -55,7 +55,6 @@ anes_des %>%
 #| code-summary: "Show code"
 
 anes_des %>%
-  filter(!is.na(PartyID)) %>%
   group_by(PartyID) %>%
   summarize(
     p = survey_prop()
@@ -73,7 +72,6 @@ anes_des %>%
 anes_des %>%
   filter(VotedPres2020 == "Yes") %>%
   group_by(PartyID) %>%
-  filter(!is.na(PartyID)) %>%
   summarize(
     p = survey_prop()
   ) %>%
@@ -91,11 +89,12 @@ anes_des %>%
   filter(!is.na(VotedPres2016), !is.na(VotedPres2020)) %>%
   group_by(interact(VotedPres2016, VotedPres2020)) %>%
   summarize(
-    p = survey_prop(vartype = "ci", prop_method = "likelihood")
-  )
+    p = survey_prop(vartype = "ci", prop_method = "logit")
+  ) %>%
+  filter(VotedPres2016 == "Yes", VotedPres2020 == "Yes")
 ```
 
-5. **Advanced bonus exercise** What percentage of people used air-conditioning (A/C) in each state according to the RECS data? Extra bonus: Make a plot or map of this data by state
+5. **Advanced bonus exercise** What percentage of people used air-conditioning (A/C) in each state according to the RECS data? Extra bonus: Make a plot or map of this data by state - the **usmap** package may be useful.
 
 ```{r}
 #| label: desc-sol-1-5
@@ -135,6 +134,7 @@ us_map() %>%
 #| code-summary: "Show code"
 
 anes_des %>%
+  filter(!is.na(EarlyVote2020)) %>%
   group_by(EarlyVote2020) %>%
   summarize(
     p = survey_mean(deff = TRUE)
