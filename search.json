@@ -11,7 +11,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#types-of-data-1",
     "title": "Descriptive Analysis",
     "section": "Types of data",
-    "text": "Types of data\n\n\nCategorical/nominal data: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)\nOrdinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)\nDiscrete data: variables that are counted or measured, such as number of children\nContinuous data: variables that are measured and whose values can lie anywhere on an interval, such as income"
+    "text": "Types of data\n\nCategorical/nominal data: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)\nOrdinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)\nDiscrete data: variables that are counted or measured, such as number of children\nContinuous data: variables that are measured and whose values can lie anywhere on an interval, such as income"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#types-of-data-2",
@@ -74,7 +74,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_count",
     "title": "Descriptive Analysis",
     "section": "survey_count()",
-    "text": "survey_count()\n\n\nCalculate the estimated observation counts for a given variable or combination of variables\nApplied to categorical data\nSometimes called “cross-tabulations” or “cross-tabs”\nsurvey_count() functions similarly to dplyr::count() in that it is NOT called within summarize()"
+    "text": "survey_count()\n\nCalculate the estimated observation counts for a given variable or combination of variables\nApplied to categorical data\nSometimes called “cross-tabulations” or “cross-tabs”\nsurvey_count() functions similarly to dplyr::count() in that it is NOT called within summarize()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_count-syntax",
@@ -102,7 +102,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_total",
     "title": "Descriptive Analysis",
     "section": "survey_total()",
-    "text": "survey_total()\n\n\nCalculate the estimated total quantity in a population\nApplied to continuous data\nMust be called within summarize()\nIf used with no x-variable, survey_total() calculates a population count estimate within summarize()"
+    "text": "survey_total()\n\nCalculate the estimated total quantity in a population\nApplied to continuous data\nMust be called within summarize()\nIf used with no x-variable, survey_total() calculates a population count estimate within summarize()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_total-syntax",
@@ -137,7 +137,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#unweighted",
     "title": "Descriptive Analysis",
     "section": "unweighted()",
-    "text": "unweighted()\n\n\nSometimes, it is helpful to calculate an unweighted estimate of a given variable\nunweighted() does not extrapolate to a population estimate\nUsed in conjunction with any {dplyr} functions"
+    "text": "unweighted()\n\nSometimes, it is helpful to calculate an unweighted estimate of a given variable\nunweighted() does not extrapolate to a population estimate\nUsed in conjunction with any {dplyr} functions"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#unweighted-example-1",
@@ -151,7 +151,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-and-survey_prop",
     "title": "Descriptive Analysis",
     "section": "survey_mean() and survey_prop()",
-    "text": "survey_mean() and survey_prop()\n\n\nCalculate the estimated observation counts for a given variable or combination of variables\nsurvey_mean() applied to continuous data, survey_prop() to catagorical data\nMust be called within summarize()"
+    "text": "survey_mean() and survey_prop()\n\nCalculate the estimated observation counts for a given variable or combination of variables\nsurvey_mean() applied to continuous data, survey_prop() to catagorical data\nMust be called within summarize()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-syntax",
@@ -214,7 +214,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_quantile-and-survey_median-quantiles-and-medians",
     "title": "Descriptive Analysis",
     "section": "survey_quantile() and survey_median(): Quantiles and Medians",
-    "text": "survey_quantile() and survey_median(): Quantiles and Medians\n\n\nCalculate quantiles at specific points\nBecause median is a special, common case of quantiles, there is the survey_median() function\nMust be called within summarize()"
+    "text": "survey_quantile() and survey_median(): Quantiles and Medians\n\nCalculate quantiles at specific points\nBecause median is a special, common case of quantiles, there is the survey_median() function\nMust be called within summarize()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_quantile-syntax",
@@ -242,7 +242,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr",
     "title": "Descriptive Analysis",
     "section": "survey_corr()",
-    "text": "survey_corr()\n\n\nMeasure the linear relationship between two continuous variables\nThe most commonly used method is Pearson’s correlation\nRanges between –1 and 1"
+    "text": "survey_corr()\n\nMeasure the linear relationship between two continuous variables\nThe most commonly used method is Pearson’s correlation\nRanges between –1 and 1"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-syntax",
@@ -263,7 +263,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#filter",
     "title": "Descriptive Analysis",
     "section": "filter()",
-    "text": "filter()\n\n\nSubpopulation analysis\nUse filter() to subset a survey object for analysis\nMust be done after creating the survey design object"
+    "text": "filter()\n\nSubpopulation analysis\nUse filter() to subset a survey object for analysis\nMust be done after creating the survey design object"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#filter-example-1",
@@ -277,7 +277,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#cascade",
     "title": "Descriptive Analysis",
     "section": "cascade()",
-    "text": "cascade()\n\n\nCreates a summary row for the estimate representing the entire population\nThe {srvyr} package has the convenient cascade() function\nUsed instead of summarize()"
+    "text": "cascade()\n\nCreates a summary row for the estimate representing the entire population\nThe {srvyr} package has the convenient cascade() function\nUsed instead of summarize()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#cascade-syntax",
@@ -471,7 +471,7 @@
     "href": "05-design/slides-05-design.html#determining-the-design",
     "title": "Sampling Designs in {srvyr}",
     "section": "Determining the design",
-    "text": "Determining the design\n\n\nCheck the documentation such as methodology, design, analysis guide, or technical documentation\nDocumentation will indicate the variables needed to specify the design. Look for:\n\nweight (almost always)\nstrata and/or clusters/PSUs. Sometimes pseudo-strata and pseudo-cluster OR\nreplicate weights (this is used instead of strata/clusters for analysis)\nFinite population correction or population sizes (uncommon)\n\nDocumentation may include SAS, SUDAAN, Stata and/or R syntax\n\n\n\n\nWe will show both ANES and RECS examples when diving into code"
+    "text": "Determining the design\n\nCheck the documentation such as methodology, design, analysis guide, or technical documentation\nDocumentation will indicate the variables needed to specify the design. Look for:\n\nweight (almost always)\nstrata and/or clusters/PSUs. Sometimes pseudo-strata and pseudo-cluster OR\nreplicate weights (this is used instead of strata/clusters for analysis)\nFinite population correction or population sizes (uncommon)\n\nDocumentation may include SAS, SUDAAN, Stata and/or R syntax\n\n\n\nWe will show both ANES and RECS examples when diving into code"
   },
   {
     "objectID": "05-design/slides-05-design.html#as_survey_design-syntax",
@@ -646,7 +646,7 @@
     "href": "04-stattesting/slides-04-stattesting.html#t-tests-1",
     "title": "Statistical Testing",
     "section": "t-tests",
-    "text": "t-tests\n\nDetermine if one proportion or mean is statistically different from another\n\n\n\nDifferent types:\n\nOne-Sample: Comparing our data to a set value\nTwo-Sample: Comparing two sets of data\n\nUnpaired: Comparing two values for two different groups\nPaired: Comparing two values for the same unit\n\n\n\n\n\n\nUnpaired Examples:\n\nA/B testing\ncompare test scores for two different classrooms taught by two different instructors\n\nPaired Examples:\n\ncompare test scores for each student at the beginning and end of class\nwater samples from a river before and after a treatment or environmental change"
+    "text": "t-tests\n\nDetermine if one proportion or mean is statistically different from another\n\n\nDifferent types:\n\nOne-Sample: Comparing our data to a set value\nTwo-Sample: Comparing two sets of data\n\nUnpaired: Comparing two values for two different groups\nPaired: Comparing two values for the same unit\n\n\n\n\n\nUnpaired Examples:\n\nA/B testing\ncompare test scores for two different classrooms taught by two different instructors\n\nPaired Examples:\n\ncompare test scores for each student at the beginning and end of class\nwater samples from a river before and after a treatment or environmental change"
   },
   {
     "objectID": "04-stattesting/slides-04-stattesting.html#t-test-syntax",
@@ -709,7 +709,7 @@
     "href": "04-stattesting/slides-04-stattesting.html#example-one-sample-t-test-1",
     "title": "Statistical Testing",
     "section": "Example: one-sample t-test",
-    "text": "Example: one-sample t-test\n\n\none sample t-tests compare data against a single value\nStephanie usually sets her home to 68°F at night during the summer. Is this different from the average household in the U.S.?\nUse SummerTempNight"
+    "text": "Example: one-sample t-test\n\none sample t-tests compare data against a single value\nStephanie usually sets her home to 68°F at night during the summer. Is this different from the average household in the U.S.?\nUse SummerTempNight"
   },
   {
     "objectID": "04-stattesting/slides-04-stattesting.html#example-one-sample-t-test-2",
@@ -730,7 +730,7 @@
     "href": "04-stattesting/slides-04-stattesting.html#example-unpaired-two-sample-t-test-1",
     "title": "Statistical Testing",
     "section": "Example: unpaired two-sample t-test",
-    "text": "Example: unpaired two-sample t-test\n\n\nTwo-sample t-test compares data from two populations\nOn average, is there a significant different electric bill for households with and without air-conditioning?\nUsing DOLLAREL for the electricity bill and ACUsed to determine if households have air-conditioning"
+    "text": "Example: unpaired two-sample t-test\n\nTwo-sample t-test compares data from two populations\nOn average, is there a significant different electric bill for households with and without air-conditioning?\nUsing DOLLAREL for the electricity bill and ACUsed to determine if households have air-conditioning"
   },
   {
     "objectID": "04-stattesting/slides-04-stattesting.html#example-unpaired-two-sample-t-test-2",
@@ -758,7 +758,7 @@
     "href": "04-stattesting/slides-04-stattesting.html#chi-square-tests-1",
     "title": "Statistical Testing",
     "section": "Chi-square tests",
-    "text": "Chi-square tests\n\nCompare multiple proportions to see if they are statistically different from each other\n\n\n\nDifferent types:\n\nGoodness-of-fit tests compare observed data to expected data\nTests of independence compare two types of observed data to see if there is a relationship\nTests of homogeneity compare two distributions to see if they match"
+    "text": "Chi-square tests\n\nCompare multiple proportions to see if they are statistically different from each other\n\n\nDifferent types:\n\nGoodness-of-fit tests compare observed data to expected data\nTests of independence compare two types of observed data to see if there is a relationship\nTests of homogeneity compare two distributions to see if they match"
   },
   {
     "objectID": "04-stattesting/slides-04-stattesting.html#chi-square-syntax",
@@ -863,7 +863,7 @@
     "href": "01-introduction/slides-01-intro.html#prerequisites---tidyverse-familiarity",
     "title": "Complex Survey Data Analysis",
     "section": "Prerequisites - tidyverse familiarity",
-    "text": "Prerequisites - tidyverse familiarity\n\n\nSelecting a set of variables (select(starts_with(\"TOT\")))\nCreating new variables with mutate()\nSummarizing data with summarize()\nUsing group_by() with summarize() to create group summaries"
+    "text": "Prerequisites - tidyverse familiarity\n\nSelecting a set of variables (select(starts_with(\"TOT\")))\nCreating new variables with mutate()\nSummarizing data with summarize()\nUsing group_by() with summarize() to create group summaries"
   },
   {
     "objectID": "01-introduction/slides-01-intro.html#background",
@@ -961,7 +961,7 @@
     "href": "02-getting-started/slides-02-getting-started.html#american-national-election-studies-anes-2020",
     "title": "Getting Started",
     "section": "American National Election Studies (ANES) 2020",
-    "text": "American National Election Studies (ANES) 2020\n\n\nPre- and post-election surveys fielded almost every 2 years since 1948\nTopics include voter registration status, candidate preference, opinions on country and government, party and ideology affiliation, opinions on policy, news sources, and more\nCollaboration of Stanford, University of Michigan - funding by the National Science Foundation\nTarget Population: US citizens, 18 and older living in US\nMode: Web, videoconference, or telephone\nSample Information: Pseudo-strata and pseudo-cluster included for variance estimation\n\nhttps://electionstudies.org/"
+    "text": "American National Election Studies (ANES) 2020\n\nPre- and post-election surveys fielded almost every 2 years since 1948\nTopics include voter registration status, candidate preference, opinions on country and government, party and ideology affiliation, opinions on policy, news sources, and more\nCollaboration of Stanford, University of Michigan - funding by the National Science Foundation\nTarget Population: US citizens, 18 and older living in US\nMode: Web, videoconference, or telephone\nSample Information: Pseudo-strata and pseudo-cluster included for variance estimation\n\nhttps://electionstudies.org/"
   },
   {
     "objectID": "02-getting-started/slides-02-getting-started.html#american-national-election-studies-anes-2020-1",
@@ -975,7 +975,7 @@
     "href": "02-getting-started/slides-02-getting-started.html#residential-energy-consumption-survey-recs-2015",
     "title": "Getting Started",
     "section": "Residential Energy Consumption Survey (RECS) 2015",
-    "text": "Residential Energy Consumption Survey (RECS) 2015\n\n\nEnergy consumption/expenditures collected through energy suppliers\nFielded 14 times between 1950 and 2015\nTopics include appliances, electronics, heating, a/c, temperatures, water heating, lighting, energy bills, respondent demographics, and energy assistance\nFunded by the Energy Information Administration\nTarget Population: Primary occupied housing units in the US\nMode: In-person, paper, and web interview mode\nSample Information: BRR Replicate weights included for variance estimation\n\nhttps://www.eia.gov/consumption/residential/index.php"
+    "text": "Residential Energy Consumption Survey (RECS) 2015\n\nEnergy consumption/expenditures collected through energy suppliers\nFielded 14 times between 1950 and 2015\nTopics include appliances, electronics, heating, a/c, temperatures, water heating, lighting, energy bills, respondent demographics, and energy assistance\nFunded by the Energy Information Administration\nTarget Population: Primary occupied housing units in the US\nMode: In-person, paper, and web interview mode\nSample Information: BRR Replicate weights included for variance estimation\n\nhttps://www.eia.gov/consumption/residential/index.php"
   },
   {
     "objectID": "02-getting-started/slides-02-getting-started.html#residential-energy-consumption-survey-recs-2015-1",
@@ -989,7 +989,7 @@
     "href": "02-getting-started/slides-02-getting-started.html#design-objects-1",
     "title": "Getting Started",
     "section": "Design Objects",
-    "text": "Design Objects\nWe will be covering survey design in more detail later in the workshop!\n\n\nBackbone for survey analysis\nSpecify the sampling design, weights, and other necessary information to account for errors in the data\nSurvey analysis and inference should be performed with the survey design objects, not the original survey data"
+    "text": "Design Objects\nWe will be covering survey design in more detail later in the workshop!\n\nBackbone for survey analysis\nSpecify the sampling design, weights, and other necessary information to account for errors in the data\nSurvey analysis and inference should be performed with the survey design objects, not the original survey data"
   },
   {
     "objectID": "02-getting-started/slides-02-getting-started.html#american-national-election-studies-design-object",
@@ -1024,7 +1024,7 @@
     "href": "02-getting-started/slides-02-getting-started.html#why-use-srvyr-over-survey",
     "title": "Getting Started",
     "section": "Why use {srvyr} over {survey}?",
-    "text": "Why use {srvyr} over {survey}?\nThe {srvyr} package builds on the {survey} package by providing wrappers for functions that align with the tidyverse philosophy.\n\n\nUse the pipe function %&gt;% or |&gt;\nAbility to use tidy selection\nFunctions follow snake_case convention"
+    "text": "Why use {srvyr} over {survey}?\nThe {srvyr} package builds on the {survey} package by providing wrappers for functions that align with the tidyverse philosophy.\n\nUse the pipe function %&gt;% or |&gt;\nAbility to use tidy selection\nFunctions follow snake_case convention"
   },
   {
     "objectID": "02-getting-started/slides-02-getting-started.html#apply-dplyr-functions-to-survey-objects",
@@ -1108,7 +1108,7 @@
     "href": "02-getting-started/slides-02-getting-started.html#overview-of-survey-analysis-using-srvyr-package",
     "title": "Getting Started",
     "section": "Overview of Survey Analysis using {srvyr} Package",
-    "text": "Overview of Survey Analysis using {srvyr} Package\n\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()\nSubset data (if needed) using filter() (to create subpopulations)\nSpecify domains of analysis using group_by()\nWithin summarize(), specify variables to calculate, including means, totals, proportions, quantiles, and more"
+    "text": "Overview of Survey Analysis using {srvyr} Package\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()\nSubset data (if needed) using filter() (to create subpopulations)\nSpecify domains of analysis using group_by()\nWithin summarize(), specify variables to calculate, including means, totals, proportions, quantiles, and more"
   },
   {
     "objectID": "02-getting-started/slides-02-getting-started.html#wrap-up-1",
