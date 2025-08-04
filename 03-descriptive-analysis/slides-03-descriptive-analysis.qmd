@@ -340,7 +340,7 @@ Open `descriptive_01.qmd`
 #| label: desc1-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Means, proportions, and quantiles {background-color='{{< brand color secondary >}}'}
@@ -623,7 +623,7 @@ Open `descriptive_02.qmd`
 #| label: desc2-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Correlations {background-color='{{< brand color secondary >}}'}
@@ -831,7 +831,7 @@ Open `descriptive_03.qmd`
 #| label: desc3-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Descriptive analysis summary {background-color='{{< brand color secondary >}}'}
