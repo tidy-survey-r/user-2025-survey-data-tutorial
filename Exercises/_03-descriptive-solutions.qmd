@@ -1,0 +1,239 @@
+
+```{r}
+#| label: desc-sol-set-up
+#| message: false
+#| warning: false
+#| include: false
+library(tidyverse)
+library(srvyr)
+library(srvyrexploR)
+```
+
+
+```{r}
+#| label: desc-sol-design-obj
+#| include: false
+
+anes_des <- anes_2020 %>%
+  mutate(Weight = V200010b / sum(V200010b) * 231034125) %>%
+  as_survey_design(
+    weights = Weight,
+    strata = V200010d,
+    ids = V200010c,
+    nest = TRUE
+  )
+
+recs_des <- recs_2020 %>%
+  as_survey_rep(
+    weights = NWEIGHT,
+    repweights = NWEIGHT1:NWEIGHT60,
+    type = "JK1",
+    scale = 59 / 60,
+    mse = TRUE
+  )
+```
+
+### Exercises - Part 1
+
+1. How many females have a graduate degree (according to the ANES data)?
+
+```{r}
+#| label: desc-sol-1-1
+#| code-fold: true
+#| code-summary: "Show code"
+
+anes_des %>%
+  survey_count(Gender, Education) %>%
+  filter(Gender == "Female", Education == "Graduate")
+```
+
+2. What percentage of people identify as “Strong Democrat”? 
+
+```{r}
+#| label: desc-sol-1-2
+#| code-fold: true
+#| code-summary: "Show code"
+
+anes_des %>%
+  group_by(PartyID) %>%
+  summarize(
+    p = survey_prop()
+  ) %>%
+  filter(PartyID == "Strong democrat")
+```
+
+3. What percentage of people who voted in the 2020 election identify as “Strong Republican”? 
+
+```{r}
+#| label: desc-sol-1-3
+#| code-fold: true
+#| code-summary: "Show code"
+
+anes_des %>%
+  filter(VotedPres2020 == "Yes") %>%
+  group_by(PartyID) %>%
+  summarize(
+    p = survey_prop()
+  ) %>%
+  filter(PartyID == "Strong republican")
+```
+
+4. What percentage of people voted in both the 2016 election and the 2020 election? Include the logit confidence interval. 
+
+```{r}
+#| label: desc-sol-1-4
+#| code-fold: true
+#| code-summary: "Show code"
+
+anes_des %>%
+  filter(!is.na(VotedPres2016), !is.na(VotedPres2020)) %>%
+  group_by(interact(VotedPres2016, VotedPres2020)) %>%
+  summarize(
+    p = survey_prop(vartype = "ci", prop_method = "logit")
+  ) %>%
+  filter(VotedPres2016 == "Yes", VotedPres2020 == "Yes")
+```
+
+5. **Advanced bonus exercise** What percentage of people used air-conditioning (A/C) in each state according to the RECS data? Extra bonus: Make a plot or map of this data by state - the **usmap** package may be useful.
+
+```{r}
+#| label: desc-sol-1-5
+#| code-fold: true
+#| code-summary: "Show code"
+
+ac_by_state <- recs_des %>%
+  group_by(state_postal) %>%
+  summarize(
+    PctAC = survey_mean(ACUsed * 100)
+  )
+
+ac_by_state
+
+library(usmap)
+
+us_map() %>%
+  left_join(ac_by_state, by = c("abbr" = "state_postal")) %>%
+  ggplot(aes(fill = PctAC)) +
+  geom_sf() +
+  ggthemes::theme_map() +
+  scale_fill_viridis_c(name = "A/C Used (%)") +
+  labs(
+    title = "Percent of housing units using air-conditioning, 2020",
+    caption = "U.S. Energy Information Administration, 2024. Residential Energy Consumption 2020"
+  )
+```
+
+
+### Exercises - Part 2
+
+6. What is the design effect for the proportion of people who voted early? 
+
+```{r}
+#| label: desc-sol-2-1
+#| code-fold: true
+#| code-summary: "Show code"
+
+anes_des %>%
+  filter(!is.na(EarlyVote2020)) %>%
+  group_by(EarlyVote2020) %>%
+  summarize(
+    p = survey_mean(deff = TRUE)
+  ) %>%
+  filter(EarlyVote2020 == "Yes")
+```
+
+7. What is the median temperature people set their thermostats to at night during the winter (using the RECS data)?
+
+```{r}
+#| label: desc-sol-2-2
+#| code-fold: true
+#| code-summary: "Show code"
+
+recs_des %>%
+  summarize(
+    med_night_winter_temp = survey_median(WinterTempNight, na.rm = TRUE)
+  )
+```
+
+8. People sometimes set their temperature differently over different seasons and during the day. What median temperatures do people set their thermostats to in the summer and winter, both during the day and at night? Include confidence intervals.
+
+```{r}
+#| label: desc-sol-2-3
+#| code-fold: true
+#| code-summary: "Show code"
+
+ests_med_temps <-
+  recs_des %>%
+  summarize(
+    across(contains("Temp"), ~ survey_median(.x, na.rm = TRUE, vartype = "ci"))
+  )
+
+ests_med_temps
+
+ests_med_temps %>%
+  pivot_longer(cols = everything()) %>%
+  separate_wider_delim(name, delim = "_", names = c("Var", "EstType"), too_few = "align_start") %>%
+  mutate(
+    EstType = if_else(is.na(EstType), "Median", EstType)
+  ) %>%
+  pivot_wider(names_from = EstType, values_from = value)
+```
+
+9. What is the correlation between the temperature that people set their temperature at during the night and during the day in the summer?
+
+```{r}
+#| label: desc-sol-2-4
+#| code-fold: true
+#| code-summary: "Show code"
+
+recs_des %>%
+  summarize(
+    rho_temps = survey_corr(SummerTempNight, SummerTempDay, na.rm = TRUE)
+  )
+```
+
+10. What is the 1st, 2nd, and 3rd quartile of money spent on energy by Building America (BA) climate zone? Include the national estimates as well.
+
+```{r}
+#| label: desc-sol-2-5
+#| code-fold: true
+#| code-summary: "Show code"
+
+recs_des %>%
+  group_by(ClimateRegion_BA) %>%
+  cascade(
+    EnergyCost = survey_quantile(TOTALDOL, quantiles = c(.25, .5, .75)),
+    .fill = "National"
+  )
+```
+
+11. **Advanced bonus exercise** What is the average money spent on energy per square foot by state? Extra bonus: Make a plot or map of this data by state
+
+```{r}
+#| label: desc-sol-2-6
+#| code-fold: true
+#| code-summary: "Show code"
+
+energy_spend_by_state <- recs_des %>%
+  group_by(state_postal) %>%
+  summarize(
+    EnergyCost = survey_mean(TOTALDOL / TOTSQFT_EN)
+  )
+
+energy_spend_by_state
+
+library(usmap)
+
+us_map() %>%
+  left_join(energy_spend_by_state, by = c("abbr" = "state_postal")) %>%
+  ggplot(aes(fill = EnergyCost)) +
+  geom_sf() +
+  ggthemes::theme_map() +
+  scale_fill_viridis_c(name = "$/sq ft") +
+  labs(
+    title = "Average residential energy cost per square foot, 2020",
+    caption = "U.S. Energy Information Administration, 2024. Residential Energy Consumption 2020"
+  )
+```
+
+

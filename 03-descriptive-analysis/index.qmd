@@ -13,4 +13,11 @@ backgroundcolor: "white"
 
 ## Your Turn
 
-{{< include ../Exercises/03-descriptive-exercises.qmd >}}
+{{< include ../Exercises/_03-descriptive-exercises.qmd >}}
+
+## Solutions
+
+<details>
+  <summary>See the solutions</summary>
+  {{< include ../Exercises/_03-descriptive-solutions.qmd >}}
+</details>

@@ -9,10 +9,9 @@ title-slide-attributes:
 # Warm Up {background-color='{{< brand color secondary >}}'}
 
 ## Posit Cloud
-<!--TODO: Update this with Posit Cloud info-->
 <!--TODO: Work individually?-->
 
-- We will be using Posit Cloud for exercises
+- We will be using Posit Cloud for exercises: bit.ly/user-survey-tutorial 
   - Posit Cloud has the same features and appearance as RStudio for ease of use
 - Access the project and files via our link
 - Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
@@ -34,7 +33,7 @@ title-slide-attributes:
 #| label: opt-set
 #| echo: false
 
-options(width=77)
+options(width = 77)
 ```
 
 
@@ -387,10 +386,10 @@ towny %>%
 . . .
 
 ```{r}
-#| label: sv-non-svobj-print
+#| label: sv-non-svobj
+#| eval: true
 #| error: true
 #| echo: false
-<<sv-non-svobj>>
 ```
 
 # Survey Analysis Process {background-color='{{< brand color secondary >}}'}
@@ -456,9 +455,9 @@ towny %>%
 . . .
 
 ```{r}
-#| label: ex-1-outp
+#| label: ex-1-code-b
 #| echo: false
-<<ex-1-code-a>>
+#| eval: true
 ```
 
 ## Ex. 2
@@ -487,9 +486,9 @@ towny %>%
 . . .
 
 ```{r}
-#| label: ex-2-outp
+#| label: ex-2-code-b
 #| echo: false
-<<ex-2-code-b>>
+#| include: true
 ```
 
 ## Ex. 3
@@ -507,9 +506,9 @@ towny %>%
 . . .
 
 ```{r}
-#| label: ex-3-outp
+#| label: ex-3-code
 #| echo: false
-<<ex-3-code>>
+#| include: true
 ```
 
 ## Ex. 4
@@ -528,9 +527,9 @@ towny %>%
 . . .
 
 ```{r}
-#| label: ex-4-outp
+#| label: ex-4-code
 #| echo: false
-<<ex-4-code>>
+#| eval: true
 ```
 
 ## Ex. 5
@@ -547,9 +546,9 @@ towny %>%
 . . .
 
 ```{r}
-#| label: ex-5-outp
+#| label: ex-5-code
 #| echo: false
-<<ex-5-code>>
+#| eval: true
 ```
 
 ## Ex. 6
@@ -567,9 +566,9 @@ towny %>%
 . . .
 
 ```{r}
-#| label: ex-6-outp
+#| label: ex-6-code
 #| echo: false
-<<ex-6-code>>
+#| eval: true
 ```
 
 ## Ex. 7
@@ -580,7 +579,7 @@ What is the mean population of all of the municipalities in 1996, 2001, 2006, 20
 #| label: ex-7-code
 #| eval: false
 towny %>%
-  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE)))
+  summarize(across(starts_with("population"), ~ mean(.x, na.rm = TRUE)))
 ```
 
 . . .
@@ -589,8 +588,8 @@ towny %>%
 #| label: ex-7-outp-custprint
 #| echo: false
 towny %>%
-  summarize(across(starts_with("population"), ~mean(.x, na.rm = TRUE))) %>%
-  print(width=90)
+  summarize(across(starts_with("population"), ~ mean(.x, na.rm = TRUE))) %>%
+  print(width = 90)
 ```
 
 ## Ex. 8

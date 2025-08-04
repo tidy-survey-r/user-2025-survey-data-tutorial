@@ -165,13 +165,13 @@ recs_des <- recs_2020 %>%
 #| eval: false
 #| code-line-numbers: "|2|3|4|5|6|7|8"
 survey_count(
-   x,
-   ...,
-   wt = NULL,
-   sort = FALSE,
-   name = "n",
-   .drop = dplyr::group_by_drop_default(x),
-   vartype = c("se", "ci", "var", "cv")
+  x,
+  ...,
+  wt = NULL,
+  sort = FALSE,
+  name = "n",
+  .drop = dplyr::group_by_drop_default(x),
+  vartype = c("se", "ci", "var", "cv")
 )
 ```
 
@@ -340,7 +340,7 @@ Open `descriptive_01.qmd`
 #| label: desc1-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Means, proportions, and quantiles {background-color='{{< brand color secondary >}}'}
@@ -384,7 +384,7 @@ survey_prop(
   vartype = c("se", "ci", "var", "cv"),
   level = 0.95,
   proportion = TRUE,
-  prop_method = 
+  prop_method =
     c("logit", "likelihood", "asin", "beta", "mean", "xlogit"),
   deff = FALSE,
   df = NULL
@@ -534,7 +534,21 @@ recs_des %>%
   summarize(elec_bill = survey_mean(DOLLAREL))
 ```
 
-## `survey_quantile()` and `survey_median()`
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+* Open `03-descriptive-exercises.qmd`
+* Work through **Exercises - Part 1**
+
+```{r}
+#| label: descriptive-ex-clock-1
+#| echo: false
+# 10 minutes, warning at 5 minutes
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
+```
+
+# Quantiles and Medians {background-color='{{< brand color secondary >}}'}
+
+## `survey_quantile()` and `survey_median()`: Quantiles and Medians
 
 ::: incremental
 - Calculate quantiles at specific points
@@ -609,7 +623,7 @@ Open `descriptive_02.qmd`
 #| label: desc2-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Correlations {background-color='{{< brand color secondary >}}'}
@@ -817,7 +831,7 @@ Open `descriptive_03.qmd`
 #| label: desc3-ex-clock
 #| echo: false
 # 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when=5*60)
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Descriptive analysis summary {background-color='{{< brand color secondary >}}'}
@@ -840,3 +854,15 @@ The {srvyr} package has functions for calculating measures of distribution, cent
 - We create variables after creating the design object, running the functions on the `tbl_svy` object
 - `filter()` and `group_by()` precede the calculation functions, but still follow the design object
 - There are additional functions for unweighted analyses and calculating summary rows
+
+# Your Turn {background-color='{{< brand color pink >}}'}
+
+* Open `03-descriptive-exercises.qmd`
+* Work through **Exercises - Part 2**
+
+```{r}
+#| label: descriptive-ex-clock-2
+#| echo: false
+# 10 minutes, warning at 5 minutes
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
+```
