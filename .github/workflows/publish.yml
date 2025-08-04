@@ -18,6 +18,9 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 1.6.40
+          
+      - name: Install linux packages
+        run: sudo apt install cmake gdal-bin libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libgdal-dev libnode-dev libudunits2-dev libx11-dev pandoc
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2
