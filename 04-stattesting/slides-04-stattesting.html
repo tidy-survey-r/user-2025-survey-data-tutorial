@@ -253,9 +253,11 @@
 <p>Use the <code>svyttest()</code> function to compare two proportions or means.</p>
 <p>Syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">svyttest</span>(formula,</span>
-<span id="cb1-2"><a></a>         design,</span>
-<span id="cb1-3"><a></a>         ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">svyttest</span>(</span>
+<span id="cb1-2"><a></a>  formula,</span>
+<span id="cb1-3"><a></a>  design,</span>
+<span id="cb1-4"><a></a>  ...</span>
+<span id="cb1-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <ul>
@@ -277,8 +279,9 @@
 <h2>t-test syntax</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">svyttest</span>(SummerTempNight <span class="sc">-</span> <span class="dv">68</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
-<span id="cb2-3"><a></a>           <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a></a>  <span class="fu">svyttest</span>(SummerTempNight <span class="sc">-</span> <span class="dv">68</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb2-3"><a></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in formula[[3]] == 1 || formula[[3]] == 0: 'length = 60' in coercion to 'logical(1)'</code></pre>
 </div>
@@ -289,9 +292,11 @@
 <p>Use the <code>svyttest()</code> function to compare two proportions or means.</p>
 <p>Syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">svyttest</span>(formula,</span>
-<span id="cb4-2"><a></a>         design,</span>
-<span id="cb4-3"><a></a>         ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">svyttest</span>(</span>
+<span id="cb4-2"><a></a>  formula,</span>
+<span id="cb4-3"><a></a>  design,</span>
+<span id="cb4-4"><a></a>  ...</span>
+<span id="cb4-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <ul>
@@ -492,8 +497,8 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15" data-code-line-numbers="|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a></a>  <span class="fu">svyttest</span>(</span>
-<span id="cb15-3"><a></a>    <span class="at">formula =</span> SummerTempNight <span class="sc">-</span> <span class="dv">68</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
-<span id="cb15-4"><a></a>    <span class="at">design =</span> ., </span>
+<span id="cb15-3"><a></a>    <span class="at">formula =</span> SummerTempNight <span class="sc">-</span> <span class="dv">68</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb15-4"><a></a>    <span class="at">design =</span> .,</span>
 <span id="cb15-5"><a></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
 <span id="cb15-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -565,7 +570,7 @@ sample estimates:
 <div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">svyttest</span>(</span>
 <span id="cb18-3"><a></a>    <span class="at">formula =</span> DOLLAREL <span class="sc">~</span> ACUsed,</span>
-<span id="cb18-4"><a></a>    <span class="at">design =</span> ., </span>
+<span id="cb18-4"><a></a>    <span class="at">design =</span> .,</span>
 <span id="cb18-5"><a></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
 <span id="cb18-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -581,7 +586,7 @@ sample estimates:
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">svyttest</span>(</span>
 <span id="cb19-3"><a></a>    <span class="at">formula =</span> DOLLAREL <span class="sc">~</span> ACUsed,</span>
-<span id="cb19-4"><a></a>    <span class="at">design =</span> ., </span>
+<span id="cb19-4"><a></a>    <span class="at">design =</span> .,</span>
 <span id="cb19-5"><a></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
 <span id="cb19-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -626,7 +631,7 @@ difference in mean
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a></a>  <span class="fu">svyttest</span>(</span>
 <span id="cb21-3"><a></a>    <span class="at">formula =</span> SummerTempNight <span class="sc">-</span> WinterTempNight <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb21-4"><a></a>    <span class="at">design =</span> ., </span>
+<span id="cb21-4"><a></a>    <span class="at">design =</span> .,</span>
 <span id="cb21-5"><a></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
 <span id="cb21-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -652,7 +657,7 @@ sample estimates:
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_57939db3" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_dcd866f2" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -693,21 +698,26 @@ sample estimates:
 <h2>Syntax for goodness-of-fit tests</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">svygofchisq</span>(formula,</span>
-<span id="cb23-2"><a></a>            p,</span>
-<span id="cb23-3"><a></a>            design,</span>
-<span id="cb23-4"><a></a>            <span class="at">na.rm=</span><span class="cn">TRUE</span>,</span>
-<span id="cb23-5"><a></a>            ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a></a>  p,</span>
+<span id="cb23-3"><a></a>  design,</span>
+<span id="cb23-4"><a></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-5"><a></a>  ...</span>
+<span id="cb23-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="syntax-for-tests-of-independence-and-homogeneity" class="slide level2">
 <h2>Syntax for tests of independence and homogeneity</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|3,4|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">svychisq</span>(formula,</span>
-<span id="cb24-2"><a></a>         design, </span>
-<span id="cb24-3"><a></a>         <span class="at">statistic =</span> <span class="fu">c</span>(<span class="st">"F"</span>,  <span class="st">"Chisq"</span>, <span class="st">"Wald"</span>, <span class="st">"adjWald"</span>, </span>
-<span id="cb24-4"><a></a>                       <span class="st">"lincom"</span>, <span class="st">"saddlepoint"</span>),</span>
-<span id="cb24-5"><a></a>         <span class="at">na.rm=</span><span class="cn">TRUE</span>,</span>
-<span id="cb24-6"><a></a>         ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|3,4|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co">#|</span></span>
+<span id="cb24-2"><a></a><span class="fu">svychisq</span>(formula,</span>
+<span id="cb24-3"><a></a>  design,</span>
+<span id="cb24-4"><a></a>  <span class="at">statistic =</span> <span class="fu">c</span>(</span>
+<span id="cb24-5"><a></a>    <span class="st">"F"</span>, <span class="st">"Chisq"</span>, <span class="st">"Wald"</span>, <span class="st">"adjWald"</span>,</span>
+<span id="cb24-6"><a></a>    <span class="st">"lincom"</span>, <span class="st">"saddlepoint"</span></span>
+<span id="cb24-7"><a></a>  ),</span>
+<span id="cb24-8"><a></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-9"><a></a>  ...</span>
+<span id="cb24-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -772,15 +782,17 @@ sample estimates:
 <p>Let’s collapse Bachelor’s and Graduate degrees into a single category for comparison.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>anes_des_educ <span class="ot">&lt;-</span> anes_des <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a></a>  <span class="fu">mutate</span>(<span class="at">Education2 =</span> </span>
-<span id="cb27-3"><a></a>           <span class="fu">fct_collapse</span>(Education,</span>
-<span id="cb27-4"><a></a>                        <span class="st">"Bachelor or Higher"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Bachelor's"</span>,<span class="st">"Graduate"</span>))</span>
-<span id="cb27-5"><a></a>         )</span>
-<span id="cb27-6"><a></a></span>
-<span id="cb27-7"><a></a>anes_des_educ <span class="sc">%&gt;%</span></span>
-<span id="cb27-8"><a></a>  <span class="fu">drop_na</span>(Education2) <span class="sc">%&gt;%</span></span>
-<span id="cb27-9"><a></a>  <span class="fu">group_by</span>(Education2) <span class="sc">%&gt;%</span></span>
-<span id="cb27-10"><a></a>  <span class="fu">summarize</span>(<span class="at">p =</span> <span class="fu">survey_mean</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-3"><a></a>    <span class="at">Education2 =</span></span>
+<span id="cb27-4"><a></a>      <span class="fu">fct_collapse</span>(Education,</span>
+<span id="cb27-5"><a></a>        <span class="st">"Bachelor or Higher"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Bachelor's"</span>, <span class="st">"Graduate"</span>)</span>
+<span id="cb27-6"><a></a>      )</span>
+<span id="cb27-7"><a></a>  )</span>
+<span id="cb27-8"><a></a></span>
+<span id="cb27-9"><a></a>anes_des_educ <span class="sc">%&gt;%</span></span>
+<span id="cb27-10"><a></a>  <span class="fu">drop_na</span>(Education2) <span class="sc">%&gt;%</span></span>
+<span id="cb27-11"><a></a>  <span class="fu">group_by</span>(Education2) <span class="sc">%&gt;%</span></span>
+<span id="cb27-12"><a></a>  <span class="fu">summarize</span>(<span class="at">p =</span> <span class="fu">survey_mean</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   Education2              p    p_se
@@ -843,7 +855,7 @@ X-squared = 2177472, scale = 1.1203e+05, df = 2.2629e+00, p-value =
 <span id="cb31-23"><a></a>    <span class="at">width =</span> <span class="fl">0.25</span></span>
 <span id="cb31-24"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb31-25"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb31-26"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Type"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff8484"</span>,<span class="st">"#0b3954"</span>)) <span class="sc">+</span></span>
+<span id="cb31-26"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Type"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff8484"</span>, <span class="st">"#0b3954"</span>)) <span class="sc">+</span></span>
 <span id="cb31-27"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
@@ -891,7 +903,7 @@ F = 20.876, ndf = 16, ddf = 51, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_3ed5093d" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_b1895086" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -929,9 +941,11 @@ F = 20.876, ndf = 16, ddf = 51, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>recs_des <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a></a>  <span class="fu">svyglm</span>(<span class="at">formula =</span> SummerTempNight <span class="sc">~</span> Region,</span>
-<span id="cb35-3"><a></a>         <span class="at">design =</span> .) <span class="sc">%&gt;%</span> </span>
-<span id="cb35-4"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a></a>  <span class="fu">svyglm</span>(</span>
+<span id="cb35-3"><a></a>    <span class="at">formula =</span> SummerTempNight <span class="sc">~</span> Region,</span>
+<span id="cb35-4"><a></a>    <span class="at">design =</span> .</span>
+<span id="cb35-5"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-6"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   term          estimate std.error statistic   p.value
@@ -951,7 +965,7 @@ F = 20.876, ndf = 16, ddf = 51, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_73d26865" data-warn-when="120" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_22d3b3de" data-warn-when="120" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>

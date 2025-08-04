@@ -524,16 +524,18 @@ Data variables:
 <span id="cb12-3"><a></a>  <span class="at">variables =</span> <span class="cn">NULL</span>, <span class="co"># defaults to all in .data</span></span>
 <span id="cb12-4"><a></a>  <span class="at">repweights =</span> <span class="cn">NULL</span>, <span class="co"># Variables specifying the replication weights</span></span>
 <span id="cb12-5"><a></a>  <span class="at">weights =</span> <span class="cn">NULL</span>, <span class="co"># Variable specifying the analytic/main weight</span></span>
-<span id="cb12-6"><a></a>  <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"BRR"</span>, <span class="st">"Fay"</span>, <span class="st">"JK1"</span>, <span class="st">"JKn"</span>, <span class="st">"bootstrap"</span>,</span>
-<span id="cb12-7"><a></a>    <span class="st">"successive-difference"</span>, <span class="st">"ACS"</span>, <span class="st">"other"</span>), <span class="co"># Type of replication weight</span></span>
-<span id="cb12-8"><a></a>  <span class="at">combined_weights =</span> <span class="cn">TRUE</span>, <span class="co"># TRUE if repweights already include sampling weights, usually TRUE</span></span>
-<span id="cb12-9"><a></a>  <span class="at">rho =</span> <span class="cn">NULL</span>, <span class="co"># Shrinkage factor for Fay's method</span></span>
-<span id="cb12-10"><a></a>  <span class="at">bootstrap_average =</span> <span class="cn">NULL</span>, <span class="co"># For type="bootstrap", if the bootstrap weights have been averaged, gives the number of iterations averaged over</span></span>
-<span id="cb12-11"><a></a>  <span class="at">scale =</span> <span class="cn">NULL</span>, <span class="co"># Scaling constant for variance</span></span>
-<span id="cb12-12"><a></a>  <span class="at">rscales =</span> <span class="cn">NULL</span>, <span class="co"># Scaling constants for variance</span></span>
-<span id="cb12-13"><a></a>  <span class="at">mse =</span> <span class="fu">getOption</span>(<span class="st">"survey.replicates.mse"</span>), <span class="co"># If TRUE, compute variance based around point estimates rather than mean of replicates</span></span>
-<span id="cb12-14"><a></a>  <span class="at">degf =</span> <span class="cn">NULL</span>, <span class="co"># Design degrees of freedom, otherwise calculated based on number of replicate weights</span></span>
-<span id="cb12-15"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a></a>  <span class="at">type =</span> <span class="fu">c</span>(</span>
+<span id="cb12-7"><a></a>    <span class="st">"BRR"</span>, <span class="st">"Fay"</span>, <span class="st">"JK1"</span>, <span class="st">"JKn"</span>, <span class="st">"bootstrap"</span>,</span>
+<span id="cb12-8"><a></a>    <span class="st">"successive-difference"</span>, <span class="st">"ACS"</span>, <span class="st">"other"</span></span>
+<span id="cb12-9"><a></a>  ), <span class="co"># Type of replication weight</span></span>
+<span id="cb12-10"><a></a>  <span class="at">combined_weights =</span> <span class="cn">TRUE</span>, <span class="co"># TRUE if repweights already include sampling weights, usually TRUE</span></span>
+<span id="cb12-11"><a></a>  <span class="at">rho =</span> <span class="cn">NULL</span>, <span class="co"># Shrinkage factor for Fay's method</span></span>
+<span id="cb12-12"><a></a>  <span class="at">bootstrap_average =</span> <span class="cn">NULL</span>, <span class="co"># For type="bootstrap", if the bootstrap weights have been averaged, gives the number of iterations averaged over</span></span>
+<span id="cb12-13"><a></a>  <span class="at">scale =</span> <span class="cn">NULL</span>, <span class="co"># Scaling constant for variance</span></span>
+<span id="cb12-14"><a></a>  <span class="at">rscales =</span> <span class="cn">NULL</span>, <span class="co"># Scaling constants for variance</span></span>
+<span id="cb12-15"><a></a>  <span class="at">mse =</span> <span class="fu">getOption</span>(<span class="st">"survey.replicates.mse"</span>), <span class="co"># If TRUE, compute variance based around point estimates rather than mean of replicates</span></span>
+<span id="cb12-16"><a></a>  <span class="at">degf =</span> <span class="cn">NULL</span>, <span class="co"># Design degrees of freedom, otherwise calculated based on number of replicate weights</span></span>
+<span id="cb12-17"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="syntax-for-common-replicate-methods" class="slide level2 smaller">
@@ -617,7 +619,7 @@ Data variables:
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-13-5" class="code-annotation-target"><a href="#annotated-cell-13-5"></a>    <span class="at">type =</span> <span class="st">"JK1"</span>,</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-13-6" class="code-annotation-target"><a href="#annotated-cell-13-6"></a>    <span class="at">scale =</span> <span class="dv">59</span> <span class="sc">/</span> <span class="dv">60</span>,</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-13-7" class="code-annotation-target"><a href="#annotated-cell-13-7"></a>    <span class="at">mse =</span> <span class="cn">TRUE</span></span>
-<span id="annotated-cell-13-8"><a href="#annotated-cell-13-8"></a>  ) </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-13-8"><a href="#annotated-cell-13-8"></a>  )</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
@@ -764,7 +766,7 @@ Variables:
 <p>Open <code>05-design-exercises.qmd</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_63ea8134" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_f4ca9709" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">20</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>

@@ -105,9 +105,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </a>
     </div>
   </nav>
-  <div id="quarto-announcement" data-announcement-id="62408a73ab7bd3faf26c27766302fa10" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p>Join us at useR on August 8, 2025 for our workshop: Complex Survey Data Analysis: A Tidy Introduction with {srvyr} and {survey}. <a href="https://user2025.r-project.org/register">Register here!</a></p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
@@ -174,6 +171,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercises---part-2" id="toc-exercises---part-2" class="nav-link" data-scroll-target="#exercises---part-2">Exercises - Part 2</a></li>
   <li><a href="#exercises---part-3" id="toc-exercises---part-3" class="nav-link" data-scroll-target="#exercises---part-3">Exercises - Part 3</a></li>
   </ul></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
+  <ul class="collapse">
+  <li><a href="#exercises---part-1-1" id="toc-exercises---part-1-1" class="nav-link" data-scroll-target="#exercises---part-1-1">Exercises - Part 1</a></li>
+  <li><a href="#exercises---part-2-1" id="toc-exercises---part-2-1" class="nav-link" data-scroll-target="#exercises---part-2-1">Exercises - Part 2</a></li>
+  <li><a href="#exercises---part-3-1" id="toc-exercises---part-3-1" class="nav-link" data-scroll-target="#exercises---part-3-1">Exercises - Part 3</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/blob/main/04-stattesting/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tidy-survey-r/user-2025-survey-data-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -212,8 +215,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="load-necessary-packages">Load necessary packages</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyrexploR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyrexploR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="load-in-data-and-preview-it" class="level4">
@@ -406,7 +410,7 @@ $ VotedPres2020_selection &lt;fct&gt; NA, Other, Biden, Biden, Trump, Biden, Tru
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>anes_des <span class="ot">&lt;-</span> anes_2020 <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Weight =</span> V200010b <span class="sc">/</span> <span class="fu">sum</span>(V200010b) <span class="sc">*</span> <span class="dv">231034125</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_survey_design</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">weights =</span> Weight,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">strata =</span> V200010d,</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> V200010c,</span>
@@ -438,46 +442,302 @@ $ VotedPres2020_selection &lt;fct&gt; NA, Other, Biden, Biden, Trump, Biden, Tru
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint - you'll need the recs_des object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="3" type="1">
+<li><strong>Advanced bonus exercise</strong> Look through the RECS dataset and develop your own hypothesis about a mean or difference of means and test it!</li>
+</ol>
 </section>
 <section id="exercises---part-2" class="level3">
 <h3 class="anchored" data-anchor-id="exercises---part-2">Exercises - Part 2</h3>
-<ol start="3" type="1">
+<ol start="4" type="1">
 <li>Is there a relationship between party identification (<code>PartyID</code>) and whether people voted early (<code>EarlyVote2020</code>)?</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint - you'll need the anes_des object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="4" type="1">
+<ol start="5" type="1">
 <li>Is there a relationship between party identification (<code>PartyID</code>) and trust in the government (<code>TrustGovernment</code>)? Use Wald as the <code>statistic</code> option.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint - you'll need the anes_des object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="5" type="1">
+<ol start="6" type="1">
 <li>Is there a difference in the distribution of gender (<code>Gender</code>) across early voting status (<code>EarlyVote2020</code>)?</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint - you'll need the anes_des object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="7" type="1">
+<li><strong>Advanced bonus exercise</strong> Look through the ANES dataset and develop your own hypothesis and test it!</li>
+</ol>
 </section>
 <section id="exercises---part-3" class="level3">
 <h3 class="anchored" data-anchor-id="exercises---part-3">Exercises - Part 3</h3>
-<ol start="6" type="1">
+<ol start="8" type="1">
 <li>Test whether average electric bill (<code>DOLLAREL</code>) varies by region (<code>Region</code>).</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint - you'll need the recs_des object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</section>
+<section id="solutions" class="level2">
+<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
+<details>
+<summary>
+See the solutions
+</summary>
+<section id="exercises---part-1-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercises---part-1-1">Exercises - Part 1</h3>
+<ol type="1">
+<li>For households that use thermostats, they are asked what temperature they set their home during the daytime in the winter (<code>WinterTempDay</code>) and in the summer (<code>SummerTempDay</code>). Test whether daytime winter and daytime summer temperatures of homes are set the same.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>recs_des <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(SummerTempDay), <span class="sc">!</span><span class="fu">is.na</span>(WinterTempDay)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyttest</span>(WinterTempDay <span class="sc">-</span> SummerTempDay <span class="sc">~</span> <span class="dv">0</span>, <span class="at">design =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Design-based one-sample t-test
+
+data:  WinterTempDay - SummerTempDay ~ 0
+t = -43.106, df = 58, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -2.031155 -1.850883
+sample estimates:
+     mean 
+-1.941019 </code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>In 2015, the average household spent $1,856 on energy expenditure<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Accounting for inflation, this would be $2,036 in 2020. Test whether energy costs (<code>TOTALDOL</code>) have increased in 2020 from 2015, accounting for inflation.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>recs_des <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyttest</span>(<span class="fu">I</span>(TOTALDOL <span class="sc">-</span> <span class="dv">2036</span>) <span class="sc">~</span> <span class="dv">0</span>, <span class="at">design =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Design-based one-sample t-test
+
+data:  I(TOTALDOL - 2036) ~ 0
+t = -23.079, df = 58, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -164.7926 -138.4885
+sample estimates:
+     mean 
+-151.6406 </code></pre>
+</div>
+</div>
+</section>
+<section id="exercises---part-2-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercises---part-2-1">Exercises - Part 2</h3>
+<ol start="4" type="1">
+<li>Is there a relationship between party identification (<code>PartyID</code>) and whether people voted early (<code>EarlyVote2020</code>)?</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>anes_des <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(PartyID), <span class="sc">!</span><span class="fu">is.na</span>(EarlyVote2020)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PartyID, EarlyVote2020) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">survey_mean</span>()</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+# Groups:   PartyID [7]
+   PartyID                    EarlyVote2020     p   p_se
+   &lt;fct&gt;                      &lt;fct&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Strong democrat            Yes           0.777 0.0519
+ 2 Strong democrat            No            0.223 0.0519
+ 3 Not very strong democrat   Yes           0.672 0.134 
+ 4 Not very strong democrat   No            0.328 0.134 
+ 5 Independent-democrat       Yes           0.665 0.0608
+ 6 Independent-democrat       No            0.335 0.0608
+ 7 Independent                Yes           0.695 0.0760
+ 8 Independent                No            0.305 0.0760
+ 9 Independent-republican     Yes           0.776 0.0936
+10 Independent-republican     No            0.224 0.0936
+11 Not very strong republican Yes           0.641 0.112 
+12 Not very strong republican No            0.359 0.112 
+13 Strong republican          Yes           0.703 0.0678
+14 Strong republican          No            0.297 0.0678</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>anes_des <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(PartyID), <span class="sc">!</span><span class="fu">is.na</span>(EarlyVote2020)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svychisq</span>(<span class="sc">~</span> EarlyVote2020 <span class="sc">+</span> PartyID, <span class="at">design =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's X^2: Rao &amp; Scott adjustment
+
+data:  NextMethod()
+F = 0.46943, ndf = 4.9476, ddf = 232.5385, p-value = 0.797</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Is there a relationship between party identification (<code>PartyID</code>) and trust in the government (<code>TrustGovernment</code>)? Use Wald as the <code>statistic</code> option.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>anes_des <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(PartyID), <span class="sc">!</span><span class="fu">is.na</span>(TrustGovernment)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PartyID, TrustGovernment) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">survey_mean</span>()</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 4
+# Groups:   PartyID [7]
+   PartyID                  TrustGovernment          p    p_se
+   &lt;fct&gt;                    &lt;fct&gt;                &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Strong democrat          Always              0.0144 0.00452
+ 2 Strong democrat          Most of the time    0.124  0.00977
+ 3 Strong democrat          About half the time 0.353  0.0171 
+ 4 Strong democrat          Some of the time    0.420  0.0175 
+ 5 Strong democrat          Never               0.0888 0.0126 
+ 6 Not very strong democrat Always              0.0207 0.00874
+ 7 Not very strong democrat Most of the time    0.101  0.0154 
+ 8 Not very strong democrat About half the time 0.296  0.0248 
+ 9 Not very strong democrat Some of the time    0.466  0.0228 
+10 Not very strong democrat Never               0.116  0.0182 
+# ℹ 25 more rows</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>anes_des <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(PartyID), <span class="sc">!</span><span class="fu">is.na</span>(TrustGovernment)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svychisq</span>(<span class="sc">~</span> TrustGovernment <span class="sc">+</span> PartyID, <span class="at">design =</span> ., <span class="at">statistic =</span> <span class="st">"Wald"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Design-based Wald test of association
+
+data:  NextMethod()
+F = 15.134, ndf = 24, ddf = 51, p-value = 1.142e-15</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Is there a difference in the distribution of gender (<code>Gender</code>) across early voting status (<code>EarlyVote2020</code>)?</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint - you'll need the anes_des object</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>anes_des <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Gender), <span class="sc">!</span><span class="fu">is.na</span>(EarlyVote2020)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Gender, EarlyVote2020) <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">survey_mean</span>()</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+# Groups:   Gender [2]
+  Gender EarlyVote2020     p   p_se
+  &lt;fct&gt;  &lt;fct&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+1 Male   Yes           0.781 0.0345
+2 Male   No            0.219 0.0345
+3 Female Yes           0.679 0.0331
+4 Female No            0.321 0.0331</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>anes_des <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Gender), <span class="sc">!</span><span class="fu">is.na</span>(EarlyVote2020)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svychisq</span>(<span class="sc">~</span> Gender <span class="sc">+</span> EarlyVote2020, <span class="at">design =</span> ., <span class="at">statistic =</span> <span class="st">"Wald"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Design-based Wald test of association
+
+data:  NextMethod()
+F = 4.6322, ndf = 1, ddf = 47, p-value = 0.03655</code></pre>
+</div>
+</div>
+</section>
+<section id="exercises---part-3-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercises---part-3-1">Exercises - Part 3</h3>
+<ol start="8" type="1">
+<li>Test whether average electric bill (<code>DOLLAREL</code>) varies by region (<code>Region</code>).</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>recs_des <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cascade</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ElecBill =</span> <span class="fu">survey_mean</span>(DOLLAREL), <span class="at">.fill =</span> <span class="st">"US"</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  Region    ElecBill ElecBill_se
+  &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1 Northeast    1343.       14.6 
+2 Midwest      1293.       11.7 
+3 South        1548.       10.3 
+4 West         1211.       12.0 
+5 US           1380.        5.38</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>recs_des <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(DOLLAREL <span class="sc">~</span> Region, <span class="at">design =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: Called via srvyr
+Unstratified cluster jacknife (JK1) with 60 replicates and MSE variances.
+Sampling variables:
+  - repweights: `NWEIGHT1 + NWEIGHT2 + NWEIGHT3 + NWEIGHT4 + NWEIGHT5 +
+    NWEIGHT6 + NWEIGHT7 + NWEIGHT8 + NWEIGHT9 + NWEIGHT10 + NWEIGHT11 +
+    NWEIGHT12 + NWEIGHT13 + NWEIGHT14 + NWEIGHT15 + NWEIGHT16 + NWEIGHT17 +
+    NWEIGHT18 + NWEIGHT19 + NWEIGHT20 + NWEIGHT21 + NWEIGHT22 + NWEIGHT23 +
+    NWEIGHT24 + NWEIGHT25 + NWEIGHT26 + NWEIGHT27 + NWEIGHT28 + NWEIGHT29 +
+    NWEIGHT30 + NWEIGHT31 + NWEIGHT32 + NWEIGHT33 + NWEIGHT34 + NWEIGHT35 +
+    NWEIGHT36 + NWEIGHT37 + NWEIGHT38 + NWEIGHT39 + NWEIGHT40 + NWEIGHT41 +
+    NWEIGHT42 + NWEIGHT43 + NWEIGHT44 + NWEIGHT45 + NWEIGHT46 + NWEIGHT47 +
+    NWEIGHT48 + NWEIGHT49 + NWEIGHT50 + NWEIGHT51 + NWEIGHT52 + NWEIGHT53 +
+    NWEIGHT54 + NWEIGHT55 + NWEIGHT56 + NWEIGHT57 + NWEIGHT58 + NWEIGHT59 +
+    NWEIGHT60` 
+  - weights: NWEIGHT 
+
+Call:  svyglm(formula = DOLLAREL ~ Region, design = .)
+
+Coefficients:
+  (Intercept)  RegionMidwest    RegionSouth     RegionWest  
+      1342.65         -49.41         205.01        -131.63  
+
+Degrees of Freedom: 18495 Total (i.e. Null);  56 Residual
+Null Deviance:      1.304e+10 
+Residual Deviance: 1.269e+10    AIC: 304800</code></pre>
+</div>
+</div>
+</section></details>
 
 
 </section>
-</section>
+
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p><a href="https://www.eia.gov/consumption/residential/data/2015/c&amp;e/pdf/ce1.1.pdf" class="uri">https://www.eia.gov/consumption/residential/data/2015/c&amp;e/pdf/ce1.1.pdf</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.eia.gov/consumption/residential/data/2015/c&amp;e/pdf/ce1.1.pdf" class="uri">https://www.eia.gov/consumption/residential/data/2015/c&amp;e/pdf/ce1.1.pdf</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

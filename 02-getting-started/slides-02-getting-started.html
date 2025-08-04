@@ -207,10 +207,9 @@
 </section>
 <section id="posit-cloud" class="slide level2">
 <h2>Posit Cloud</h2>
-<!--TODO: Update this with Posit Cloud info-->
 <!--TODO: Work individually?-->
 <ul>
-<li>We will be using Posit Cloud for exercises
+<li>We will be using Posit Cloud for exercises: bit.ly/user-survey-tutorial
 <ul>
 <li>Posit Cloud has the same features and appearance as RStudio for ease of use</li>
 </ul></li>
@@ -276,7 +275,7 @@ $ pop_change_2016_2021_pct &lt;dbl&gt; 0.0932, 0.0070, 0.0013, 0.0204, 0.0584, -
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_23ab578c" data-warn-when="180" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_e8924821" data-warn-when="180" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1018,7 +1017,7 @@ Caused by error in `cur_svy()`:
 <p>What is the mean population of all of the municipalities in 1996, 2001, 2006, 2011, 2016, and 2021? Try to use the across function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>towny <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"population"</span>), <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-2"><a></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"population"</span>), <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">

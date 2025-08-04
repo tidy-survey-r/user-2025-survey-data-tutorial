@@ -342,13 +342,13 @@
 <h2><code>survey_count()</code>: syntax</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|2|3|4|5|6|7|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">survey_count</span>(</span>
-<span id="cb3-2"><a></a>   x,</span>
-<span id="cb3-3"><a></a>   ...,</span>
-<span id="cb3-4"><a></a>   <span class="at">wt =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-5"><a></a>   <span class="at">sort =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-6"><a></a>   <span class="at">name =</span> <span class="st">"n"</span>,</span>
-<span id="cb3-7"><a></a>   <span class="at">.drop =</span> dplyr<span class="sc">::</span><span class="fu">group_by_drop_default</span>(x),</span>
-<span id="cb3-8"><a></a>   <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>)</span>
+<span id="cb3-2"><a></a>  x,</span>
+<span id="cb3-3"><a></a>  ...,</span>
+<span id="cb3-4"><a></a>  <span class="at">wt =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-5"><a></a>  <span class="at">sort =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-6"><a></a>  <span class="at">name =</span> <span class="st">"n"</span>,</span>
+<span id="cb3-7"><a></a>  <span class="at">.drop =</span> dplyr<span class="sc">::</span><span class="fu">group_by_drop_default</span>(x),</span>
+<span id="cb3-8"><a></a>  <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>)</span>
 <span id="cb3-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
@@ -554,7 +554,7 @@
 <p>Open <code>descriptive_01.qmd</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_294f9394" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_83a1272c" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -613,7 +613,7 @@
 <span id="cb18-3"><a></a>  <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>),</span>
 <span id="cb18-4"><a></a>  <span class="at">level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb18-5"><a></a>  <span class="at">proportion =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-6"><a></a>  <span class="at">prop_method =</span> </span>
+<span id="cb18-6"><a></a>  <span class="at">prop_method =</span></span>
 <span id="cb18-7"><a></a>    <span class="fu">c</span>(<span class="st">"logit"</span>, <span class="st">"likelihood"</span>, <span class="st">"asin"</span>, <span class="st">"beta"</span>, <span class="st">"mean"</span>, <span class="st">"xlogit"</span>),</span>
 <span id="cb18-8"><a></a>  <span class="at">deff =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb18-9"><a></a>  <span class="at">df =</span> <span class="cn">NULL</span></span>
@@ -814,9 +814,30 @@
 </div>
 </div>
 </div>
+</section></section>
+<section id="your-turn-1" class="title-slide slide level1 center" data-background-color="#ff8484">
+<h1>Your Turn</h1>
+<ul>
+<li>Open <code>03-descriptive-exercises.qmd</code></li>
+<li>Work through <strong>Exercises - Part 1</strong></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_fe208019" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
 </section>
-<section id="survey_quantile-and-survey_median" class="slide level2">
-<h2><code>survey_quantile()</code> and <code>survey_median()</code></h2>
+
+<section>
+<section id="quantiles-and-medians" class="title-slide slide level1 center" data-background-color="#087e8b">
+<h1>Quantiles and Medians</h1>
+
+</section>
+<section id="survey_quantile-and-survey_median-quantiles-and-medians" class="slide level2">
+<h2><code>survey_quantile()</code> and <code>survey_median()</code>: Quantiles and Medians</h2>
 <div>
 <ul>
 <li class="fragment">Calculate quantiles at specific points</li>
@@ -884,12 +905,12 @@
 </div>
 </div>
 </section></section>
-<section id="your-turn-1" class="title-slide slide level1 center" data-background-color="#ff8484">
+<section id="your-turn-2" class="title-slide slide level1 center" data-background-color="#ff8484">
 <h1>Your Turn</h1>
 <p>Open <code>descriptive_02.qmd</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_4d8bc837" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_eb4e4e8c" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1106,12 +1127,12 @@
 </div>
 </div>
 </section></section>
-<section id="your-turn-2" class="title-slide slide level1 center" data-background-color="#ff8484">
+<section id="your-turn-3" class="title-slide slide level1 center" data-background-color="#ff8484">
 <h1>Your Turn</h1>
 <p>Open <code>descriptive_03.qmd</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b9f1f194" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_cb452e74" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1146,9 +1167,24 @@
 <li><code>filter()</code> and <code>group_by()</code> precede the calculation functions, but still follow the design object</li>
 <li>There are additional functions for unweighted analyses and calculating summary rows</li>
 </ul>
-
-
 </section></section>
+<section id="your-turn-4" class="title-slide slide level1 center" data-background-color="#ff8484">
+<h1>Your Turn</h1>
+<ul>
+<li>Open <code>03-descriptive-exercises.qmd</code></li>
+<li>Work through <strong>Exercises - Part 2</strong></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_67415100" data-warn-when="300" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../images/favicon.png" class="slide-logo"></p>
