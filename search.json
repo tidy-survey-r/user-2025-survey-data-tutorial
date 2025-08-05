@@ -569,7 +569,7 @@
     "href": "05-design/slides-05-design.html#american-community-survey-acs",
     "title": "Sampling Designs in {srvyr}",
     "section": "American Community Survey (ACS)",
-    "text": "American Community Survey (ACS)\n\nAnalysis weight: PWGTP\nreplicate weights: PWGTP1-PWGTP180\njackknife with scale adjustment of 4/80\n\n\nFill in the blankSolution\n\n\nacs_des &lt;- acs_pums %&gt;%\n   as_survey_rep(\n      weights = ___________,\n      repweights = ___________,\n      type = ___________,\n      scale = _________ \n   )\n\n\nacs_des &lt;- acs_pums %&gt;%\n   as_survey_rep(\n      weights = PWGTP,\n      repweights = stringr::str_c(\"PWGTP\", 1:80),\n      type = \"JK1\",\n      scale = 4/80\n   )"
+    "text": "American Community Survey (ACS)\n\nAnalysis weight: PWGTP\nreplicate weights: PWGTP1-PWGTP180\njackknife with scale adjustment of 4/80\n\n\nFill in the blankSolution\n\n\nacs_des &lt;- acs_pums %&gt;%\n   as_survey_rep(\n      weights = ___________,\n      repweights = ___________,\n      type = ___________,\n      scale = _________ \n   )\n\n\nacs_des &lt;- acs_pums %&gt;%\n   as_survey_rep(\n      weights = PWGTP,\n      repweights = num_range(\"PWGTP\", 1:80),\n      type = \"JK1\",\n      scale = 4/80\n   )"
   },
   {
     "objectID": "05-design/index.html",
