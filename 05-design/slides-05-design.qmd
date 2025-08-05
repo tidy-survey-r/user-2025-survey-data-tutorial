@@ -395,7 +395,7 @@ acs_des <- acs_pums %>%
 acs_des <- acs_pums %>%
    as_survey_rep(
       weights = PWGTP,
-      repweights = stringr::str_c("PWGTP", 1:80),
+      repweights = num_range("PWGTP", 1:80),
       type = "JK1",
       scale = 4/80
    )
