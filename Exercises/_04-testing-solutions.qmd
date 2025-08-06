@@ -117,22 +117,3 @@ anes_des %>%
   filter(!is.na(Gender), !is.na(EarlyVote2020)) %>%
   svychisq(~ Gender + EarlyVote2020, design = ., statistic = "Wald")
 ```
-
-### Exercises - Part 3
-
-8. Test whether average electric bill (`DOLLAREL`) varies by region (`Region`).
-
-```{r}
-#| label: testing-sol-6
-#| code-fold: true
-#| code-summary: "Show code"
-
-recs_des %>%
-  group_by(Region) %>%
-  cascade(
-    ElecBill = survey_mean(DOLLAREL), .fill = "US"
-  )
-
-recs_des %>%
-  svyglm(DOLLAREL ~ Region, design = .)
-```
