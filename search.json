@@ -4,7 +4,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#introduction",
     "title": "Descriptive Analysis",
     "section": "Introduction",
-    "text": "Introduction\n\nDescriptive analyses lay the groundwork for the next steps of running statistical tests or developing models.\n\nCalculate point estimates of…\n\nUnknown population parameters, such as mean.\n\n\n\n\nUncertainty estimates, such as confidence intervals."
+    "text": "Introduction\nDescriptive analyses lay the groundwork for the next steps of running statistical tests or developing models.\n\nCalculate point estimates of…\n\nUnknown population parameters, such as mean.\n\n\n\n\nUncertainty estimates, such as confidence intervals."
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#types-of-data-1",
@@ -12,13 +12,6 @@
     "title": "Descriptive Analysis",
     "section": "Types of data",
     "text": "Types of data\n\nCategorical/nominal data: variables with levels or descriptions that cannot be ordered, such as the region of the country (North, South, East, and West)\nOrdinal data: variables that can be ordered, such as those from a Likert scale (strongly disagree, disagree, agree, and strongly agree)\nDiscrete data: variables that are counted or measured, such as number of children\nContinuous data: variables that are measured and whose values can lie anywhere on an interval, such as income"
-  },
-  {
-    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#types-of-data-2",
-    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#types-of-data-2",
-    "title": "Descriptive Analysis",
-    "section": "Types of data",
-    "text": "Types of data\nWe can determine which statistics to use depending on the type of data."
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measures-of-distribution",
@@ -35,13 +28,6 @@
     "text": "Measures of central tendency\nMeasures of central tendency find the central (or average) responses. These measures include means and medians.\n\nMeans and proportions (survey_mean() and survey_prop())\nQuantiles and medians (survey_quantile() and survey_median())"
   },
   {
-    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measure-of-relationships",
-    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measure-of-relationships",
-    "title": "Descriptive Analysis",
-    "section": "Measure of relationships",
-    "text": "Measure of relationships\nMeasures of relationship describe how variables relate to each other. These measures include correlations and ratios.\n\nCorrelations (survey_corr())\nRatios (survey_ratio())"
-  },
-  {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measures-of-dispersion",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measures-of-dispersion",
     "title": "Descriptive Analysis",
@@ -49,11 +35,18 @@
     "text": "Measures of dispersion\nMeasures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances. We cover the following functions:\n\nVariances and standard deviations (survey_var() and survey_sd())"
   },
   {
+    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measure-of-relationships",
+    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measure-of-relationships",
+    "title": "Descriptive Analysis",
+    "section": "Measure of relationships",
+    "text": "Measure of relationships\nMeasures of relationship describe how variables relate to each other. These measures include correlations and ratios.\n\nCorrelations (survey_corr())\nRatios (survey_ratio())"
+  },
+  {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#overview-of-survey-analysis-using-the-srvyr-package",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#overview-of-survey-analysis-using-the-srvyr-package",
     "title": "Descriptive Analysis",
     "section": "Overview of survey analysis using the {srvyr} package",
-    "text": "Overview of survey analysis using the {srvyr} package\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()"
+    "text": "Overview of survey analysis using the {srvyr} package\n\nCreate a tbl_svy object (a survey design object) using: as_survey_design() or as_survey_rep()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#overview-of-survey-analysis-using-the-srvyr-package-1",
@@ -67,7 +60,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#overview-of-survey-analysis-using-the-srvyr-package-2",
     "title": "Descriptive Analysis",
     "section": "Overview of survey analysis using the {srvyr} package",
-    "text": "Overview of survey analysis using the {srvyr} package\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()\nSubset data (if needed) using filter() (to create subpopulations)\nSpecify domains of analysis using group_by()\nSpecify variables to calculate, including means, totals, proportions, quantiles, and more"
+    "text": "Overview of survey analysis using the {srvyr} package\n\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()\n\n\n\nSubset data (if needed) using filter() (to create subpopulations)\nSpecify domains of analysis using group_by()\nSpecify variables to calculate, including means, totals, proportions, quantiles, and more"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_count",
@@ -95,7 +88,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_count-subgroup-example",
     "title": "Descriptive Analysis",
     "section": "survey_count: subgroup example",
-    "text": "survey_count: subgroup example\nCalculate the estimated number of observations for Region and Division:\n\nrecs_des %&gt;%\n  survey_count(Region, Division, name = \"N\")\n\n\n\n\n# A tibble: 10 × 4\n   Region    Division                   N         N_se\n   &lt;fct&gt;     &lt;fct&gt;                  &lt;dbl&gt;        &lt;dbl&gt;\n 1 Northeast New England         5876166  0.0000000137\n 2 Northeast Middle Atlantic    16043503  0.0000000487\n 3 Midwest   East North Central 18546912  0.000000437 \n 4 Midwest   West North Central  8495815  0.0000000177\n 5 South     South Atlantic     24843261  0.0000000418\n 6 South     East South Central  7380717. 0.114       \n 7 South     West South Central 14619094  0.000488    \n 8 West      Mountain North      4615844  0.119       \n 9 West      Mountain South      4602070  0.0000000492\n10 West      Pacific            18505643. 0.00000295"
+    "text": "survey_count: subgroup example\nCalculate the estimated number of observations for Region and Division:\n\nrecs_des %&gt;%\n  survey_count(Region, Division, \n               name = \"N\")\n\n\n\n\n# A tibble: 10 × 4\n   Region    Division                   N         N_se\n   &lt;fct&gt;     &lt;fct&gt;                  &lt;dbl&gt;        &lt;dbl&gt;\n 1 Northeast New England         5876166  0.0000000137\n 2 Northeast Middle Atlantic    16043503  0.0000000487\n 3 Midwest   East North Central 18546912  0.000000437 \n 4 Midwest   West North Central  8495815  0.0000000177\n 5 South     South Atlantic     24843261  0.0000000418\n 6 South     East South Central  7380717. 0.114       \n 7 South     West South Central 14619094  0.000488    \n 8 West      Mountain North      4615844  0.119       \n 9 West      Mountain South      4602070  0.0000000492\n10 West      Pacific            18505643. 0.00000295"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_total",
@@ -116,7 +109,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_total-example",
     "title": "Descriptive Analysis",
     "section": "survey_total(): example",
-    "text": "survey_total(): example\nCalculate the U.S. population count estimate:\n\nrecs_des %&gt;%\n  summarize(Tot = survey_total())\n\n\n\n\n# A tibble: 1 × 2\n         Tot Tot_se\n       &lt;dbl&gt;  &lt;dbl&gt;\n1 123529025.  0.148\n\n\n\nNote that this result obtained from survey_total() is equivalent to the ones from the survey_count(), but survey_total() is called within summarize()."
+    "text": "survey_total(): example\nCalculate the U.S. population count estimate:\n\nrecs_des %&gt;%\n  summarize(Tot = survey_total())\n\n\n\n\n# A tibble: 1 × 2\n         Tot Tot_se\n       &lt;dbl&gt;  &lt;dbl&gt;\n1 123529025.  0.148"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_total-continuous-data-example",
@@ -130,7 +123,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_total-group_by-example",
     "title": "Descriptive Analysis",
     "section": "survey_total(): group_by() example",
-    "text": "survey_total(): group_by() example\nCalculate the variation in the cost of electricity in whole dollars across regions:\n\nrecs_des %&gt;%\n  group_by(Region) %&gt;%\n  summarize(elec_bill = survey_total(DOLLAREL,\n    vartype = \"ci\"\n  ))\n\n# A tibble: 4 × 4\n  Region       elec_bill elec_bill_low elec_bill_upp\n  &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;\n1 Northeast 29430369947.  28788987554.  30071752341.\n2 Midwest   34972544751.  34339576041.  35605513460.\n3 South     72496840204.  71534780902.  73458899506.\n4 West      33573773008.  32909111702.  34238434313.\n\n\n\nRecall that group_by() precedes the creation of variables."
+    "text": "survey_total(): group_by() example\nCalculate the variation in the cost of electricity in whole dollars across regions:\n\nrecs_des %&gt;%\n  group_by(Region) %&gt;%\n  summarize(elec_bill = survey_total(DOLLAREL,\n    vartype = \"ci\"\n  ))\n\n\n\n\n# A tibble: 4 × 4\n  Region       elec_bill elec_bill_low elec_bill_upp\n  &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;\n1 Northeast 29430369947.  28788987554.  30071752341.\n2 Midwest   34972544751.  34339576041.  35605513460.\n3 South     72496840204.  71534780902.  73458899506.\n4 West      33573773008.  32909111702.  34238434313."
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#unweighted",
@@ -151,56 +144,56 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-and-survey_prop",
     "title": "Descriptive Analysis",
     "section": "survey_mean() and survey_prop()",
-    "text": "survey_mean() and survey_prop()\n\nCalculate the estimated observation counts for a given variable or combination of variables\nsurvey_mean() applied to continuous data, survey_prop() to catagorical data\nMust be called within summarize()"
+    "text": "survey_mean() and survey_prop()\n\nCalculate the estimated observation counts for a given variable or combination of variables\nsurvey_mean() applies to continuous data, survey_prop() to catagorical data\nMust be called within summarize()"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-syntax",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-syntax",
     "title": "Descriptive Analysis",
     "section": "survey_mean(): syntax",
-    "text": "survey_mean(): syntax\n\nsurvey_mean(\n  x,\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  proportion = FALSE,\n  prop_method = c(\"logit\", \"likelihood\", \"asin\", \"beta\", \"mean\"),\n  deff = FALSE,\n  df = NULL\n)\n\n\nThe survey_mean() function includes the first argument x, representing the variable or expression on which the mean should be calculated. The survey_mean() function can be used to calculate both means and proportions. Its proportion argument defaults to FALSE, indicating it is used for calculating means. If we wish to calculate a proportion using survey_mean(), we need to set the proportion argument to TRUE."
+    "text": "survey_mean(): syntax\n\nsurvey_mean(\n  x,\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  proportion = FALSE,\n  prop_method = c(\"logit\", \"likelihood\", \"asin\", \"beta\", \"mean\"),\n  deff = FALSE,\n  df = NULL\n)"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-syntax",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-syntax",
     "title": "Descriptive Analysis",
     "section": "survey_prop(): syntax",
-    "text": "survey_prop(): syntax\n\nsurvey_prop(\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  proportion = TRUE,\n  prop_method =\n    c(\"logit\", \"likelihood\", \"asin\", \"beta\", \"mean\", \"xlogit\"),\n  deff = FALSE,\n  df = NULL\n)\n\n\nThe survey_prop() does not have an argument to include the variables directly. Instead, prior to summarize(), we must use the group_by() function to specify the variables of interest for survey_prop(). For survey_mean(), including a group_by() function allows us to obtain the means by different groups.\nIn the survey_prop() function, the proportion argument defaults to TRUE because the function is specifically designed for calculating proportions."
+    "text": "survey_prop(): syntax\n\nsurvey_prop(\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  proportion = TRUE,\n  prop_method =\n    c(\"logit\", \"likelihood\", \"asin\", \"beta\", \"mean\", \"xlogit\"),\n  deff = FALSE,\n  df = NULL\n)"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-one-variable-proportion-example",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-one-variable-proportion-example",
     "title": "Descriptive Analysis",
     "section": "survey_prop(): one variable proportion example",
-    "text": "survey_prop(): one variable proportion example\nCalculate the proportion of people in each region in the RECS data:\n\nrecs_des %&gt;%\n  group_by(Region) %&gt;%\n  summarize(p = survey_prop())\n\n\n\n\n# A tibble: 4 × 3\n  Region        p     p_se\n  &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast 0.177 2.12e-10\n2 Midwest   0.219 2.62e-10\n3 South     0.379 7.40e-10\n4 West      0.224 8.16e-10"
+    "text": "survey_prop(): one variable proportion example\nCalculate the proportion of households in each region in the RECS data:\n\nrecs_des %&gt;%\n  group_by(Region) %&gt;%\n  summarize(p = survey_prop())\n\n\n\n\n# A tibble: 4 × 3\n  Region        p     p_se\n  &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast 0.177 2.12e-10\n2 Midwest   0.219 2.62e-10\n3 South     0.379 7.40e-10\n4 West      0.224 8.16e-10"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-one-variable-proportion-example",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-one-variable-proportion-example",
     "title": "Descriptive Analysis",
     "section": "survey_mean(): one variable proportion example",
-    "text": "survey_mean(): one variable proportion example\nCalculate the proportion of people in each region in the RECS data:\n\nrecs_des %&gt;%\n  group_by(Region) %&gt;%\n  summarize(p = survey_mean())\n\n\n\n# A tibble: 4 × 3\n  Region        p     p_se\n  &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast 0.177 2.12e-10\n2 Midwest   0.219 2.62e-10\n3 South     0.379 7.40e-10\n4 West      0.224 8.16e-10\n\n\n\nNote that the proportions in column p add up to one. The survey_prop() function is essentially the same as using survey_mean() with a categorical variable and without specifying a numeric variable in the x argument."
+    "text": "survey_mean(): one variable proportion example\nCalculate the proportion of people in each region in the RECS data:\n\nrecs_des %&gt;%\n  group_by(Region) %&gt;%\n  summarize(p = survey_mean())\n\n\n\n# A tibble: 4 × 3\n  Region        p     p_se\n  &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast 0.177 2.12e-10\n2 Midwest   0.219 2.62e-10\n3 South     0.379 7.40e-10\n4 West      0.224 8.16e-10"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-conditional-proportions-example",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-conditional-proportions-example",
     "title": "Descriptive Analysis",
     "section": "survey_prop(): conditional proportions example",
-    "text": "survey_prop(): conditional proportions example\nCalculate the proportion of housing units by Region and whether air conditioning (A/C) is used:\n\nrecs_des %&gt;%\n  group_by(Region, ACUsed) %&gt;%\n  summarize(p = survey_prop())\n\n\n\n\n# A tibble: 8 × 4\n# Groups:   Region [4]\n  Region    ACUsed      p    p_se\n  &lt;fct&gt;     &lt;lgl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Northeast FALSE  0.110  0.00590\n2 Northeast TRUE   0.890  0.00590\n3 Midwest   FALSE  0.0666 0.00508\n4 Midwest   TRUE   0.933  0.00508\n5 South     FALSE  0.0581 0.00278\n6 South     TRUE   0.942  0.00278\n7 West      FALSE  0.255  0.00759\n8 West      TRUE   0.745  0.00759\n\n\n\nWhen specifying multiple variables, the proportions are conditional. In the results above, notice that the proportions sum to 1 within each region. This can be interpreted as the proportion of housing units with A/C within each region. For example, in the Northeast region, approximately 11.0% of housing units don’t have A/C, while around 89.0% have A/C."
+    "text": "survey_prop(): conditional proportions example\nCalculate the proportion of housing units by Region and whether air conditioning (A/C) is used:\n\nrecs_des %&gt;%\n  group_by(Region, ACUsed) %&gt;%\n  summarize(p = survey_prop())\n\n\n\n\n# A tibble: 8 × 4\n# Groups:   Region [4]\n  Region    ACUsed      p    p_se\n  &lt;fct&gt;     &lt;lgl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Northeast FALSE  0.110  0.00590\n2 Northeast TRUE   0.890  0.00590\n3 Midwest   FALSE  0.0666 0.00508\n4 Midwest   TRUE   0.933  0.00508\n5 South     FALSE  0.0581 0.00278\n6 South     TRUE   0.942  0.00278\n7 West      FALSE  0.255  0.00759\n8 West      TRUE   0.745  0.00759"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-joint-proportions-example",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_prop-joint-proportions-example",
     "title": "Descriptive Analysis",
     "section": "survey_prop(): joint proportions example",
-    "text": "survey_prop(): joint proportions example\nCalculate the joint proportion for each combination using interact():\n\nrecs_des %&gt;%\n  group_by(interact(Region, ACUsed)) %&gt;%\n  summarize(p = survey_prop())\n\n\n\n\n# A tibble: 8 × 4\n  Region    ACUsed      p    p_se\n  &lt;fct&gt;     &lt;lgl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Northeast FALSE  0.0196 0.00105\n2 Northeast TRUE   0.158  0.00105\n3 Midwest   FALSE  0.0146 0.00111\n4 Midwest   TRUE   0.204  0.00111\n5 South     FALSE  0.0220 0.00106\n6 South     TRUE   0.357  0.00106\n7 West      FALSE  0.0573 0.00170\n8 West      TRUE   0.167  0.00170\n\n\n\nIn this case, all proportions sum to 1, not just within regions. This means that 15.8% of the population lives in the Northeast and has A/C. As noted earlier, we can use both the survey_prop() and survey_mean() functions, and they produce the same results."
+    "text": "survey_prop(): joint proportions example\nCalculate the joint proportion for each combination using interact():\n\nrecs_des %&gt;%\n  group_by(interact(Region, ACUsed)) %&gt;%\n  summarize(p = survey_prop())\n\n\n\n\n# A tibble: 8 × 4\n  Region    ACUsed      p    p_se\n  &lt;fct&gt;     &lt;lgl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Northeast FALSE  0.0196 0.00105\n2 Northeast TRUE   0.158  0.00105\n3 Midwest   FALSE  0.0146 0.00111\n4 Midwest   TRUE   0.204  0.00111\n5 South     FALSE  0.0220 0.00106\n6 South     TRUE   0.357  0.00106\n7 West      FALSE  0.0573 0.00170\n8 West      TRUE   0.167  0.00170"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-overall-mean-example",
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-overall-mean-example",
     "title": "Descriptive Analysis",
     "section": "survey_mean(): overall mean example",
-    "text": "survey_mean(): overall mean example\nCalculate the estimated average cost of electricity in the U.S.:\n\nrecs_des %&gt;%\n  summarize(elec_bill = survey_mean(DOLLAREL,\n    vartype = c(\"se\", \"ci\")\n  ))\n\n\n\n\n# A tibble: 1 × 4\n  elec_bill elec_bill_se elec_bill_low elec_bill_upp\n      &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;\n1     1380.         5.38         1369.         1391."
+    "text": "survey_mean(): overall mean example\nCalculate the estimated average cost of electricity in the U.S.:\n\nrecs_des %&gt;%\n  summarize(\n    elec_bill = survey_mean(DOLLAREL, vartype = c(\"se\", \"ci\")\n  ))\n\n\n\n\n# A tibble: 1 × 4\n  elec_bill elec_bill_se elec_bill_low elec_bill_upp\n      &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;\n1     1380.         5.38         1369.         1391."
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_mean-mean-by-subgroup-example",
@@ -221,7 +214,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_quantile-syntax",
     "title": "Descriptive Analysis",
     "section": "survey_quantile(): syntax",
-    "text": "survey_quantile(): syntax\nsurvey_quantile(\n  x,\n  quantiles,\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  interval_type = \n    c(\"mean\", \"beta\", \"xlogit\", \"asin\", \"score\", \"quantile\"),\n  qrule = c(\"math\", \"school\", \"shahvaish\", \"hf1\", \"hf2\", \"hf3\", \n            \"hf4\", \"hf5\", \"hf6\", \"hf7\", \"hf8\", \"hf9\"),\n  df = NULL\n)"
+    "text": "survey_quantile(): syntax\n\nsurvey_quantile(\n  x,\n  quantiles,\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  interval_type = \n    c(\"mean\", \"beta\", \"xlogit\", \"asin\", \"score\", \"quantile\"),\n  qrule = c(\"math\", \"school\", \"shahvaish\", \"hf1\", \"hf2\", \"hf3\", \n            \"hf4\", \"hf5\", \"hf6\", \"hf7\", \"hf8\", \"hf9\"),\n  df = NULL\n)"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_quantile-example",
@@ -236,27 +229,6 @@
     "title": "Descriptive Analysis",
     "section": "survey_median(): example",
     "text": "survey_median(): example\nCalculate the estimated median cost of electricity in the U.S.:\n\nrecs_des %&gt;%\n  summarize(elec_bill = survey_median(DOLLAREL))\n\n\n\n\n# A tibble: 1 × 2\n  elec_bill elec_bill_se\n      &lt;dbl&gt;        &lt;dbl&gt;\n1     1215.         6.33"
-  },
-  {
-    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr",
-    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr",
-    "title": "Descriptive Analysis",
-    "section": "survey_corr()",
-    "text": "survey_corr()\n\nMeasure the linear relationship between two continuous variables\nThe most commonly used method is Pearson’s correlation\nRanges between –1 and 1"
-  },
-  {
-    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-syntax",
-    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-syntax",
-    "title": "Descriptive Analysis",
-    "section": "survey_corr(): syntax",
-    "text": "survey_corr(): syntax\nsurvey_corr(\n  x,\n  y,\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  df = NULL\n)"
-  },
-  {
-    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-example",
-    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-example",
-    "title": "Descriptive Analysis",
-    "section": "survey_corr(): example",
-    "text": "survey_corr(): example\nCalculate the correlation between the total square footage of homes and electricity consumption:\n\nrecs_des %&gt;%\n  summarize(SQFT_Elec_Corr = survey_corr(TOTSQFT_EN, BTUEL))\n\n\n\n\n# A tibble: 1 × 2\n  SQFT_Elec_Corr SQFT_Elec_Corr_se\n           &lt;dbl&gt;             &lt;dbl&gt;\n1          0.417           0.00689"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#filter",
@@ -334,6 +306,27 @@
     "title": "Descriptive Analysis",
     "section": "Summary",
     "text": "Summary\n\nWe create variables after creating the design object, running the functions on the tbl_svy object\nfilter() and group_by() precede the calculation functions, but still follow the design object\nThere are additional functions for unweighted analyses and calculating summary rows"
+  },
+  {
+    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr",
+    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr",
+    "title": "Descriptive Analysis",
+    "section": "survey_corr()",
+    "text": "survey_corr()\n\nMeasure the linear relationship between two continuous variables\nThe most commonly used method is Pearson’s correlation\nRanges between –1 and 1"
+  },
+  {
+    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-syntax",
+    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-syntax",
+    "title": "Descriptive Analysis",
+    "section": "survey_corr(): syntax",
+    "text": "survey_corr(): syntax\nsurvey_corr(\n  x,\n  y,\n  na.rm = FALSE,\n  vartype = c(\"se\", \"ci\", \"var\", \"cv\"),\n  level = 0.95,\n  df = NULL\n)"
+  },
+  {
+    "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-example",
+    "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_corr-example",
+    "title": "Descriptive Analysis",
+    "section": "survey_corr(): example",
+    "text": "survey_corr(): example\nCalculate the correlation between the total square footage of homes and electricity consumption:\n\nrecs_des %&gt;%\n  summarize(SQFT_Elec_Corr = survey_corr(TOTSQFT_EN, BTUEL))\n\n\n\n\n# A tibble: 1 × 2\n  SQFT_Elec_Corr SQFT_Elec_Corr_se\n           &lt;dbl&gt;             &lt;dbl&gt;\n1          0.417           0.00689"
   },
   {
     "objectID": "02-getting-started/index.html",
