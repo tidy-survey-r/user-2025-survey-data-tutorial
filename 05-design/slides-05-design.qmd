@@ -411,8 +411,8 @@ Open `05-design-exercises.qmd`
 ```{r}
 #| label: design-ex-clock
 #| echo: false
-# 20 minutes, warning at 5 minutes
-countdown::countdown(minutes = 20, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
+# 15 minutes, warning at 5 minutes
+countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Open Q & A {background-color='{{< brand color secondary >}}'}
