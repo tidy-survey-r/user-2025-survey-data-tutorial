@@ -8,15 +8,6 @@ title-slide-attributes:
 
 # Warm Up {background-color='{{< brand color secondary >}}'}
 
-## Posit Cloud
-<!--TODO: Work individually?-->
-
-- We will be using Posit Cloud for exercises: bit.ly/user-survey-tutorial 
-  - Posit Cloud has the same features and appearance as RStudio for ease of use
-- Access the project and files via our link
-- Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
-- We will go through slides of content then work on exercises independently, then regroup to go over answers
-
 ## Welcome to the Towny Data
 
 - We'll be using the `towny` data for warm-up exercises
@@ -24,10 +15,7 @@ title-slide-attributes:
 
 ![](../images/towny.png){fig-align="center"}
 
-## Posit Cloud Demonstration
-
-- Load {tidyverse} and {gt}
-- Look at the towny dataset using `glimpse()`
+## Welcome to the Towny Data
 
 ```{r}
 #| label: opt-set
@@ -46,7 +34,16 @@ library(gt)
 glimpse(towny)
 ```
 
-## Your Turn {background-color='{{< brand color pink >}}'}
+
+## Posit Cloud
+
+- We will be using Posit Cloud for exercises 
+- Posit Cloud has the same features and appearance as RStudio for ease of use
+- Access the project and files via [bit.ly/user-survey-tutorial](https://bit.ly/user-survey-tutorial)
+- Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
+
+
+# Your Turn {background-color='{{< brand color pink >}}'}
 
 ```{r}
 #| label: gs-ex-time
@@ -55,8 +52,8 @@ gs_ex_time <- 10
 gs_ex_warn <- 3
 ```
 
+- Go to bit.ly/user-survey-tutorial
 - Open `02-getting-started_exercises.qmd`
-- Take `r gs_ex_time` minutes to set up Posit Cloud and finish the exercises individually.
 
 ```{r}
 #| label: gs-ex-clock
@@ -136,7 +133,7 @@ Note: Installation of packages is already done for you on Posit Cloud
 - <b>Mode</b>: Web, videoconference, or telephone
 - <b>Sample Information</b>: Pseudo-strata and pseudo-cluster included for variance estimation
 
-https://electionstudies.org/
+[https://electionstudies.org/](https://electionstudies.org/)
 
 :::
 
@@ -144,33 +141,31 @@ https://electionstudies.org/
 
 ```{r}
 #| label: anes-dat-glimpse
-#| code-line-numbers: "|2|"
 anes_2020 %>%
   select(-matches("^V\\d")) %>%
   glimpse()
 ```
 
-## Residential Energy Consumption Survey (RECS) 2015 {.smaller}
+## Residential Energy Consumption Survey (RECS) 2020 {.smaller}
 
 ::: incremental
 
-- Energy consumption/expenditures collected through energy suppliers
-- Fielded 14 times between 1950 and 2015
+- Fielded 14 times between 1950 and 2020
 - Topics include appliances, electronics, heating, a/c, temperatures, water heating, lighting, energy bills, respondent demographics, and energy assistance
-- Funded by the Energy Information Administration
+- Energy consumption/expenditures collected through energy suppliers
+- Funded by the Energy Information Administration 
 - <b>Target Population</b>: Primary occupied housing units in the US
-- <b>Mode</b>: In-person, paper, and web interview mode
-- <b>Sample Information</b>: BRR Replicate weights included for variance estimation
+- <b>Mode</b>: In-person, phone, paper, and web interview mode
+- <b>Sample Information</b>: Jackknife Replicate weights included for variance estimation
 
-https://www.eia.gov/consumption/residential/index.php
+[https://www.eia.gov/consumption/residential/index.php](https://www.eia.gov/consumption/residential/index.php)
 
 :::
 
-## Residential Energy Consumption Survey (RECS) 2015
+## Residential Energy Consumption Survey (RECS) 2020
 
 ```{r}
 #| label: recs-dat-glimpse
-#| code-line-numbers: "|2|"
 recs_2020 %>%
   select(-matches("^NWEIGHT")) %>%
   glimpse()
@@ -180,13 +175,12 @@ recs_2020 %>%
 
 ## Design Objects
 
-**We will be covering survey design in more detail later in the workshop!**
-
 ::: incremental
 
 - Backbone for survey analysis
 - Specify the sampling design, weights, and other necessary information to account for errors in the data
 - Survey analysis and inference should be performed with the survey design objects, not the original survey data
+- **We will be covering survey design in more detail later in the workshop!**
 
 :::
 
@@ -194,7 +188,7 @@ recs_2020 %>%
 
 ```{r}
 #| label: anes-des-disp
-#| code-line-numbers: "|1|2|3,8|4-7"
+#| code-line-numbers: "|1|2|3-8"
 anes_des <- anes_2020 %>%
   mutate(Weight = V200010b / sum(V200010b) * 231034125) %>%
   as_survey_design(
@@ -216,7 +210,7 @@ anes_des
 
 ```{r}
 #| label: recs-des-disp
-#| code-line-numbers: "|1|2,8|3-7"
+#| code-line-numbers: "|1|2-8"
 recs_des <- recs_2020 %>%
   as_survey_rep(
     weights = NWEIGHT,
@@ -234,11 +228,9 @@ recs_des <- recs_2020 %>%
 recs_des
 ```
 
-# Similarities (and Differences) Between {dplyr} and {srvyr} Functions {background-color='{{< brand color secondary >}}'}
+# Comparison of {dplyr} and {srvyr} Functions {background-color='{{< brand color secondary >}}'}
 
 ## Why use {srvyr} over {survey}?
-
-The {srvyr} package builds on the {survey} package by providing wrappers for functions that align with the tidyverse philosophy.
 
 ::: incremental
 
@@ -255,27 +247,13 @@ The {srvyr} package builds on the {survey} package by providing wrappers for fun
   - `dplyr::group_by()` and `srvyr::group_by()`
 - Based on the object class, R will recognize which package to use
 
-## Tibbles vs. survey table object
-
-```{r}
-#| label: class-tibble
-class(towny)
-```
-vs.
-
-```{r}
-#| label: class-srv
-class(recs_des)
-class(anes_des)
-```
-
 ## Using `summarize()` to calculate mean and median
 
 ### Tibble:
 
 ```{r}
 #| label: summarize-tib-ex
-#| code-line-numbers: "|1,4|2,3|"
+#| code-line-numbers: "|1|2,4|3|"
 towny %>%
   summarize(
     area_mean = mean(land_area_km2)
@@ -288,7 +266,6 @@ towny %>%
 
 ```{r}
 #| label: summarize-sv-ex
-#| code-line-numbers: "|1,4|2,3|"
 recs_des %>%
   summarize(
     TOTHSQFT_mean = survey_mean(TOTHSQFT),
@@ -301,7 +278,6 @@ recs_des %>%
 
 ```{r}
 #| label: across-tib-ex
-#| code-line-numbers: "|2,5|3|4|"
 towny %>%
   summarize(across(
     starts_with("population"),
@@ -315,7 +291,6 @@ towny %>%
 
 ```{r}
 #| label: across-sv-ex
-#| code-line-numbers: "|2,5|3|4|"
 recs_des %>%
   summarize(across(
     starts_with("TOT"),
@@ -329,7 +304,6 @@ recs_des %>%
 
 ```{r}
 #| label: filt-tib-ex
-#| code-line-numbers: "|2|3|"
 towny %>%
   filter(csd_type == "township") %>%
   select(csd_type, name)
@@ -341,7 +315,6 @@ towny %>%
 
 ```{r}
 #| label: filt-sv-ex
-#| code-line-numbers: "|1|2|3|"
 recs_des_mod <- recs_des %>%
   filter(Urbanicity == "Rural") %>%
   select(ACUsed)
@@ -355,7 +328,6 @@ recs_des_mod
 
 ```{r}
 #| label: group-tib-ex
-#| code-line-numbers: "|2|3|"
 towny %>%
   group_by(csd_type) %>%
   summarize(area_mean = mean(land_area_km2))
@@ -367,7 +339,6 @@ towny %>%
 
 ```{r}
 #| label: group-sv-ex
-#| code-line-numbers: "|2|3|"
 recs_des %>%
   group_by(Urbanicity) %>%
   summarize(TOTHSQFT_mean = survey_mean(TOTHSQFT))
@@ -378,7 +349,6 @@ recs_des %>%
 ```{r}
 #| label: sv-non-svobj
 #| eval: false
-#| code-line-numbers: "|2"
 towny %>%
   summarize(area_mean = survey_mean(land_area_km2))
 ```
@@ -408,7 +378,9 @@ towny %>%
 
 :::
 
-# Wrap Up {background-color='{{< brand color secondary >}}'}
+# Next Up: Descriptive Statistics {background-color='{{< brand color purple >}}'}
+
+# Extra Content {background-color='{{< brand color secondary >}}'}
 
 ## Wrap Up
 
@@ -427,7 +399,6 @@ towny %>%
 * Based on the object type, R will know whether to use {dplyr} or {srvyr}
 * All functions must be done on the survey design object, not the raw data
 
-# Extra Content {background-color='{{< brand color secondary >}}'}
 
 ## Ex. 1
 

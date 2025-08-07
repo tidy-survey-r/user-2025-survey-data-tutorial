@@ -10,9 +10,6 @@ title-slide-attributes:
 #| label: load-pkgs
 #| echo: false
 
-### Added this just to get my sections to run, but will want to move into a section where we talk about what to install and get running.
-
-
 library(tidyverse)
 library(survey)
 library(srvyr)
@@ -287,7 +284,7 @@ recs_des %>%
 - Formula with electricity expenditure on the left and air-conditioning usage on the right
 - Dot notation `.` that passes the `recs_des` object into the `design` argument
 
-## Results: unpaired two-sample t-test
+## Results: unpaired two-sample t-test {.smaller}
 
 Test if the electricity expenditure is significantly different for homes with and without air-conditioning:
 
@@ -330,8 +327,8 @@ recs_des %>%
 ```{r}
 #| label: ttest-ex-clock
 #| echo: false
-# 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
+# 10 minutes, warning at 5 minutes
+countdown::countdown(minutes = 10, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 
@@ -361,7 +358,7 @@ There are two functions that we use to compare proportions:
 ```{r}
 #| label: syntax-chisq-1
 #| eval: false
-#| code-line-numbers: "|2|3"
+#| code-line-numbers: "|1|2|3"
 
 svygofchisq(formula,
   p,
@@ -376,8 +373,7 @@ svygofchisq(formula,
 ```{r}
 #| label: syntax-chisq-2
 #| eval: false
-#| code-line-numbers: "|3,4|2"
-#|
+#| code-line-numbers: "|1|2|3-6"
 svychisq(formula,
   design,
   statistic = c(
@@ -423,6 +419,7 @@ Let's collapse Bachelor's and Graduate degrees into a single category for compar
 
 ```{r}
 #| label: chisq-gof-educ2
+#| code-line-numbers: "|1|3-5"
 
 anes_des_educ <- anes_des %>%
   mutate(
@@ -431,7 +428,12 @@ anes_des_educ <- anes_des %>%
         "Bachelor or Higher" = c("Bachelor's", "Graduate")
       )
   )
+```
 
+## Example: goodness-of-fit test
+
+```{r}
+#| label: chisq-gof-educ3
 anes_des_educ %>%
   drop_na(Education2) %>%
   group_by(Education2) %>%
@@ -445,6 +447,7 @@ Test to see if the ANES education matches the population percentages
 
 ```{r}
 #| label: chisq-gof-results
+#| code-line-numbers: "|1|2|3|4|5|"
 anes_des_educ %>%
   svygofchisq(
     formula = ~Education2,
@@ -498,13 +501,15 @@ ANES asked respondents two questions about trust:
   - Question text: “How often can you trust the federal government to do what is right?”
   - Question text: “How often can you trust other people?”
   
-Run a test of independence to see if the distributions of these two questions are similar. 
+Run a test of independence to see if there is a relationship between these two questions.
 
 ## Example: test of independence
 
-Run a test of independence to see if the distributions of these two questions are similar. 
+Run a test of independence to see if there is a relationship between these two questions.
 
 ```{r}
+#| label: chisq-ex2
+#| code-line-numbers: "|1|2|3|5|"
 anes_des %>%
   svychisq(
     formula = ~ TrustGovernment + TrustPeople,
@@ -525,6 +530,12 @@ anes_des %>%
 # 15 minutes, warning at 5 minutes
 countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
+
+# Next Up: Survey Design Object {background-color='{{< brand color purple >}}'}
+
+
+
+# Extra Content {background-color='{{< brand color secondary >}}'}
 
 # Analysis of Variance (ANOVA) {background-color='{{< brand color secondary >}}'}
 
@@ -557,8 +568,8 @@ svyglm(
 - Use `svyglm()` function and variables `SummerTempNight` and `Region`
 
 ```{r}
-#| label: anova-ex
-
+#| label: anova-ex1
+#| eval: false
 recs_des %>%
   svyglm(
     formula = SummerTempNight ~ Region,
@@ -567,14 +578,15 @@ recs_des %>%
   tidy()
 ```
 
-# Your Turn {background-color='{{< brand color pink >}}'}
 
-* Open `04-testing-exercises.qmd`
-* Work through **Exercises - Part 3**
+## Example: ANOVA
 
 ```{r}
-#| label: anova-ex-clock
-#| echo: false
-# 5 minutes, warning at 2 minutes
-countdown::countdown(minutes = 5, seconds = 0, play_sound = TRUE, warn_when = 2 * 60)
+#| label: anova-ex2
+recs_des %>%
+  svyglm(
+    formula = SummerTempNight ~ Region,
+    design = .
+  ) %>%
+  tidy()
 ```

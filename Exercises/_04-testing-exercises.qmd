@@ -97,13 +97,3 @@ recs_des <- recs_2020 %>%
 
 7. **Advanced bonus exercise** Look through the ANES dataset and develop your own hypothesis and test it!
 
-
-### Exercises - Part 3
-
-8. Test whether average electric bill (`DOLLAREL`) varies by region (`Region`).
-
-```{r}
-#| label: testing-exercise-6
-
-# Hint - you'll need the recs_des object
-```
