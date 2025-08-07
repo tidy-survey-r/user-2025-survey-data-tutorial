@@ -37,9 +37,9 @@ glimpse(towny)
 
 ## Posit Cloud
 
-- We will be using Posit Cloud for exercises
+- We will be using Posit Cloud for exercises 
 - Posit Cloud has the same features and appearance as RStudio for ease of use
-- Access the project and files via our link
+- Access the project and files via [bit.ly/user-survey-tutorial](https://bit.ly/user-survey-tutorial)
 - Navigate to "Complex Survey Analysis in R" under Projects then click name to get started
 
 
