@@ -32,7 +32,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measures-of-dispersion",
     "title": "Descriptive Analysis",
     "section": "Measures of dispersion",
-    "text": "Measures of dispersion\nMeasures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances. We cover the following functions:\n\nVariances and standard deviations (survey_var() and survey_sd())"
+    "text": "Measures of dispersion\nMeasures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances.\n\nVariances and standard deviations (survey_var() and survey_sd())"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#measure-of-relationships",
@@ -60,7 +60,7 @@
     "href": "03-descriptive-analysis/slides-03-descriptive-analysis.html#overview-of-survey-analysis-using-the-srvyr-package-2",
     "title": "Descriptive Analysis",
     "section": "Overview of survey analysis using the {srvyr} package",
-    "text": "Overview of survey analysis using the {srvyr} package\n\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()\n\n\n\nSubset data (if needed) using filter() (to create subpopulations)\nSpecify domains of analysis using group_by()\nSpecify variables to calculate, including means, totals, proportions, quantiles, and more"
+    "text": "Overview of survey analysis using the {srvyr} package\n\n\nCreate a tbl_svy object (a survey object) using: as_survey_design() or as_survey_rep()\n\n\n\n\nSubset data (if needed) using filter() (to create subpopulations)\nSpecify domains of analysis using group_by()\n\n\n\nSpecify variables to calculate, including means, totals, proportions, quantiles, and more"
   },
   {
     "objectID": "03-descriptive-analysis/slides-03-descriptive-analysis.html#survey_count",
