@@ -62,7 +62,7 @@ Measures of central tendency find the central (or average) responses. These meas
 
 ## Measures of dispersion
 
-Measures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances. We cover the following functions:
+Measures of dispersion describe how data spread around the central tendency for continuous variables. These measures include standard deviations and variances.
 
 - Variances and standard deviations (`survey_var()` and `survey_sd()`)
 
@@ -136,9 +136,13 @@ recs_des <- recs_2020 %>%
 1. Create a `tbl_svy` object (a survey object) using: `as_survey_design()` or `as_survey_rep()`
 :::
 
+::: {.fragment  .semi-fade-out}
+
 2. Subset data (if needed) using `filter()` (to create subpopulations)
 
 3. Specify domains of analysis using `group_by()`
+
+:::
 
 4. Specify variables to calculate, including means, totals, proportions, quantiles, and more
 
