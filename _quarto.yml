@@ -30,8 +30,6 @@ website:
         text: 04 - Statistical Testing
       - href: 05-design/index.qmd
         text: 05 - Sampling Designs
-      - href: https://bit.ly/user-survey-tutorial
-        text: Posit Cloud Project
 
   page-footer:
     right: "This page is built with 💜 and [Quarto](https://quarto.org/)."
