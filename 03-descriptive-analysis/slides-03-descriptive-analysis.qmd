@@ -348,7 +348,7 @@ recs_des %>%
 
 ::: incremental
 - Calculate the estimated observation counts for a given variable or combination of variables
-- `survey_mean()` applies to continuous data, `survey_prop()` to catagorical data
+- `survey_mean()` applies to continuous data, `survey_prop()` to categorical data
 - Must be called within `summarize()`
 :::
 
@@ -541,7 +541,7 @@ countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5
 
 ```{r}
 #| eval: false
-#| code-line-numbers: "|2|6,7|8,9"
+#| code-line-numbers: "|2|7,8|9,10"
 survey_quantile(
   x,
   quantiles,
@@ -567,7 +567,7 @@ Calculate the first quartile (p=0.25), the median (p=0.5), and the third quartil
 #| code-line-numbers: "|2,4|3"
 recs_des %>%
   summarize(elec_bill = survey_quantile(DOLLAREL,
-    quantiles = c(0.25, .5, 0.75)
+    quantiles = c(0.25, 0.5, 0.75)
   ))
 ```
 
@@ -577,7 +577,7 @@ recs_des %>%
 #| echo: false
 recs_des %>%
   summarize(elec_bill = survey_quantile(DOLLAREL,
-    quantiles = c(0.25, .5, 0.75)
+    quantiles = c(0.25, 0.5, 0.75)
   ))
 ```
 
@@ -598,17 +598,6 @@ recs_des %>%
 #| echo: false
 recs_des %>%
   summarize(elec_bill = survey_median(DOLLAREL))
-```
-
-# Your Turn {background-color='{{< brand color pink >}}'}
-
-Open Open `03-descriptive-exercises.qmd`
-
-```{r}
-#| label: desc2-ex-clock
-#| echo: false
-# 15 minutes, warning at 5 minutes
-countdown::countdown(minutes = 15, seconds = 0, play_sound = TRUE, warn_when = 5 * 60)
 ```
 
 # Helper functions for survey analysis {background-color='{{< brand color secondary >}}'}
